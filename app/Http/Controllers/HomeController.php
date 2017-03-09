@@ -143,6 +143,74 @@ class HomeController extends Controller {
 		endif;
 
 	}
+
+
+
+    public function home(Request $request)
+    {
+        return view('newstarland.home', []);
+    }
+
+	public function listProject()
+	{
+		return view('newstarland.project.listProject');
+	}
+
+	public function projects($projects)
+	{
+		return view('newstarland.project.projects');
+	}
+
+	public function project()
+	{
+		return view('newstarland.project.project');
+	}
+
+	public function detailProject($id)
+	{
+		return view('newstarland.project.detailProject');
+	}
+
+	public function aboutUs()
+	{
+		return view('newstarland.about.aboutUs');
+	}
+
+	public function letter()
+	{
+		return view('newstarland.about.letter');
+	}
+
+	public function develop()
+	{
+		return view('newstarland.about.develop');
+	}
+
+	public function projectNews()
+	{
+		return view('newstarland.news.projectNews');
+	}
+
+	public function projectNewsDetail()
+	{
+		return view('newstarland.news.projectNewsDetail');
+	}
+
+	public function subProjectNews()
+	{
+		return view('newstarland.news.subProjectNews');
+	}
+
+	public function recruitment()
+	{
+		return view('newstarland.recruitment.recruitment');
+	}
+
+	public function recruitmentDetail()
+	{
+		return view('newstarland.recruitment.recruitmentDetail');
+	}
+
 	
 	public function  getLang( Request $request , $lang='en')
 	{

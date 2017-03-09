@@ -1,0 +1,10 @@
+{
+  "name": "newstarland",
+  "folder": "newstarland",
+  "author": "hieuhx",
+  "template": {
+    "Default Page": "page",
+    "Homepage": "homepage",
+    "Full Page": "fullpage"
+  }
+}
