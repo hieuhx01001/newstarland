@@ -22,8 +22,11 @@
   <div class="box-body"> 
   <ul class="nav nav-tabs" style="margin-bottom:10px;">
     <li ><a href="{{ URL::to('core/users')}}"> Users </a></li>
+      @if(Auth::user()->group_id == 1  )
     <li class=""><a href="{{ URL::to('core/groups')}}"> Groups</a></li>
+
     <li class="active"><a href="{{ URL::to('core/users/blast')}}"> Send Email </a></li>
+      @endif
   </ul> 
 
   @if(Session::has('message'))    

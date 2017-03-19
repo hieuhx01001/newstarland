@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ url('category?return='.$return) }}">
+                <a href="{{ url('projectcategory?return='.$return) }}">
                     <i class="fa fa-th"></i> {{ $pageTitle }} </a>
             </li>
             <li class="active"> Update</li>
@@ -48,10 +48,10 @@
                     @endforeach
                 </ul>
 
-                {!! Form::open(array('url'=>'category/save?return='.$return, 'class'=>'form-horizontal','files' => true , 'parsley-validate'=>'','novalidate'=>' ')) !!}
+                {!! Form::open(array('url'=>'projectcategory/save?return='.$return, 'class'=>'form-horizontal','files' => true , 'parsley-validate'=>'','novalidate'=>' ')) !!}
                 <div class="col-md-12">
                     <fieldset>
-                        <legend> Danh Mục Bài Viết</legend>
+                        <legend> Danh Mục Dự Án</legend>
                         {!! Form::hidden('category_id', $row['category_id']) !!}
                         <div class="form-group  ">
                             <label for="Danh Mục Cha" class=" control-label col-md-4 text-left"> Danh Mục Cha</label>
@@ -63,15 +63,29 @@
                             </div>
                         </div>
                         <div class="form-group  ">
-                            <label for="Tên Tiêu Đề" class=" control-label col-md-4 text-left"> Tên Tiêu Đề
-                                <span class="asterix"> * </span></label>
+                            <label for="Tên Dự Án" class=" control-label col-md-4 text-left"> Tên Dự Án</label>
                             <div class="col-md-7">
                                 <input type='text' name='name' id='name' value='{{ $row['name'] }}'
-                                       required class='form-control '/>
+                                       class='form-control '/>
                             </div>
                             <div class="col-md-1">
 
                             </div>
+                        </div>
+                        <div class="form-group  ">
+                            <label class=" control-label col-md-4 text-left "></label>
+                            <div class="col-md-7">
+                            <label class="checkbox ">
+
+                                <input type='checkbox' name='active' value="1" class="minimal-red"
+                                       @if( $row['active'] == 1)    checked
+                                        @elseif($row['category_id'] == '')
+                                            checked
+                                        @endif
+                                />
+                                Hoạt Động
+                            </label>
+                                </div>
                         </div>
                     </fieldset>
                 </div>
@@ -87,7 +101,7 @@
                             <i class="icon-checkmark-circle2"></i> {{ Lang::get('core.sb_apply') }}</button>
                         <button type="submit" name="submit" class="btn btn-primary btn-sm">
                             <i class="icon-bubble-check"></i> {{ Lang::get('core.sb_save') }}</button>
-                        <button type="button" onclick="location.href='{{ URL::to('category?return='.$return) }}' " class="btn btn-warning btn-sm ">
+                        <button type="button" onclick="location.href='{{ URL::to('projectcategory?return='.$return) }}' " class="btn btn-warning btn-sm ">
                             <i class="icon-cancel-circle2 "></i> {{ Lang::get('core.sb_cancel') }} </button>
                     </div>
 
@@ -102,12 +116,12 @@
         $(document).ready(function () {
 
 
-            $("#parent_id").jCombo("{!! url('category/comboselect?id='. $row['category_id']) !!}",
+            $("#parent_id").jCombo("{!! url('projectcategory/comboselect?id='. $row['category_id']) !!}",
                     {selected_value: '{{ $row["parent_id"] }}'});
 
 
             $('.removeMultiFiles').on('click', function () {
-                var removeUrl = '{{ url("category/removefiles?file=")}}' + $(this).attr('url');
+                var removeUrl = '{{ url("projectcategory/removefiles?file=")}}' + $(this).attr('url');
                 $(this).parent().remove();
                 $.get(removeUrl, function (response) {
                 });

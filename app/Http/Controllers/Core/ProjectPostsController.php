@@ -2,14 +2,17 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Core\Pages;
 use App\Models\Core\Posts;
 use App\Models\Core\Groups;
+use App\Models\ProjectCategory;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Validator, Input, Redirect;
 
 
-class PostsController extends Controller
+
+class ProjectPostsController extends Controller
 {
 
 	protected $layout = "layouts.main";
@@ -32,7 +35,7 @@ class PostsController extends Controller
 		$this->data = [
 			'pageTitle'  => $this->info['title'],
 			'pageNote'   => $this->info['note'],
-			'pageModule' => 'core/posts',
+			'pageModule' => 'core/projectposts',
 			'return'     => self::returnUrl()
 
 		];
@@ -47,7 +50,7 @@ class PostsController extends Controller
 		}
 
 		$this->access = $this->model->validAccess($this->info['id'], session('gid'));
-		
+
 		if ($this->access['is_view'] == 0) {
 			return Redirect::to('dashboard')
 						   ->with('messagetext', \Lang::get('core.note_restric'))->with('msgstatus', 'error')
@@ -58,10 +61,11 @@ class PostsController extends Controller
 		$order = (!is_null($request->input('order')) ? $request->input('order') : 'desc');
 		// End Filter sort and order for query 
 		// Filter Search for query		
-		$filter = ' AND pagetype="post" ';
+		$filter = ' AND pagetype="project" ';
+
 		if (!is_null($request->input('search'))) {
 			$search                   = $this->buildSearch('maps');
-			$filter                   = $search['param'];
+			$filter                   .= $search['param'];
 			$this->data['search_map'] = $search['maps'];
 		}
 
@@ -81,9 +85,18 @@ class PostsController extends Controller
 		// Build pagination setting
 		$page       = $page >= 1 && filter_var($page, FILTER_VALIDATE_INT) !== false ? $page : 1;
 		$pagination = new Paginator($results['rows'], $results['total'], $params['limit']);
-		$pagination->setPath('posts');
+		$pagination->setPath('projectposts');
 
+
+		foreach ($results['rows'] as $key => $row){
+
+			$category = ProjectCategory::find($row->category_id);
+			$results['rows'][$key]->category_name = isset($category->name) ? $category->name : 'none';
+
+		}
+		
 		$this->data['rowData'] = $results['rows'];
+
 		// Build Pagination 
 		$this->data['pagination'] = $pagination;
 		// Build pager number and append current param GET
@@ -98,13 +111,13 @@ class PostsController extends Controller
 		// Detail from master if any
 
 		// Get Post Config
-		$this->data['conpost'] = json_decode(file_get_contents(base_path() . '/resources/views/core/posts/config.json'), true);
+		$this->data['conpost'] = json_decode(file_get_contents(base_path() . '/resources/views/core/project_posts/config.json'), true);
 
 		// Master detail link if any 
 		$this->data['subgrid'] = (isset($this->info['config']['subgrid']) ? $this->info['config']['subgrid'] : []);
 
 		// Render into template
-		return view('core.posts.index', $this->data);
+		return view('core.project_posts.index', $this->data);
 	}
 
 
@@ -150,7 +163,6 @@ class PostsController extends Controller
 			if (session('gid') !== 1 && $g->group_id === 1) {
 				continue;
 			}
-
 			$group_id = $g['group_id'];
 			$a        = (isset($access[$group_id]) && $access[$group_id] == 1 ? 1 : 0);
 			$group[]  = ['id' => $g->group_id, 'name' => $g->name, 'access' => $a];
@@ -165,7 +177,7 @@ class PostsController extends Controller
 		}
 		$this->data['article'] = json_encode($articleList);
 
-		return view('core.posts.form', $this->data);
+		return view('core.project_posts.form', $this->data);
 	}
 
 	public function getShow(Request $request, $id = null)
@@ -191,9 +203,9 @@ class PostsController extends Controller
 			$this->data['subgrid']  = (isset($this->info['config']['subgrid']) ? $this->info['config']['subgrid'] : []);
 			$this->data['prevnext'] = $this->model->prevNext($id);
 
-			return view('core.posts.view', $this->data);
+			return view('core.project_posts.view', $this->data);
 		} else {
-			return Redirect::to('posts')->with('messagetext', 'Record Not Found !')->with('msgstatus', 'error');
+			return Redirect::to('projectposts')->with('messagetext', 'Record Not Found !')->with('msgstatus', 'error');
 		}
 	}
 
@@ -210,6 +222,26 @@ class PostsController extends Controller
 				$access[$group->group_id] = (isset($_POST['group_id'][$group->group_id]) ? '1' : '0');
 			}
 			$data['category_id'] =  $request->input('category_id');
+
+			// find project category is root or not
+			$category = ProjectCategory::find($data['category_id']);
+			if ($category->parent_id == 0){
+				// count number of post for this category
+				$count = Pages::where(
+					[
+						'category_id' => $data['category_id'],
+						'pageType' => 'project'
+					]
+				)->count();
+
+				if ($count > 0 && $request->input('pageID') == ''){
+					return Redirect::to('core/projectposts/update?return=')
+								   ->with('messagetext', 'Danh mục cha đã có bài viết')->with('msgstatus', 'error')
+						;
+				}
+			}
+
+
 			$data['access'] = json_encode($access);
 
 			if ($request->input('pageID') == '') {
@@ -224,15 +256,16 @@ class PostsController extends Controller
 			}
 
 			$data['allow_guest']  = $request->input('allow_guest');
-			$data['is_hot']       = $request->input('is_hot');
-			//$data['is_show_home'] = $request->input('is_show_home');
+			//$data['is_hot']       = $request->input('is_hot');
+			$data['is_show_home'] = $request->input('is_show_home');
+			$data['pagetype'] = 'project';
 
 			$id = $this->model->insertRow($data, $request->input('pageID'));
 
 			if (!is_null($request->input('apply'))) {
-				$return = 'core/posts/update/' . $id . '?return=' . self::returnUrl();
+				$return = 'core/projectposts/update/' . $id . '?return=' . self::returnUrl();
 			} else {
-				$return = 'core/posts?return=' . self::returnUrl();
+				$return = 'core/projectposts?return=' . self::returnUrl();
 			}
 
 			// Insert logs into database
@@ -246,7 +279,7 @@ class PostsController extends Controller
 
 		} else {
 
-			return Redirect::to('core/posts/update/' . $request->input('pageID'))->with('messagetext', \Lang::get('core.note_error'))
+			return Redirect::to('core/projectposts/update/' . $request->input('pageID'))->with('messagetext', \Lang::get('core.note_error'))
 				->with('msgstatus', 'error')
 				->withErrors($validator)->withInput()
 				;
@@ -273,13 +306,13 @@ class PostsController extends Controller
 			\SiteHelpers::auditTrail($request, "ID : " . implode(",", $request->input('ids')) . "  , Has Been Removed Successfull");
 
 			// redirect
-			return Redirect::to('core/posts?return=' . self::returnUrl())
+			return Redirect::to('core/projectposts?return=' . self::returnUrl())
 				->with('messagetext', \Lang::get('core.note_success_delete'))
 				->with('msgstatus', 'success')
 				;
 
 		} else {
-			return Redirect::to('core/posts?return=' . self::returnUrl())
+			return Redirect::to('core/projectposts?return=' . self::returnUrl())
 				->with('messagetext', 'No Item Deleted')
 				->with('msgstatus', 'error')
 				;
@@ -307,7 +340,7 @@ class PostsController extends Controller
 				$data['fields'] = \SiteHelpers::fieldLang($info['config']['grid']);
 				$data['id']     = $id;
 
-				return view('core.posts.public.view', $data);
+				return view('core.project_posts.public.view', $data);
 			}
 
 		} else {
@@ -332,7 +365,7 @@ class PostsController extends Controller
 			$data['i']          = ($page * $params['limit']) - $params['limit'];
 			$data['pagination'] = $pagination;
 
-			return view('core.posts.public.index', $data);
+			return view('core.project_posts.public.index', $data);
 		}
 
 
@@ -370,7 +403,7 @@ class PostsController extends Controller
 			'limit'  => (isset($_GET['rows']) ? filter_var($_GET['rows'], FILTER_VALIDATE_INT) : 10),
 			'sort'   => 'pageID',
 			'order'  => 'asc',
-			'params' => " AND pagetype ='post'  ",
+			'params' => " AND pagetype ='project'  ",
 			'global' => 1
 		];
 
@@ -387,7 +420,7 @@ class PostsController extends Controller
 			'limit'  => (isset($_GET['rows']) ? filter_var($_GET['rows'], FILTER_VALIDATE_INT) : 10),
 			'sort'   => 'pageID',
 			'order'  => 'asc',
-			'params' => " AND pagetype ='post' AND labels REGEXP '" . $label . "' ",
+			'params' => " AND pagetype ='project' AND labels REGEXP '" . $label . "' ",
 			'global' => 1
 		];
 
@@ -471,7 +504,7 @@ class PostsController extends Controller
 
 			return view($page, $data);
 		} else {
-			return Redirect::to('posts')->with('messagetext', 'Record Not Found !')->with('msgstatus', 'error');
+			return Redirect::to('projectposts')->with('messagetext', 'Record Not Found !')->with('msgstatus', 'error');
 		}
 	}
 
@@ -489,7 +522,7 @@ class PostsController extends Controller
 	public static function cloudtags()
 	{
 		$cloud = '';
-		$data  = \DB::table('pages')->where('pagetype', 'post')->get();
+		$data  = \DB::table('pages')->where('pagetype', 'project')->get();
 		foreach ($data as $row) {
 			$clouds = explode(',', $row->labels);
 			foreach ($clouds as $cld) {
@@ -512,12 +545,12 @@ class PostsController extends Controller
 		];
 
 		$data     = json_encode($data);
-		$filename = base_path() . '/resources/views/core/posts/config.json';
+		$filename = base_path() . '/resources/views/core/project_posts/config.json';
 		$fp       = fopen($filename, "w+");
 		fwrite($fp, $data);
 		fclose($fp);
 
-		return Redirect::to('core/posts')
+		return Redirect::to('core/projectposts')
 					   ->with('messagetext', \Lang::get('core.note_success'))->with('msgstatus', 'success')
 			;
 
@@ -526,13 +559,24 @@ class PostsController extends Controller
 	public function getSearch($mode = 'native')
 	{
 		$this->data['tableForm']  = $this->info['config']['forms'];
-		$this->data['tableGrid']  = $this->info['config']['grid'];
-		$this->data['searchMode'] = 'native';
-		$this->data['pageUrl']    = url('core/posts');
+		foreach ($this->data['tableForm'] as $key => $row){
 
-		return view('sximo.module.utility.search', $this->data);
+			if ($row['field'] == 'labels'){
+
+				$this->data['tableForm'][$key]['search'] = 0;
+			}
+
+		}
+		$this->data['tableGrid']  = $this->info['config']['grid'];
+		$this->data['searchMode'] = $mode;
+		$this->data['pageUrl']    = url('core/projectposts');
+		$this->data['categories'] = ProjectCategory::all();
+
+		return view('core.project_posts.search', $this->data);
+
 
 	}
+
 
 	function getArticleList( Request $request)
 	{
@@ -567,6 +611,92 @@ class PostsController extends Controller
               echo  $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file']['error'];
             }
         }
+	}
+
+	function buildSearch( $map = false)
+	{
+
+			$keywords = ''; $fields = '';	$param ='';
+			$this->info['config']['forms'][] = [
+				"field"      => "category_id",
+				"alias"      => "tb_pages",
+				"language"   => [],
+				"label"      => "Danh Mục",
+				"form_group" => "",
+				"required"   => "0",
+				"view"       => 1,
+				"type"       => "select",
+				"add"        => 1,
+				"size"       => "0",
+				"edit"       => 1,
+				"search"     => "1",
+				"sortlist"   => "2",
+				"limited"    => ""
+			];
+
+			$allowsearch = $this->info['config']['forms'];
+
+			$arr = array();
+			foreach($allowsearch as $as) $arr[$as['field']] = $as ;
+			$mapping = '';
+			if($_GET['search'] !='')
+			{
+				$type = explode("|",$_GET['search'] );
+				if(count($type) >= 1)
+				{
+					foreach($type as $t)
+					{
+						$keys = explode(":",$t);
+						if(in_array($keys[0],array_keys($arr))):
+							if($arr[$keys[0]]['type'] == 'select' || $arr[$keys[0]]['type'] == 'radio' )
+							{
+								$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." ".self::searchOperation($keys[1])." '".$keys[2]."' ";
+								$mapping .= $keys[0].' '.self::searchOperation($keys[1]).' '.$keys[2]. '<br />';
+
+							} else {
+								$operate = self::searchOperation($keys[1]);
+								if($operate == 'like')
+								{
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." LIKE '%".$keys[2]."%' ";
+									$mapping .= $keys[0].' LIKE '.$keys[2]. '<br />';
+								} else if( $operate =='is_null') {
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." IS NULL ";
+									$mapping .= $keys[0].' IS NULL <br />';
+
+								} else if( $operate =='not_null') {
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." IS NOT NULL ";
+									$mapping .= $keys[0].' IS NOT NULL <br />';
+
+								} else if( $operate =='between') {
+									$param .= " AND (".$arr[$keys[0]]['alias'].".".$keys[0]." BETWEEN '".$keys[2]."' AND '".$keys[3]."' ) ";
+									$mapping .= $keys[0].' BETWEEN '.$keys[2]. ' - '. $keys[3] .'<br />';
+								} else {
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." ".self::searchOperation($keys[1])." '".$keys[2]."' ";
+									$mapping .= $keys[0].' '.self::searchOperation($keys[1]).' '.$keys[2]. '<br />';
+								}
+							}
+						endif;
+					}
+				}
+			}
+
+		if($map == true)
+		{
+			return $param = array(
+					'param'	=> $param,
+					'maps'	=> '
+					<div class="infobox infobox-info fade in" style="font-size:10px;">
+					  <button data-dismiss="alert" class="close" type="button"> x </button>  
+					 <b class="text-danger"> Search Result </b> :  <br /> '.$mapping.'
+					</div>
+					'
+				);
+
+		} else {
+			return $param;
+		}
+
+
 	}
 
 

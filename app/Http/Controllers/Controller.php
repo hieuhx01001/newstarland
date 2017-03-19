@@ -124,8 +124,9 @@ abstract class Controller extends BaseController {
 
 			$keywords = ''; $fields = '';	$param ='';
 			$allowsearch = $this->info['config']['forms'];
+
 			$arr = array();
-			foreach($allowsearch as $as) $arr[$as['field']] = $as ;		
+			foreach($allowsearch as $as) $arr[$as['field']] = $as ;
 			$mapping = '';
 			if($_GET['search'] !='')
 			{
@@ -677,6 +678,7 @@ abstract class Controller extends BaseController {
 		$this->data['tableGrid'] 	= $this->info['config']['grid'];
 
 		$this->data['pageUrl']		= url($this->module);
+
 		return view('sximo.module.utility.search',$this->data);
 	
 	}

@@ -207,7 +207,9 @@ class Sximo extends Model {
 		
 		if(count($row) >= 1)
 		{
+
 			$row = $row[0];
+
 			if($row->access_data !='')
 			{
 				$data = json_decode($row->access_data,true);

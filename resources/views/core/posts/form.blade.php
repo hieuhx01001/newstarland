@@ -124,24 +124,23 @@
                             <select name='category_id' rows='5' id='category_id' class='select2 '></select>
                         </div>
                     </div>
-                    <div class="form-group  ">
-                        <label> Nhãn :</label>
-                        <div class="input-group m-b" style="width:250px !important;">
-
-                            <input value="{{ $row['labels'] }}" name="labels" id="select-label"  class=""  type="text" style="width:250px !important"/>
-                        </div>
-                    </div>
+                    {{--<div class="form-group  ">--}}
+                        {{--<label> Nhãn :</label>--}}
+                        {{--<div class="input-group m-b" style="width:250px !important;">--}}
+                            {{--<input value="{{ $row['labels'] }}" name="labels" id="select-label"  class=""  type="text" style="width:250px !important"/>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
                     <div class="form-group  ">
                         <label> Thuộc Tính Bài Viết :</label>
                         <label class="checkbox">
                             <input type='checkbox' name='is_hot' class="minimal-red" @if($row['is_hot'] ==1 ) checked @endif value="1"/>
-                            Tin Hot ?
+                            Tin Nổi Bật ?
                         </label>
-                        <label class="checkbox">
-                            <input type='checkbox' name='is_show_home' class="minimal-red" @if($row['is_show_home'] ==1 ) checked @endif value="1"/>
-                            Hiển Thị Trên Trang Chủ ?
-                        </label>
+                        {{--<label class="checkbox">--}}
+                            {{--<input type='checkbox' name='is_show_home' class="minimal-red" @if($row['is_show_home'] ==1 ) checked @endif value="1"/>--}}
+                            {{--Hiển Thị Trên Trang Chủ ?--}}
+                        {{--</label>--}}
                     </div>
 
 
@@ -219,9 +218,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $("#select-label").select2({
-                tags: JSON.parse($('#article-data').val())
-            });
+//            $("#select-label").select2({
+//                tags: JSON.parse($('#article-data').val())
+//            });
 
             $("#category_id").jCombo("{!! url('core/posts/comboselect?filter=tb_categories:category_id:name') !!}",
                     {selected_value: '{{ $row["category_id"] }}'});

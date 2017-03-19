@@ -1,23 +1,24 @@
 <?php namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Core\Pages;
+use App\Models\Projectcategory;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Validator, Input, Redirect ; 
 
 
-class CategoryController extends Controller {
+class ProjectcategoryController extends Controller {
 
 	protected $layout = "layouts.main";
 	protected $data = array();	
-	public $module = 'category';
+	public $module = 'projectcategory';
 	static $per_page	= '10';
 
 	public function __construct()
 	{
 		
 		parent::__construct();
-		$this->model = new Category();
+		$this->model = new Projectcategory();
 		
 		$this->info = $this->model->makeInfo( $this->module);
 		$this->access = array();
@@ -25,7 +26,7 @@ class CategoryController extends Controller {
 		$this->data = array_merge(array(
 			'pageTitle'	=> 	$this->info['title'],
 			'pageNote'	=>  $this->info['note'],
-			'pageModule'=> 'category',
+			'pageModule'=> 'projectcategory',
 			'return'	=> self::returnUrl()
 			
 		),$this->data);
@@ -69,11 +70,11 @@ class CategoryController extends Controller {
 		);
 		// Get Query 
 		$results = $this->model->getRows( $params , session('uid') );		
-		
+
 		// Build pagination setting
 		$page = $page >= 1 && filter_var($page, FILTER_VALIDATE_INT) !== false ? $page : 1;	
 		$pagination = new Paginator($results['rows'], $results['total'], $params['limit']);	
-		$pagination->setPath('category');
+		$pagination->setPath('projectcategory');
 		
 		$this->data['rowData']		= $results['rows'];
 		// Build Pagination 
@@ -84,6 +85,7 @@ class CategoryController extends Controller {
 		$this->data['i']			= ($page * $params['limit'])- $params['limit']; 
 		// Grid Configuration 
 		$this->data['tableGrid'] 	= $this->info['config']['grid'];
+
 		$this->data['tableForm'] 	= $this->info['config']['forms'];	
 		// Group users permission
 		$this->data['access']		= $this->access;
@@ -96,13 +98,14 @@ class CategoryController extends Controller {
 		$this->data['inorder']	= $order ;
 		
 		// Render into template
-		return view('category.index',$this->data);
+		return view('projectcategory.index',$this->data);
 	}	
 
 
 
 	function getUpdate(Request $request, $id = null)
 	{
+
 		// Make Sure users Logged 
 		if(!\Auth::check()) 
 			return redirect('user/login')->with('msgstatus', 'error')->with('messagetext','You are not login');
@@ -122,16 +125,19 @@ class CategoryController extends Controller {
 		}				
 				
 		$row = $this->model->find(filter_var($id, FILTER_VALIDATE_INT));
+
+
 		if($row)
 		{
 			$this->data['row'] =  $row;
 		} else {
-			$this->data['row'] = $this->model->getColumnTable('tb_categories'); 
+			$this->data['row'] = $this->model->getColumnTable('tb_project_categories'); 
 		}
 		$this->data['fields'] 		=  \SiteHelpers::fieldLang($this->info['config']['forms']);
 		
 		$this->data['id'] = $id;
-		return view('category.form',$this->data);
+		
+		return view('projectcategory.form',$this->data);
 	}	
 
 	public function getShow( Request $request, $id = null)
@@ -155,9 +161,9 @@ class CategoryController extends Controller {
 			$this->data['access']		= $this->access;
 			$this->data['subgrid']	= (isset($this->info['config']['subgrid']) ? $this->info['config']['subgrid'] : array()); 
 			$this->data['prevnext'] = $this->model->prevNext($id);
-			return view('category.view',$this->data);
+			return view('projectcategory.view',$this->data);
 		} else {
-			return redirect('category')->with('messagetext','Record Not Found !')->with('msgstatus','error');					
+			return redirect('projectcategory')->with('messagetext','Record Not Found !')->with('msgstatus','error');					
 		}
 	}	
 
@@ -168,17 +174,20 @@ class CategoryController extends Controller {
 			return redirect('user/login')->with('msgstatus', 'error')->with('messagetext','You are not login');
 
 		$rules = $this->validateForm();
+
 		$validator = Validator::make($request->all(), $rules);	
 		if ($validator->passes()) {
 			$data = $this->validatePost( $request );
-				
+
+			$data['active'] = $request->input('active') == "1" ? 1 : 0;
+
 			$id = $this->model->insertRow($data , $request->input('category_id'));
 			
 			if(!is_null($request->input('apply')))
 			{
-				$return = 'category/update/'.$id.'?return='.self::returnUrl();
+				$return = 'projectcategory/update/'.$id.'?return='.self::returnUrl();
 			} else {
-				$return = 'category?return='.self::returnUrl();
+				$return = 'projectcategory?return='.self::returnUrl();
 			}
 
 			// Insert logs into database
@@ -193,7 +202,7 @@ class CategoryController extends Controller {
 			
 		} else {
 
-			return redirect('category/update/'.$request->input('category_id'))->with('messagetext',\Lang::get('core.note_error'))->with('msgstatus','error')
+			return redirect('projectcategory/update/'.$request->input('category_id'))->with('messagetext',\Lang::get('core.note_error'))->with('msgstatus','error')
 			->withErrors($validator)->withInput();
 		}	
 	
@@ -212,15 +221,37 @@ class CategoryController extends Controller {
 		// delete multipe rows 
 		if(count($request->input('ids')) >=1)
 		{
-			$this->model->destroy($request->input('ids'));
+			$ids = $request->input('ids');
+			foreach ($ids as $categoryId){
+				// find category
+				$category = Projectcategory::find($categoryId);
+				// count number of post of this category
+
+				$count = Pages::where(
+					[
+						'category_id' => $categoryId,
+						'pageType' => 'project'
+					]
+				)->count();
+
+				if ($count >= 1) {
+					return redirect('projectcategory?return=' . self::returnUrl())
+						->with('messagetext', 'Không thể xóa danh mục: '. $category->name. ', đã tồn tại bài viết')
+						->with('msgstatus', 'error')
+						;
+				}
+
+				$this->model->destroy($categoryId);
+			}
+
 			
 			\SiteHelpers::auditTrail( $request , "ID : ".implode(",",$request->input('ids'))."  , Has Been Removed Successfull");
 			// redirect
-			return redirect('category?return='.self::returnUrl())
+			return redirect('projectcategory?return='.self::returnUrl())
         		->with('messagetext', \Lang::get('core.note_success_delete'))->with('msgstatus','success'); 
 	
 		} else {
-			return redirect('category?return='.self::returnUrl())
+			return redirect('projectcategory?return='.self::returnUrl())
         		->with('messagetext','No Item Deleted')->with('msgstatus','error');				
 		}
 
@@ -229,8 +260,8 @@ class CategoryController extends Controller {
 	public static function display( )
 	{
 		$mode  = isset($_GET['view']) ? 'view' : 'default' ;
-		$model  = new Category();
-		$info = $model::makeInfo('category');
+		$model  = new Projectcategory();
+		$info = $model::makeInfo('projectcategory');
 
 		$data = array(
 			'pageTitle'	=> 	$info['title'],
@@ -247,7 +278,7 @@ class CategoryController extends Controller {
 				$data['row'] =  $row;
 				$data['fields'] 		=  \SiteHelpers::fieldLang($info['config']['grid']);
 				$data['id'] = $id;
-				return view('category.public.view',$data);
+				return view('projectcategory.public.view',$data);
 			} 
 
 		} else {
@@ -271,7 +302,7 @@ class CategoryController extends Controller {
 			$pagination->setPath('');
 			$data['i']			= ($page * $params['limit'])- $params['limit']; 
 			$data['pagination'] = $pagination;
-			return view('category.public.index',$data);			
+			return view('projectcategory.public.index',$data);			
 		}
 
 
@@ -283,7 +314,7 @@ class CategoryController extends Controller {
 		$rules = $this->validateForm();
 		$validator = Validator::make($request->all(), $rules);	
 		if ($validator->passes()) {
-			$data = $this->validatePost('tb_categories');		
+			$data = $this->validatePost('tb_project_categories');		
 			 $this->model->insertRow($data , $request->input('category_id'));
 			return  Redirect::back()->with('messagetext','<p class="alert alert-success">'.\Lang::get('core.note_success').'</p>')->with('msgstatus','success');
 		} else {
@@ -293,14 +324,37 @@ class CategoryController extends Controller {
 
 		}	
 	
-	}
-
+	}	
+	
 	function getComboselect( Request $request)
 	{
 		if($request->ajax() == true && \Auth::check() == true)
 		{
 
-			$categories = Category::whereNotIn('category_id', [$request->input('id')])->get();
+			$categories = ProjectCategory::whereNotIn('category_id', [$request->input('id')])->get();
+
+
+			/** @var Category $category */
+			$items[] = [0,'Danh Mục Cha'];
+			foreach($categories as $category)
+			{
+				$items[] = [$category->category_id, $category->name];
+
+			}
+
+
+			return json_encode($items);
+		} else {
+			return json_encode(array('OMG'=>" Ops .. Cant access the page !"));
+		}
+	}
+
+	function getAllCategoriesSelect( Request $request)
+	{
+		if($request->ajax() == true && \Auth::check() == true)
+		{
+
+			$categories = ProjectCategory::all();
 
 
 			/** @var Category $category */
@@ -316,5 +370,6 @@ class CategoryController extends Controller {
 			return json_encode(array('OMG'=>" Ops .. Cant access the page !"));
 		}
 	}
-	
+
+
 }

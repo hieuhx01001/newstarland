@@ -111,7 +111,6 @@
                                                 @endif
                                             @endif
                                         @endforeach
-
                                     </tr>
                                 </thead>
 
