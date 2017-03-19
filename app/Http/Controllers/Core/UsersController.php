@@ -220,11 +220,20 @@ class UsersController extends Controller {
 			return redirect('user/login')->with('msgstatus', 'error')->with('messagetext','You are not login');
 		
 		$this->access = $this->model->validAccess($this->info['id'] , session('gid'));
+
 		if($this->access['is_remove'] ==0) 
 			return redirect('dashboard')->with('messagetext', \Lang::get('core.note_restric'))->with('msgstatus','error');
 		// delete multipe rows 
 		if(count($request->input('ids')) >=1)
 		{
+			$listDeleteId = $request->input('ids');
+			$currentId = \Auth::user()->id;
+			if (($key = array_search($currentId, $listDeleteId)) !== false) {
+				unset($listDeleteId[$key]);
+				return Redirect::to('core/users')
+        		->with('messagetext','You can not commit suicide your self :(')->with('msgstatus','error');
+			}
+
 			$this->model->destroy($request->input('ids'));
 			
 			// redirect
@@ -328,6 +337,29 @@ class UsersController extends Controller {
 
 		}	
 
+	}
+
+	function getComboselect( Request $request)
+	{
+		if($request->ajax() == true && \Auth::check() == true)
+		{
+			$groups = Groups::all();
+
+
+			/** @var Groups $group */
+			foreach($groups as $group)
+			{
+				if (session('gid') !== 1 &&  $group->group_id === 1){
+					continue;
+				}
+				$items[] = [$group->group_id, $group->name];
+			}
+			
+
+			return json_encode($items);
+		} else {
+			return json_encode(array('OMG'=>" Ops .. Cant access the page !"));
+		}
 	}
 
 

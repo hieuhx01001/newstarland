@@ -16,6 +16,6 @@
 		<p> {{ URL::to('user/activation?code='.$code) }} </p> 
 		<br /><br /><p> Thank You </p><br /><br />
 		
-		{{ $sximoconfig['cnf_appname'] }} 
+		{{ config('sximo')['cnf_appname'] }}
 	</body>
 </html>

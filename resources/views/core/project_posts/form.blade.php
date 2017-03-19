@@ -1,22 +1,21 @@
+@extends('layouts.app')
 
-
-<?php $__env->startSection('content'); ?>
+@section('content')
 
     <section class="content-header">
         <h1>
-            <i class="fa  fa-file-text-o "></i> <?php echo e($pageTitle); ?>
-
-            <small><?php echo e($pageNote); ?></small>
+            <i class="fa  fa-file-text-o "></i> {{ $pageTitle }}
+            <small>{{ $pageNote }}</small>
         </h1>
         <ol class="breadcrumb">
             <li>
-                <a href="<?php echo e(url('dashboard')); ?>">
+                <a href="{{ url('dashboard') }}">
                     <i class="fa fa-dashboard"></i>
                     Home
                 </a>
             </li>
             <li>
-                <a href="<?php echo e(url('core/posts')); ?>">
+                <a href="{{ url('core/projectposts') }}">
                     <i class="fa fa-user"></i>
                     Post Article
                 </a>
@@ -29,27 +28,26 @@
         <div class="box box-primary ">
             <div class="box-header with-border">
                 <div class="box-header-tools pull-left">
-                    <a href="<?php echo e(url($pageModule.'?return='.$return)); ?>" class="tips btn btn-xs btn-default" title="<?php echo e(Lang::get('core.btn_back')); ?>">
+                    <a href="{{ url($pageModule.'?return='.$return) }}" class="tips btn btn-xs btn-default" title="{{ Lang::get('core.btn_back') }}">
                         <i class="fa  fa-arrow-left"></i>
                     </a>
                 </div>
                 <div class="box-header-tools pull-right ">
-                    <?php if(Session::get('gid') ==1): ?>
-                        <a href="<?php echo e(URL::to('sximo/module/config/posts')); ?>" class="tips btn btn-xs btn-default" title=" <?php echo e(Lang::get('core.btn_config')); ?>">
+                    @if(Session::get('gid') ==1)
+                        <a href="{{ URL::to('sximo/module/config/posts') }}" class="tips btn btn-xs btn-default" title=" {{ Lang::get('core.btn_config') }}">
                             <i class="fa  fa-ellipsis-v"></i>
                         </a>
-                    <?php endif; ?>
+                    @endif
                 </div>
 
             </div>
             <div class="box-body">
                 <ul class="parsley-error-list">
-                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
-                        <li><?php echo e($error); ?></li>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
                 </ul>
-                <?php echo Form::open(array('url'=>'core/posts/save?return='.$return, 'class'=>'form-vertical','files' => true , 'parsley-validate'=>'','novalidate'=>' ')); ?>
-
+                {!! Form::open(array('url'=>'core/projectposts/save?return='.$return, 'class'=>'form-vertical','files' => true , 'parsley-validate'=>'','novalidate'=>' ')) !!}
                 <div class="col-md-9">
                     <ul class="nav nav-tabs m-b">
                         <li class="active">
@@ -75,27 +73,21 @@
                     <div class="tab-content">
                         <div class="tab-pane active m-t" id="info">
 
-                            <?php echo Form::hidden('pageID', $row['pageID']); ?>
-
-                            <?php echo Form::hidden('pagetype', 'post'); ?>
-
-                            <?php echo Form::hidden('pageID', $row['pageID']); ?>
-
+                            {!! Form::hidden('pageID', $row['pageID']) !!}
+                            {!! Form::hidden('pagetype', 'post') !!}
+                            {!! Form::hidden('pageID', $row['pageID']) !!}
                             <div class="form-group  ">
                                 <label> Tiêu Đề Bài Viết</label>
-                                <?php echo Form::text('title', $row['title'],array('class'=>'form-control', 'placeholder'=>'',   )); ?>
-
+                                {!! Form::text('title', $row['title'],array('class'=>'form-control', 'placeholder'=>'',   )) !!}
                             </div>
                             <div class="form-group  ">
-                                <label for="ipt" class=" btn-primary  btn btn-sm">  <?php echo url('post/view/'); ?>  </label>
-                                <?php echo Form::text('alias', $row['alias'],array('class'=>'form-control', 'placeholder'=>'', 'style'=>'width:350px; display:inline-block;'   )); ?>
-
+                                <label for="ipt" class=" btn-primary  btn btn-sm">  {!! url('post/view/')!!}  </label>
+                                {!! Form::text('alias', $row['alias'],array('class'=>'form-control', 'placeholder'=>'', 'style'=>'width:350px; display:inline-block;'   )) !!}
                             </div>
                             <div class="form-group  ">
                                 <label> Nội Dung</label>
                                 <textarea name='note' rows='25' id='note-content' class='form-control note-content'>
-                                    <?php echo e($row['note']); ?>
-
+                                    {{ $row['note'] }}
                                 </textarea>
                             </div>
                         </div>
@@ -103,15 +95,13 @@
                             <div class="form-group  ">
                                 <label> Metakey</label>
                                 <textarea name='metakey' rows='5' id='metakey' class='form-control '>
-                                    <?php echo e($row['metakey']); ?>
-
+                                    {{ $row['metakey'] }}
                                 </textarea>
                             </div>
                             <div class="form-group  ">
                                 <label> Metadesc</label>
                                 <textarea name='metadesc' rows='5' id='metadesc' class='form-control '>
-                                    <?php echo e($row['metadesc']); ?>
-
+                                    {{ $row['metadesc'] }}
                                 </textarea>
                             </div>
                         </div>
@@ -120,8 +110,7 @@
                             <div class="form-group  ">
                                 <label> Ảnh Đại Diện</label>
                                 <input type="file" name="image" />
-                                <?php echo SiteHelpers::showUploadedFile($row['image'],'/uploads/images/'); ?>
-
+                                {!! SiteHelpers::showUploadedFile($row['image'],'/uploads/images/') !!}
                             </div>
                         </div>
 
@@ -139,18 +128,18 @@
                         <label> Nhãn :</label>
                         <div class="input-group m-b" style="width:250px !important;">
 
-                            <input value="<?php echo e($row['labels']); ?>" name="labels" id="select-label"  class=""  type="text" style="width:250px !important"/>
+                            <input value="{{ $row['labels'] }}" name="labels" id="select-label"  class=""  type="text" style="width:250px !important"/>
                         </div>
                     </div>
 
                     <div class="form-group  ">
                         <label> Thuộc Tính Bài Viết :</label>
+                        {{--<label class="checkbox">--}}
+                            {{--<input type='checkbox' name='is_hot' class="minimal-red" @if($row['is_hot'] ==1 ) checked @endif value="1"/>--}}
+                            {{--Tin Hot ?--}}
+                        {{--</label>--}}
                         <label class="checkbox">
-                            <input type='checkbox' name='is_hot' class="minimal-red" <?php if($row['is_hot'] ==1 ): ?> checked <?php endif; ?> value="1"/>
-                            Tin Hot ?
-                        </label>
-                        <label class="checkbox">
-                            <input type='checkbox' name='is_show_home' class="minimal-red" <?php if($row['is_show_home'] ==1 ): ?> checked <?php endif; ?> value="1"/>
+                            <input type='checkbox' name='is_show_home' class="minimal-red" @if($row['is_show_home'] ==1 ) checked @endif value="1"/>
                             Hiển Thị Trên Trang Chủ ?
                         </label>
                     </div>
@@ -160,14 +149,18 @@
                     <div class="form-group  ">
                         <label> Trạng Thái :</label>
                         <label class="radio  ">
-                            <input type='radio' name='status' value="enable" required class="minimal-red"
-                                   <?php if( $row['status'] =='enable'): ?>    checked <?php endif; ?>
+                            <input type='radio' parsley-group="" name='status' value="enable" required class="minimal-red"
+                                   @if( $row['status'] =='enable')
+                                    checked
+                                   @elseif($row['pageID'] === "")
+                                   checked
+                                    @endif
                             />
                             Hoạt Động
                         </label>
                         <label class="radio">
-                            <input type='radio' name='status' value="disable" required class="minimal-red"
-                                   <?php if( $row['status'] =='disable'): ?>    checked <?php endif; ?>
+                            <input type='radio' parsley-group="" name='status' value="disable" required class="minimal-red"
+                                   @if( $row['status'] =='disable')    checked @endif
                             />
                             Ngừng
                         </label>
@@ -176,32 +169,33 @@
                     <div class="form-group  ">
                         <label for="ipt" class=" control-label "> Ngày Tạo</label>
                         <div class="input-group m-b" style="width:150px !important;">
-                            <?php echo Form::text('created', $row['created'],array('class'=>'form-control date', 'style'=>'width:200px !important;')); ?>
-
+                            {!! Form::text('created', $row['created'],array('class'=>'form-control date', 'style'=>'width:200px !important;')) !!}
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                         </div>
                     </div>
 
                     <div class="form-group  ">
                         <label for="ipt"> Ai có thể nhìn </label>
-                        <?php $__currentLoopData = $groups; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $group): $__env->incrementLoopIndices(); $loop = $__env->getFirstLoop(); ?>
+
+                        @foreach($groups as $group)
                             <label class="checkbox">
-                                <input type='checkbox' name='group_id[<?php echo e($group['id']); ?>]' value="<?php echo e($group['id']); ?>"
-                                       <?php if($group['access'] ==1 or $group['id'] ==1): ?>
+                                <input type='checkbox' name='group_id[{{ $group['id'] }}]' value="{{ $group['id'] }}"
+                                       @if($group['access'] ==1 or $group['id'] ==1)
                                        checked
-                                       <?php endif; ?>
+                                       @elseif($row['pageID'] === "")
+                                        checked
+                                       @endif
                                        class="minimal-red"
                                 />
-                                <?php echo e($group['name']); ?>
-
+                                {{ $group['name'] }}
                             </label>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getFirstLoop(); ?>
+                        @endforeach
                     </div>
 
                     <div class="form-group  ">
                         <label> Cho Phép Hiển Thị Công Khai: </label>
                         <label class="checkbox">
-                            <input type='checkbox' name='allow_guest' class="minimal-red" <?php if($row['allow_guest'] ==1 ): ?> checked <?php endif; ?> value="1"/>
+                            <input type='checkbox' name='allow_guest' class="minimal-red" @if($row['allow_guest'] ==1 ) checked @endif value="1"/>
                             Công Khai ?
                         </label>
                     </div>
@@ -215,17 +209,16 @@
                             Apply
                         </button>
                         <button type="submit" name="submit" class="btn btn-primary btn-sm btn-flat">
-                            <i class="icon-bubble-check"></i> <?php echo e(Lang::get('core.sb_save')); ?></button>
-                        <button type="button" onclick="location.href='<?php echo e(URL::to('core/posts?return='.$return)); ?>' " class="btn btn-warning btn-sm btn-flat">
-                            <i class="icon-cancel-circle2 "></i> <?php echo e(Lang::get('core.sb_cancel')); ?> </button>
+                            <i class="icon-bubble-check"></i> {{ Lang::get('core.sb_save') }}</button>
+                        <button type="button" onclick="location.href='{{ URL::to('core/projectposts?return='.$return) }}' " class="btn btn-warning btn-sm btn-flat">
+                            <i class="icon-cancel-circle2 "></i> {{ Lang::get('core.sb_cancel') }} </button>
 
                     </div>
-                    <input type="hidden" value="<?php echo e($article); ?>" id="article-data">
+                    <input type="hidden" value="{{$article}}" id="article-data">
 
                 </div>
                 <div style="clear:both;"></div>
-                <?php echo Form::close(); ?>
-
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
@@ -237,11 +230,11 @@
                 tags: JSON.parse($('#article-data').val())
             });
 
-            $("#category_id").jCombo("<?php echo url('core/posts/comboselect?filter=tb_categories:category_id:name'); ?>",
-                    {selected_value: '<?php echo e($row["category_id"]); ?>'});
+            $("#category_id").jCombo("{!! url('core/projectposts/comboselect?filter=tb_project_categories:category_id:name') !!}",
+                    {selected_value: '{{ $row["category_id"] }}'});
 
             $('.removeMultiFiles').on('click', function () {
-                var removeUrl = '<?php echo e(url("posts/removefiles?file=")); ?>' + $(this).attr('url');
+                var removeUrl = '{{ url("posts/removefiles?file=")}}' + $(this).attr('url');
                 $(this).parent().remove();
                 $.get(removeUrl, function (response) {
                 });
@@ -265,7 +258,7 @@
                 $.ajax({
                     data:        data,
                     type:        "POST",
-                    url:         "<?php echo e(url('core/posts/upload-image')); ?>",
+                    url:         "{{ url('core/projectposts/upload-image') }}",
                     cache:       false,
                     contentType: false,
                     processData: false,
@@ -278,5 +271,4 @@
         });
     </script>
 
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@stop

@@ -35,16 +35,6 @@
 										 <div class="col-md-1">
 										 	
 										 </div>
-									  </div> 					
-									  <div class="form-group  " >
-										<label for="Link Ảnh" class=" control-label col-md-4 text-left"> Link Ảnh </label>
-										<div class="col-md-7">
-										  <input  type='text' name='image_url' id='image_url' value='{{ $row['image_url'] }}' 
-						     class='form-control ' /> 
-										 </div> 
-										 <div class="col-md-1">
-										 	
-										 </div>
 									  </div> </fieldset>
 			</div>
 			

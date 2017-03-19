@@ -6,7 +6,8 @@ use App\Libary\SiteHelpers;
 use Socialize;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
-use Validator, Input, Redirect ; 
+use Validator, Input, Redirect ;
+use Mail;
 
 class UserController extends Controller {
 
@@ -379,7 +380,7 @@ class UserController extends Controller {
 				if($this->config['cnf_mail'] =='swift')
 				{ 
 					
-					Mail::send('user.emails.auth.reminder', $data, function ($message) {
+					Mail::send('user.emails.auth.reminder', $data, function ($message) use ($data) {
 			    		//$message->to($to)->subject($subject);
 			    		$message->to($data['email'])->subject($data['subject']);
 			    	});	 

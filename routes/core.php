@@ -67,6 +67,20 @@ Route::post('core/posts/config','PostsController@postConfig');
 Route::post('core/posts/upload-image', 'PostsController@postUploadImage');
 /* End Posts Routes */
 
+Route::get('core/projectposts','ProjectPostsController@getIndex');
+Route::get('core/projectposts/show/{any}','ProjectPostsController@getShow');
+Route::get('core/projectposts/update/{any?}','ProjectPostsController@getUpdate');
+Route::get('core/projectposts/comboselect','ProjectPostsController@getComboselect');
+Route::get('core/projectposts/download','ProjectPostsController@getDownload');
+Route::get('core/projectposts/search','ProjectPostsController@getSearch');
+Route::get('core/projectposts/article','ProjectPostsController@getArticleList');
+// -- Post Method --
+Route::post('core/projectposts/save','ProjectPostsController@postSave');
+Route::post('core/projectposts/filter','ProjectPostsController@postFilter');
+Route::post('core/projectposts/delete','ProjectPostsController@postDelete');
+Route::post('core/projectposts/config','ProjectPostsController@postConfig');
+Route::post('core/projectposts/upload-image', 'ProjectPostsController@postUploadImage');
+
 //-------------------------------------------------------------------------
 /* Start Logs Routes */
 // -- Get Method --
