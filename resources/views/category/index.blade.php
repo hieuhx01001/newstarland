@@ -67,7 +67,6 @@
                     <table class="table table-striped  ">
                         <thead>
                             <tr>
-
                                 <th class="chbox-col">
                                     <input type="checkbox" class="checkall"/>
                                 </th>
@@ -88,7 +87,7 @@
                                         @endif
                                     @endif
                                 @endforeach
-
+                                <th><span>Trạng Thái</span></th>
                             </tr>
                         </thead>
 
@@ -135,8 +134,8 @@
                                             @endif
                                         @endif
                                     @endforeach
+                                    <td> {!! $row->active == '1' ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-minus-circle"></i>'  !!}</td>
                                 </tr>
-
                             @endforeach
 
                         </tbody>

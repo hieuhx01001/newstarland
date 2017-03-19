@@ -1,6 +1,6 @@
 <link href="{{ asset('sximo/js/plugins/select2/select2.css')}}" rel="stylesheet">
 <div >
-<form id="core/projectpostsSearch">
+<form id="core/postsSearch">
 <table class="table search-table table-striped" id="advance-search">
 	<tbody>
 		<tr id="category_id" class="fieldsearch">

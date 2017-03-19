@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\Core\Posts;
 use App\Models\Core\Groups;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class PostsController extends Controller
 		}
 
 		$this->access = $this->model->validAccess($this->info['id'], session('gid'));
-		
+
 		if ($this->access['is_view'] == 0) {
 			return Redirect::to('dashboard')
 						   ->with('messagetext', \Lang::get('core.note_restric'))->with('msgstatus', 'error')
@@ -61,7 +62,7 @@ class PostsController extends Controller
 		$filter = ' AND pagetype="post" ';
 		if (!is_null($request->input('search'))) {
 			$search                   = $this->buildSearch('maps');
-			$filter                   = $search['param'];
+			$filter                   .= $search['param'];
 			$this->data['search_map'] = $search['maps'];
 		}
 
@@ -82,6 +83,12 @@ class PostsController extends Controller
 		$page       = $page >= 1 && filter_var($page, FILTER_VALIDATE_INT) !== false ? $page : 1;
 		$pagination = new Paginator($results['rows'], $results['total'], $params['limit']);
 		$pagination->setPath('posts');
+
+		foreach ($results['rows'] as $key => $row){
+			$category = Category::find($row->category_id);
+			$results['rows'][$key]->category_name = isset($category->name) ? $category->name : 'none';
+
+		}
 
 		$this->data['rowData'] = $results['rows'];
 		// Build Pagination 
@@ -526,11 +533,20 @@ class PostsController extends Controller
 	public function getSearch($mode = 'native')
 	{
 		$this->data['tableForm']  = $this->info['config']['forms'];
+		foreach ($this->data['tableForm'] as $key => $row){
+
+			if ($row['field'] == 'labels'){
+
+				$this->data['tableForm'][$key]['search'] = 0;
+			}
+
+		}
 		$this->data['tableGrid']  = $this->info['config']['grid'];
 		$this->data['searchMode'] = 'native';
 		$this->data['pageUrl']    = url('core/posts');
 
-		return view('sximo.module.utility.search', $this->data);
+		$this->data['categories'] = Category::all();
+		return view('core.posts.search', $this->data);
 
 	}
 
@@ -567,6 +583,92 @@ class PostsController extends Controller
               echo  $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file']['error'];
             }
         }
+	}
+
+	function buildSearch( $map = false)
+	{
+
+			$keywords = ''; $fields = '';	$param ='';
+			$this->info['config']['forms'][] = [
+				"field"      => "category_id",
+				"alias"      => "tb_pages",
+				"language"   => [],
+				"label"      => "Danh Mục",
+				"form_group" => "",
+				"required"   => "0",
+				"view"       => 1,
+				"type"       => "select",
+				"add"        => 1,
+				"size"       => "0",
+				"edit"       => 1,
+				"search"     => "1",
+				"sortlist"   => "2",
+				"limited"    => ""
+			];
+
+			$allowsearch = $this->info['config']['forms'];
+
+			$arr = array();
+			foreach($allowsearch as $as) $arr[$as['field']] = $as ;
+			$mapping = '';
+			if($_GET['search'] !='')
+			{
+				$type = explode("|",$_GET['search'] );
+				if(count($type) >= 1)
+				{
+					foreach($type as $t)
+					{
+						$keys = explode(":",$t);
+						if(in_array($keys[0],array_keys($arr))):
+							if($arr[$keys[0]]['type'] == 'select' || $arr[$keys[0]]['type'] == 'radio' )
+							{
+								$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." ".self::searchOperation($keys[1])." '".$keys[2]."' ";
+								$mapping .= $keys[0].' '.self::searchOperation($keys[1]).' '.$keys[2]. '<br />';
+
+							} else {
+								$operate = self::searchOperation($keys[1]);
+								if($operate == 'like')
+								{
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." LIKE '%".$keys[2]."%' ";
+									$mapping .= $keys[0].' LIKE '.$keys[2]. '<br />';
+								} else if( $operate =='is_null') {
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." IS NULL ";
+									$mapping .= $keys[0].' IS NULL <br />';
+
+								} else if( $operate =='not_null') {
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." IS NOT NULL ";
+									$mapping .= $keys[0].' IS NOT NULL <br />';
+
+								} else if( $operate =='between') {
+									$param .= " AND (".$arr[$keys[0]]['alias'].".".$keys[0]." BETWEEN '".$keys[2]."' AND '".$keys[3]."' ) ";
+									$mapping .= $keys[0].' BETWEEN '.$keys[2]. ' - '. $keys[3] .'<br />';
+								} else {
+									$param .= " AND ".$arr[$keys[0]]['alias'].".".$keys[0]." ".self::searchOperation($keys[1])." '".$keys[2]."' ";
+									$mapping .= $keys[0].' '.self::searchOperation($keys[1]).' '.$keys[2]. '<br />';
+								}
+							}
+						endif;
+					}
+				}
+			}
+
+		if($map == true)
+		{
+			return $param = array(
+					'param'	=> $param,
+					'maps'	=> '
+					<div class="infobox infobox-info fade in" style="font-size:10px;">
+					  <button data-dismiss="alert" class="close" type="button"> x </button>  
+					 <b class="text-danger"> Search Result </b> :  <br /> '.$mapping.'
+					</div>
+					'
+				);
+
+		} else {
+			return $param;
+		}
+
+
 	}
 
 

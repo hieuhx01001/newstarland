@@ -73,6 +73,21 @@
 
                             </div>
                         </div>
+                        <div class="form-group  ">
+                            <label class=" control-label col-md-4 text-left "></label>
+                            <div class="col-md-7">
+                            <label class="checkbox ">
+
+                                <input type='checkbox' name='active' value="1" class="minimal-red"
+                                       @if( $row['active'] == 1)    checked
+                                        @elseif($row['category_id'] == '')
+                                            checked
+                                        @endif
+                                />
+                                Hoạt Động
+                            </label>
+                                </div>
+                        </div>
                     </fieldset>
                 </div>
 

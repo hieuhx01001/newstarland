@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Core\Pages;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Validator, Input, Redirect ; 
@@ -171,7 +172,9 @@ class CategoryController extends Controller {
 		$validator = Validator::make($request->all(), $rules);	
 		if ($validator->passes()) {
 			$data = $this->validatePost( $request );
-				
+
+			$data['active'] = $request->input('active') == "1" ? 1 : 0;
+
 			$id = $this->model->insertRow($data , $request->input('category_id'));
 			
 			if(!is_null($request->input('apply')))
@@ -212,7 +215,28 @@ class CategoryController extends Controller {
 		// delete multipe rows 
 		if(count($request->input('ids')) >=1)
 		{
-			$this->model->destroy($request->input('ids'));
+			$ids = $request->input('ids');
+			foreach ($ids as $categoryId){
+				// find category
+				$category = Category::find($categoryId);
+				// count number of post of this category
+
+				$count = Pages::where(
+					[
+						'category_id' => $categoryId,
+						'pageType' => 'post'
+					]
+				)->count();
+
+				if ($count >= 1) {
+					return redirect('category?return=' . self::returnUrl())
+						->with('messagetext', 'Không thể xóa danh mục: '. $category->name. ', đã tồn tại bài viết')
+						->with('msgstatus', 'error')
+						;
+				}
+
+				$this->model->destroy($categoryId);
+			}
 			
 			\SiteHelpers::auditTrail( $request , "ID : ".implode(",",$request->input('ids'))."  , Has Been Removed Successfull");
 			// redirect
@@ -316,5 +340,5 @@ class CategoryController extends Controller {
 			return json_encode(array('OMG'=>" Ops .. Cant access the page !"));
 		}
 	}
-	
+
 }

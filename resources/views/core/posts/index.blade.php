@@ -101,7 +101,7 @@
                                             <input type="checkbox" class="checkall"/>
                                         </th>
                                         <th><span>{{ Lang::get('core.btn_action') }}</span></th>
-
+                                        <th><span>Danh Mục</span></th>
                                         @foreach ($tableGrid as $t)
                                             @if($t['view'] =='1')
                                                 <?php $limited = isset($t['limited']) ? $t['limited'] : ''; ?>
@@ -146,7 +146,7 @@
                                                 </div>
 
                                             </td>
-
+                                            <td><span>{{ $row->category_name  }}</span></td>
                                             @foreach ($tableGrid as $field)
                                                 @if($field['view'] =='1')
                                                     <?php $limited = isset($field['limited']) ? $field['limited'] : ''; ?>
