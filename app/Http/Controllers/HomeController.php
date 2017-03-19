@@ -1,10 +1,14 @@
 <?php  namespace App\Http\Controllers;
+use App\Models\category;
+use App\Models\Core\Pages;
+use App\Models\Core\Users;
 use Illuminate\Http\Request;
 use App\Library\Markdown;
 use Mail;
 use Validator, Input, Redirect ; 
 
 class HomeController extends Controller {
+	const WEB_NAME = "This is awesome";
 
 	public function __construct()
 	{
@@ -14,10 +18,7 @@ class HomeController extends Controller {
 		if(\Session::get('lang') != '')
 		{
 			$this->data['pageLang'] = \Session::get('lang');
-		}	
-
-
-
+		}
 	}
 
 	/**
@@ -158,7 +159,17 @@ class HomeController extends Controller {
 
 	public function projects($projects)
 	{
-		return view('newstarland.project.projects');
+		$projects = Pages::where('category_id', 10)->get();
+		$titleProject = category::find(10);
+
+		return view('newstarland.project.projects')
+			->with(
+				[
+					'webName' => self::WEB_NAME,
+					'projects' => $projects,
+					'titleProject' => $titleProject
+				]
+			);
 	}
 
 	public function project()
@@ -173,22 +184,133 @@ class HomeController extends Controller {
 
 	public function aboutUs()
 	{
-		return view('newstarland.about.aboutUs');
+		$letter = Pages::where('category_id', 7)->get();
+		$develop = Pages::where('category_id', 8)->get();
+
+		return view('newstarland.about.aboutUs')
+			->with(
+				[
+					'webName' => self::WEB_NAME,
+					'letter' => $letter[0],
+					'develop' => $develop[0]
+				]
+			);
 	}
 
 	public function letter()
 	{
-		return view('newstarland.about.letter');
+		$letter = Pages::where('category_id', 7)->get();
+		return view('newstarland.about.letter')
+			->with(
+				[
+					'webName' => self::WEB_NAME,
+					'letter' => $letter[0],
+				]
+			);
 	}
 
 	public function develop()
 	{
-		return view('newstarland.about.develop');
+		$develop = Pages::where('category_id', 8)->get();
+		return view('newstarland.about.develop')
+			->with(
+				[
+					'webName' => self::WEB_NAME,
+					'develop' => $develop[0]
+				]
+			);
+	}
+
+	public function news()
+	{
+		$recruitment = Pages::where('category_id', 2)
+			->orderBy('created', 'desc')
+			->take(4)
+			->get();
+
+		$internal = Pages::where('category_id', 5)
+			->orderBy('created', 'desc')
+			->take(4)
+			->get();
+		return view('newstarland.news.index')->with(
+			[
+				'webName' => self::WEB_NAME,
+				'recruitment' => $recruitment,
+				'internal' => $internal
+			]
+		);
+	}
+
+	public function internalNews()
+	{
+		$internalNews = Pages::where('category_id', 5)->get();
+		return view('newstarland.news.internalNews')
+			->with(
+				[
+					'webName'	=>	self::WEB_NAME,
+					'news' => $internalNews
+				]
+			);
+	}
+
+	public function internalNewsDetail($alias)
+	{
+		$newsDetail = Pages::where('alias', $alias)->first();
+		$byUser = Users::find($newsDetail['userid']);
+		$internalNews = Pages::where('category_id', 5)
+			->orderBy('created', 'desc')
+			->take(5)
+			->get();
+		return view('newstarland.news.internalNewsDetail')
+			->with(
+				[
+					'newsDetail'=> $newsDetail,
+					'webName' => self::WEB_NAME,
+					'byUser'	=> $byUser['username'],
+					'news' => $internalNews
+				]
+			);
+	}
+
+	public function processProjectNews()
+	{
+		$processProject = Pages::where('category_id', 6)->get();
+		return view('newstarland.news.processProject')
+			->with(
+				[
+					'webName'	=>	self::WEB_NAME,
+					'news' => $processProject
+				]
+			);
+	}
+
+	public function processProjectNewsDetail($alias)
+	{
+		$newsDetail = Pages::where('alias', $alias)->first();
+		$byUser = Users::find($newsDetail['userid']);
+		$processNews = Pages::where('category_id', 6)
+			->orderBy('created', 'desc')
+			->take(5)
+			->get();
+		return view('newstarland.news.processProjectDetail')
+			->with(
+				[
+					'newsDetail'=> $newsDetail,
+					'webName' => self::WEB_NAME,
+					'byUser'	=> $byUser['username'],
+					'news' => $processNews
+				]
+			);
 	}
 
 	public function projectNews()
 	{
-		return view('newstarland.news.projectNews');
+		return view('newstarland.news.projectNews')
+			->with(
+				[
+					'webName' => self::WEB_NAME,
+				]
+			);
 	}
 
 	public function projectNewsDetail()
@@ -203,12 +325,52 @@ class HomeController extends Controller {
 
 	public function recruitment()
 	{
-		return view('newstarland.recruitment.recruitment');
+		$news = Pages::where('category_id', 2)->get();
+		return view('newstarland.recruitment.recruitment')
+			->with(
+				[
+					'listNews'	=> $news,
+					'webName'	=>	self::WEB_NAME
+				]
+			);
 	}
 
-	public function recruitmentDetail()
+	public function contact()
 	{
-		return view('newstarland.recruitment.recruitmentDetail');
+		return view('newstarland.contact.contact')
+			->with('webName', self::WEB_NAME);
+	}
+
+	public function getContact(Request $request)
+	{
+//		Mail::send('emails.contact', ['user' => $request], function ($m) use ($request) {
+//			$m->from(config('mail')['username'], 'Your Application Mailler');
+//
+//			$m->to($request->email, $request->name)->subject($request->subject);
+//		});
+//		if (Mail::failures()) {
+//			return false;
+//		}
+//		return true;
+	}
+
+	public function recruitmentDetail($alias)
+	{
+		$newsDetail = Pages::where('alias', $alias)->first();
+		$byUser = Users::find($newsDetail['userid']);
+		$recruitment = Pages::where('category_id', 2)
+			->orderBy('created', 'desc')
+			->take(4)
+			->get();
+		return view('newstarland.recruitment.recruitmentDetail')
+			->with(
+				[
+					'webName' => self::WEB_NAME,
+					'newsDetail'=> $newsDetail,
+					'byUser'	=> $byUser['username'],
+					'recruitment' => $recruitment
+				]
+			);
 	}
 
 	
@@ -337,6 +499,6 @@ class HomeController extends Controller {
 
 		}	
 	
-	}	   	
+	}
 
 }

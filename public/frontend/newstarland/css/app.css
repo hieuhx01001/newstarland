@@ -6085,7 +6085,8 @@ blockquote {
 
 @media (min-width: 1700px) {
   .carousel-content {
-    top: 25%
+    top: 25%;
+    left: 37%;
   }
 
   body.boxed .carousel-content {

@@ -11,7 +11,7 @@
         <div class="container">
             <!-- Breadcrumb NavXT 5.6.0 -->
             <span typeof="v:Breadcrumb">
-                <a rel="v:url" property="v:title" title="Go to NEWSTARLAND - NGÔI SAO MỚI." href="{{ route('index') }}" class="home">NEWSTARLAND - NGÔI SAO MỚI</a>
+                <a href="{{ route('index') }}" class="home">{{ $webName }}</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
                 <span property="v:title">Tin tức dự án</span>

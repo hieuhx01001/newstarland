@@ -7,17 +7,17 @@
 		<h2>Hello Admin , </h2>
 		<p> You have new contact mail from  </p>
 		<p>
-			Email : {{ $sender }} <br />
-			Name : {{ $name }}<br />
-			Password : {{ $subject }}<br />
+			Họ và tên : {{ $user->name }}<br />
+			Email : {{ $user->email }} <br />
+			Số điện thoại : {{ $user->phoneNumber }}<br />
 		</p>
-		<p> Message : </p>
+		<p> Tiêu đề : {{ $user->subject }} </p>
 		<div>
-			{{ $notes }}
+			{{ $user->message }}
 		</div>
 		
 		<p> Thank You </p><br /><br />
 		
-		{{ config('sximo')['cnf_appname'] }} 
+		{{ config('sximo')['cnf_appname'] }}
 	</body>
 </html>

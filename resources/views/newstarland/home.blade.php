@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('page-css')
+    <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/index.css') }}" />
+@endsection
+
 @section('content')
     <!--Block silde-->
     <div class="jumbotron  jumbotron--with-captions">
@@ -134,13 +138,10 @@
                         <div class="so-panel widget widget_chpcs_widget panel-first-child panel-last-child"
                              id="panel-7-1-0-0" data-index="0">
                             <div class="widget-text wp_widget_plugin_box">
-                                <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/index.css') }}" />
 
                                 <div class="chpcs_image_carousel">
-                                    <div class="caroufredsel_wrapper"
-                                         style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 1120px; height: 392px; margin: 0px; overflow: hidden;">
-                                        <div id="wa_chpc_slider"
-                                             style="height: 392px; overflow: hidden; text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 16px; margin: 0px; width: 4384px;">
+                                    <div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 1120px; height: 392px; margin: 0px; overflow: hidden;">
+                                        <div id="wa_chpc_slider" style="height: 392px; overflow: hidden; text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 16px; margin: 0px; width: 4384px;">
                                             <div class="chpcs_foo_content"
                                                  style="width:260px; height:380px;">
                                                     <span class="chpcs_img"><a
@@ -223,10 +224,10 @@
                                     </div>
                                     <div class="chpcs_clearfix"></div>
                                     <a class="chpcs_prev" id="wa_chpc_slider_prev"
-                                       href="http://newstarland.com/#"
+                                       href="#"
                                        style="display: block;"><span>‹</span></a><a
                                             class="chpcs_next" id="wa_chpc_slider_next"
-                                            href="http://newstarland.com/#"
+                                            href="#"
                                             style="display: block;"><span>›</span></a>
                                 </div>
                             </div>
@@ -1339,5 +1340,53 @@
 @stop
 
 @section('page-script')
-    <script type="text/javascript" src="{{ asset('js/frontend/jquery.themepunch.essential.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/frontend/lightslider.js') }}"></script>
+    <script type="text/javascript">
+        $("#esg-grid-1-1").tpessential({
+            gridID: 1,
+            layout: "even",
+            forceFullWidth: "off",
+            lazyLoad: "on",
+            lazyLoadColor: "#FFFFFF",
+            row: 1,
+            loadMoreAjaxToken: "cab2b5e89d",
+            loadMoreAjaxUrl: "http://newstarland.com/wp-admin/admin-ajax.php",
+            loadMoreAjaxAction: "Essential_Grid_Front_request_ajax",
+            ajaxContentTarget: "ess-grid-ajax-container-",
+            ajaxScrollToOffset: "0",
+            ajaxCloseButton: "off",
+            ajaxContentSliding: "on",
+            ajaxScrollToOnLoad: "on",
+            ajaxNavButton: "off",
+            ajaxCloseType: "type1",
+            ajaxCloseInner: "false",
+            ajaxCloseStyle: "light",
+            ajaxClosePosition: "tr",
+            space: 30,
+            pageAnimation: "fade",
+            paginationScrollToTop: "off",
+            spinner: "spinner3",
+            spinnerColor: "#FFFFFF",
+            evenGridMasonrySkinPusher: "off",
+            lightBoxMode: "single",
+            animSpeed: 300,
+            delayBasic: 1,
+            mainhoverdelay: 1,
+            filterType: "single",
+            showDropFilter: "hover",
+            filterGroupClass: "esg-fgc-1",
+            aspectratio: "4:3",
+            responsiveEntries: [
+                {width: 1400, amount: 4},
+                {width: 1170, amount: 4},
+                {width: 1024, amount: 4},
+                {width: 960, amount: 3},
+                {width: 778, amount: 3},
+                {width: 640, amount: 3},
+                {width: 480, amount: 1}
+            ]
+        });
+
+
+    </script>
 @stop

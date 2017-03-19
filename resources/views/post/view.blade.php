@@ -17,8 +17,8 @@
 				
 				<div class="info">
 					<i class="fa fa-eye "></i>  <span>  Views (<b> {{ $row->views }} </b>)  </span>   
-					<i class="fa fa-user "></i>  <span>  {{ ucwords($row->username) }}  </span>   
-					<i class="fa fa-calendar "></i>  <span> {{ date("M j, Y " , strtotime($row->created)) }} </span> 
+					<i class="fa fa-user "></i>  <span>  {{ ucwords($row->username) }}  </span>
+					<i class="fa fa-calendar "></i>  <span> {{ date("M j, Y " , strtotime($row->created)) }} </span>
 					<i class="fa fa-comment-o "></i>   <span>  {{ $row->comments }} comment(s)  </span> 
 				</div>
 				@if($conpost['commshare'] ==1 AND $conpost['commshareapi'] !='')
@@ -66,9 +66,9 @@
 							<?php } ?> 
 							</div>
 
-								{{ ucwords($comm->username) }} | 
+								{{ ucwords($comm->username) }} |
 								 {{ date("M j, Y " , strtotime($comm->posted)) }}
-								
+
 							</div>
 							<div class="content">
 								{!! PostHelpers::formatContent($comm->comments) !!}

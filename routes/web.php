@@ -15,15 +15,15 @@
 //Default Controller
 Route::get('/', 'HomeController@home')->name('index');
 Route::post('/home/proccess/{any?}', 'HomeController@postProccess');
-Route::get('list-project', 'HomeController@listProject')->name('list-project');
+Route::get('du-an-pp', 'HomeController@listProject')->name('listProject');
 Route::group(['prefix' => 'projects'], function(){
 	Route::get('/{id}', 'HomeController@projects')->name('projects');
 	Route::get('{id}/{project?}', 'HomeController@project')->name('project');
 	Route::get('{id}/{project}/{detail}', 'HomeController@detailProject')->name('detailProject');
 });
 
-Route::get('ve-chung-toi', 'HomeController@aboutUs')->name('aboutUs');
 Route::group(['prefix' => 've-chung-toi'], function () {
+	Route::get('/', 'HomeController@aboutUs')->name('aboutUs');
 	Route::get('thu-ngo', 'HomeController@letter')->name('letter');
 	Route::get('hinh-thanh-phat-trien', 'HomeController@develop')->name('develop');
 });
@@ -34,10 +34,18 @@ Route::group(['prefix' => 'tin-du-an'], function () {
 	Route::get('project/sub/detail', 'HomeController@projectNewsDetail')->name('news.project.detail');
 });
 
-Route::get('tuyen-dung', 'HomeController@recruitment')->name('recruitment');
-Route::get('tuyen-dung/{alias}', 'HomeController@recruitmentDetail')->name('recruitment.detail');
-Route::get('lien-he', 'ContactController@index')->name('contact');
-Route::post('lien-he', 'ContactController@getContact')->name('store.contact');
+Route::group(['prefix' => 'tin-tuc'], function () {
+	Route::get('/', 'HomeController@news')->name('news');
+	Route::get('tuyen-dung', 'HomeController@recruitment')->name('recruitment');
+	Route::get('tuyen-dung/{alias}', 'HomeController@recruitmentDetail')->name('recruitment.detail');
+	Route::get('tin-noi-bo', 'HomeController@internalNews')->name('news.internal');
+	Route::get('tin-noi-bo/{alias}', 'HomeController@internalNewsDetail')->name('internal.detail');
+	Route::get('cap-nhat-tien-do-du-an', 'HomeController@processProjectNews')->name('news.process');
+	Route::get('cap-nhat-tien-do-du-an/{alias}', 'HomeController@processProjectNewsDetail')->name('process.detail');
+});
+
+Route::get('lien-he', 'HomeController@contact')->name('contact');
+Route::post('lien-he', 'HomeController@getContact')->name('store.contact');
 
 /* Auth & Profile */
 Route::get('user/profile','UserController@getProfile');

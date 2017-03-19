@@ -47,7 +47,6 @@
         <!-- SCRIPT -->
         <!-- Global Js
        ================================================== -->
-        <script type="text/javascript" src="{{ asset('frontend/newstarland/js/essapi.js') }}"></script>
         <script type="text/javascript" src="{{ asset('frontend/newstarland/js/jquery.carouFredSel-6.2.1-packed.js') }}"></script>
         <script>
             var chpcsArgs = {
@@ -64,7 +63,6 @@
                 "fx": "scroll"
             };
         </script>
-        <script type="text/javascript" src="{{ asset('frontend/newstarland/js/jquery.themepunch.essential.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('frontend/newstarland/js/slider-left.js') }}"></script>
         @yield('page-script')
 

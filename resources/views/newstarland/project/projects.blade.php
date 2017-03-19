@@ -3,13 +3,19 @@
 @section('content')
     <div class="main-title">
         <div class="container">
-            <h1 class="main-title__primary">Vinhomes Times City</h1>
+            <h1 class="main-title__primary">{{ $projects[0]['title'] }}</h1>
         </div>
     </div>
     <div class="breadcrumbs " id="project-navigation-anchor">
         <div class="container">
             <!-- Breadcrumb NavXT 5.6.0 -->
-            <span typeof="v:Breadcrumb"><a rel="v:url" property="v:title" title="Go to NEWSTARLAND - NGÔI SAO MỚI." href="#" class="home">NEWSTARLAND - NGÔI SAO MỚI</a></span> &gt; <span typeof="v:Breadcrumb"><span property="v:title">Vinhomes Times City</span></span>	</div>
+            <span typeof="v:Breadcrumb">
+                <a href="{{ route('index') }}" class="home">{{ $webName }}</a>
+            </span> &gt;
+            <span typeof="v:Breadcrumb">
+                <span property="v:title">{{ $titleProject['name'] }}</span>
+            </span>
+        </div>
     </div>
 
     <!--block content-->

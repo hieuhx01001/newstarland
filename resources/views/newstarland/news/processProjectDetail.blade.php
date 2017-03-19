@@ -10,13 +10,13 @@
         <div class="container">
             <!-- Breadcrumb NavXT 5.6.0 -->
             <span typeof="v:Breadcrumb">
-                <a rel="v:url" property="v:title" title="Go to NEWSTARLAND - NGÔI SAO MỚI." href="{{ route('index') }}" class="home">{{ $webName }}</a>
+                <a  href="{{ route('index') }}" class="home">{{ $webName }}</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
                 <a href="{{ route('news') }}" class="taxonomy category">Tin tức</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
-                <a href="{{ route('recruitment') }}" class="taxonomy category">Tuyển dụng</a>
+                <a href="{{ route('news.process') }}" class="taxonomy category">Cập nhật tiến độ dự án</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
                 <span property="v:title">{{ $newsDetail['title'] }}</span>
@@ -30,8 +30,9 @@
             <div class="row">
                 <main class="col-xs-12  col-md-9  col-md-push-3" role="main">
                     <article>
-                        <a href="{{ route('recruitment.detail', [$newsDetail['alias']]) }}">
-                            <img width="848" height="480" src="{{ asset('uploads/images/'.$newsDetail['image']) }}" class="img-responsive wp-post-image" alt="">						</a>
+                        <a href="{{ route('process.detail', [$newsDetail['alias']]) }}">
+                            <img width="848" height="480" src="{{ asset('uploads/images/'.$newsDetail['image']) }}" class="img-responsive wp-post-image" alt="">
+                        </a>
                         <div class="meta-data">
                             <time datetime="2016-03-23T11:53:22+00:00" class="meta-data__date">{{ $newsDetail['created'] }}</time>
                             <span class="meta-data__author">{{ ucwords($byUser) }}</span>
@@ -73,13 +74,13 @@
                         </div>
                         <div class="related-posts"><h4 class="sidebar__headings">Tin liên quan</h4>
                             <ul>
-                                @foreach($recruitment as $newsRecruitment)
+                                @foreach($news as $processNews)
                                 <li id="post-5298" class="post-5298 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc category-tin-tuyen-dung">
-                                    <a href="{{ route('recruitment.detail', [$newsRecruitment['alias']]) }}">
-                                        <img width="848" height="480" src="{{ asset('uploads/images/'.$newsRecruitment['image']) }}" class="img-responsive wp-post-image" alt="">
+                                    <a href="{{ route('process.detail', [$processNews['alias']]) }}">
+                                        <img width="848" height="480" src="{{ asset('uploads/images/'.$processNews['image']) }}" class="img-responsive wp-post-image" alt="">
                                     </a>
                                     <h3>
-                                        <a href="{{ route('recruitment.detail', [$newsRecruitment['alias']]) }}">{{ $newsRecruitment['title'] }}</a>
+                                        <a href="{{ route('process.detail', [$processNews['alias']]) }}">{{ $processNews['title'] }}</a>
                                     </h3>
                                 </li>
                                 @endforeach

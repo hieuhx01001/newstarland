@@ -1740,7 +1740,12 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 
 			FROM tb_users ";
   		 return \DB::select($sql)[0]; 
-  }	 		
+  }
+
+	static function generateUrlSocial(){
+		$url = Request::url();
+		return view('layouts.newstarland.template.social')->with('url', $url);
+	}
 		
 
 		

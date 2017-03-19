@@ -59,242 +59,16 @@
                         <a href="{{ route('index') }}">HOME</a>
                     </li>
                     <li id="menu-item-2439" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2439">
-                        <a href="{{ route('list-project') }}">
-                            DỰ ÁN PHÂN PHỐI
-                        </a>
+                        <a href="{{ route('listProject') }}">DỰ ÁN PHÂN PHỐI</a>
                         <ul class="sub-menu">
-                            <li id="menu-item-2481"
-                                class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2481">
+                            <li id="menu-item-2481" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2481">
                                 <a href="{{ route('projects', ['1']) }}">Vinhomes Times City</a>
                                 <ul class="sub-menu">
                                     <li id="menu-item-3218"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3218">
-                                        <a href="{{ route('projects', ['1/project']) }}">Park 1 – Park Hill</a></li>
-                                    <li id="menu-item-2508"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2508">
-                                        <a href="#">Park
-                                            2 – Park Hill</a></li>
-                                    <li id="menu-item-2929"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2929">
-                                        <a href="#">Park
-                                            3 – Park Hill</a></li>
-                                    <li id="menu-item-2509"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2509">
-                                        <a href="#">Park
-                                            6 – Park Hill</a></li>
-                                    <li id="menu-item-2879"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2879">
-                                        <a href="#">Park
-                                            7 – Park 8</a></li>
-                                    <li id="menu-item-3008"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3008">
-                                        <a href="#">T10
-                                            – Times City</a></li>
-                                    <li id="menu-item-3812"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-3812">
-                                        <a href="#">Park
-                                            Hill Premium</a>
-                                        <ul class="sub-menu">
-                                            <li id="menu-item-3916"
-                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3916">
-                                                <a href="#">Park
-                                                    9 – Park Hill Premium</a>
-                                            </li>
-                                            <li id="menu-item-5033"
-                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5033">
-                                                <a href="#">Park
-                                                    10 – Park Hill Premium</a>
-                                            </li>
-                                            <li id="menu-item-4366"
-                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4366">
-                                                <a href="#">Park
-                                                    11- Park Hill Premium</a>
-                                            </li>
-                                            <li id="menu-item-4933"
-                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4933">
-                                                <a href="#">Park
-                                                    12 – Park Hill Premium</a>
-                                            </li>
-                                        </ul>
+                                        <a href="{{ route('projects', ['1/project']) }}">Park 1 – Park Hill</a>
                                     </li>
-                                    <li id="menu-item-2556"
-                                        class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2556">
-                                        <a href="#">Chính
-                                            sách bán hàng</a></li>
                                 </ul>
-                            </li>
-                            <li id="menu-item-2482"
-                                class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2482">
-                                <a href="#">Vinhomes
-                                    Royal City</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-2961"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2961">
-                                        <a href="#">R1
-                                            – Royal City</a></li>
-                                    <li id="menu-item-2962"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2962">
-                                        <a href="#">R2
-                                            – Royal City</a></li>
-                                    <li id="menu-item-2506"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2506">
-                                        <a href="#">R3
-                                            – Royal City</a></li>
-                                    <li id="menu-item-2507"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2507">
-                                        <a href="#">R4
-                                            – Royal City</a></li>
-                                    <li id="menu-item-2963"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2963">
-                                        <a href="#">R5
-                                            – Royal City</a></li>
-                                    <li id="menu-item-2964"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2964">
-                                        <a href="#">R6
-                                            – Royal City</a></li>
-                                </ul>
-                            </li>
-                            <li id="menu-item-2480"
-                                class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2480">
-                                <a href="#">Vinhomes
-                                    Riverside</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-2504"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2504">
-                                        <a href="#">Biệt
-                                            thự Hoa Lan</a></li>
-                                    <li id="menu-item-2505"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2505">
-                                        <a href="#">Biệt
-                                            thự Hoa Sữa</a></li>
-                                    <li id="menu-item-2977"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2977">
-                                        <a href="#">Biệt
-                                            thự Hoa Anh Đào</a></li>
-                                    <li id="menu-item-2978"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2978">
-                                        <a href="#">Biệt
-                                            thự Hoa Bằng Lăng</a></li>
-                                    <li id="menu-item-2979"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2979">
-                                        <a href="#">Biệt
-                                            thự Hoa Phượng</a></li>
-                                    <li id="menu-item-7602"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7602">
-                                        <a href="#">The
-                                            Harmony</a></li>
-                                    <li id="menu-item-2613"
-                                        class="menu-item menu-item-type-post_type menu-item-object-post menu-item-2613">
-                                        <a href="#">Chính
-                                            sách bán hàng</a></li>
-                                </ul>
-                            </li>
-                            <li id="menu-item-2479"
-                                class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2479">
-                                <a href="#">Vinpearl
-                                    Resort &amp; Villas</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-2510"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2510">
-                                        <a href="#">Đà
-                                            Nẵng Resort &amp; Villas</a></li>
-                                    <li id="menu-item-2511"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2511">
-                                        <a href="#">Nha
-                                            Trang Bay Resort &amp; Villas</a>
-                                    </li>
-                                    <li id="menu-item-2512"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2512">
-                                        <a href="#">Golf
-                                            Land Resort &amp; Villas</a></li>
-                                    <li id="menu-item-2513"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2513">
-                                        <a href="#">Phú
-                                            Quốc Villas</a></li>
-                                    <li id="menu-item-4567"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4567">
-                                        <a href="#">Vinpearl
-                                            Empire Condotel</a></li>
-                                    <li id="menu-item-4942"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4942">
-                                        <a href="#">Vinpearl
-                                            Long Beach Villas (Bãi Dài – Nha
-                                            Trang)</a></li>
-                                    <li id="menu-item-5153"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5153">
-                                        <a href="#">Vinpearl
-                                            Riverfront Condotel (Đà Nẵng)</a>
-                                    </li>
-                                    <li id="menu-item-5388"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5388">
-                                        <a href="#">Vinpearl
-                                            Luxury Villas (Nha Trang)</a></li>
-                                    <li id="menu-item-5398"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5398">
-                                        <a href="#">Vinpearl
-                                            Nha Trang Villas (Bãi Trũ – Nha
-                                            Trang)</a></li>
-                                    <li id="menu-item-5416"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5416">
-                                        <a href="#">Vinpearl
-                                            Beachfront Condotel (Trần Phú – Nha
-                                            Trang)</a></li>
-                                </ul>
-                            </li>
-                            <li id="menu-item-2478"
-                                class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-2478">
-                                <a href="#">Vincom
-                                    Shophouse Hải Phòng</a></li>
-                            <li id="menu-item-3201"
-                                class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-3201">
-                                <a href="#">Vinhomes
-                                    Central Park</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-4272"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4272">
-                                        <a href="#">Landmark
-                                            3</a></li>
-                                    <li id="menu-item-4271"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4271">
-                                        <a href="#">Landmark
-                                            6</a></li>
-                                    <li id="menu-item-4538"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4538">
-                                        <a href="#">Landmark
-                                            Plus</a></li>
-                                    <li id="menu-item-4946"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-4946">
-                                        <a href="#">Park
-                                            Paroma (Park 4)</a></li>
-                                    <li id="menu-item-5516"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5516">
-                                        <a href="#">Park
-                                            5</a></li>
-                                    <li id="menu-item-5517"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5517">
-                                        <a href="#">Park
-                                            6</a></li>
-                                </ul>
-                            </li>
-                            <li id="menu-item-5173"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5173">
-                                <a href="#">Vinhomes
-                                    Golden River</a></li>
-                            <li id="menu-item-5342"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5342">
-                                <a href="#">Vinhomes
-                                    Metropolis</a></li>
-                            <li id="menu-item-5471"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5471">
-                                <a href="#">Vinhomes
-                                    Thăng Long</a></li>
-                            <li id="menu-item-7504"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7504">
-                                <a href="#">Vinhomes
-                                    Green Bay</a></li>
-                            <li id="menu-item-7606"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-7606">
-                                <a href="#">D’.Capitale</a>
                             </li>
                         </ul>
                     </li>
@@ -371,8 +145,8 @@
                             </li>
                             <li id="menu-item-6172"
                                 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6172">
-                                <a href="#">Cập nhật tiến độ dự án</a>
-                                <a href="#">Tin nội bộ</a>
+                                <a href="{{ route('news.process') }}">Cập nhật tiến độ dự án</a>
+                                <a href="{{ route('news.internal') }}">Tin nội bộ</a>
                             </li>
                         </ul>
                     </li>

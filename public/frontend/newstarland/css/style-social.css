@@ -1,0 +1,242 @@
+#fsb-social-bar {
+    width: 100%;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    padding: 10px 0;
+    margin: 0px 0 20px 0;
+    float: left;
+    background: #fff;
+    position: relative;
+    clear: both;
+}
+
+#fsb-social-bar a {
+    border: 0px !important
+}
+
+#fsb-social-bar.fsb-fixed {
+    position: fixed;
+    top: -2px;
+    z-index: 99999;
+}
+
+#fsb-social-bar .fsb-title {
+    display: block;
+    float: left;
+    margin: 3px 20px 0 0;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: #333;
+}
+
+#fsb-social-bar .fsb-share-facebook {
+    width: 120px;
+    float: left;
+    padding: 3px 0 2px;
+    height: 25px;
+}
+
+#fsb-social-bar .fsb-share-facebook.fsb-hide-count {
+    width: 44px;
+    overflow: hidden;
+    margin-right: 30px;
+}
+
+#fsb-social-bar .fsb-share-twitter {
+    float: left;
+    width: 135px;
+    padding: 3px 0 2px;
+    height: 25px;
+}
+
+#fsb-social-bar .fsb-share-twitter.fsb-hide-count {
+    width: 61px;
+    overflow: hidden;
+    margin-right: 30px;
+}
+
+#fsb-social-bar .fsb-share-google {
+    float: left;
+    width: 105px;
+    padding: 3px 0 2px;
+    height: 25px;
+}
+
+#fsb-social-bar .fsb-share-google.fsb-hide-count {
+    width: 33px;
+    overflow: hidden;
+    margin-right: 30px;
+}
+
+#fsb-social-bar .fsb-share-linkedin {
+    float: left;
+    width: 135px;
+    padding: 3px 0 2px;
+    height: 25px;
+}
+
+#fsb-social-bar .fsb-share-linkedin.fsb-hide-count {
+    width: 61px;
+    overflow: hidden;
+    margin-right: 30px;
+}
+
+#fsb-social-bar .fsb-share-pinterest {
+    float: left;
+    width: 115px;
+    padding: 3px 0 2px;
+    height: 25px;
+}
+
+#fsb-social-bar .fsb-share-pinterest.fsb-hide-count {
+    width: 43px;
+    overflow: hidden;
+    margin-right: 30px;
+}
+
+#fsb-social-bar .socialite {
+    display: block;
+    position: relative;
+    background: url(http://newstarland.com/wp-content/plugins/floating-social-bar/images/fsb-sprite.png) no-repeat scroll 0 0;
+}
+
+#fsb-social-bar .socialite-loaded {
+    background: none !important;
+}
+
+#fsb-social-bar .fsb-service-title {
+    display: none;
+}
+
+#fsb-social-bar a {
+    color: #333;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#fsb-social-bar .fsb-twitter {
+    width: 105px;
+    height: 25px;
+    background-position: -13px -10px;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+#fsb-social-bar .fsb-twitter .fsb-count {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 0 0 69px;
+    color: #333;
+}
+
+#fsb-social-bar .fsb-google {
+    width: 75px;
+    height: 25px;
+    background-position: -136px -10px;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+#fsb-social-bar .fsb-google .fsb-count {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 0 0 41px;
+    color: #333;
+}
+
+#fsb-social-bar .fsb-google .socialite-button {
+    margin: 0 !important;
+}
+
+#fsb-social-bar .fsb-share-google .socialite-loaded .socialite-button {
+    padding: 2px 0 0
+}
+
+#fsb-social-bar .fsb-facebook {
+    width: 89px;
+    height: 25px;
+    background-position: -231px -10px;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+#fsb-social-bar .fsb-facebook .fsb-count {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 0 0 52px;
+    color: #333;
+}
+
+#fsb-social-bar .fsb-facebook .socialite-button {
+    margin: 0 !important;
+}
+
+#fsb-social-bar .fsb-share-facebook .socialite-loaded .socialite-button {
+    padding: 2px 0 0
+}
+
+#fsb-social-bar .fsb-linkedin {
+    width: 105px;
+    height: 25px;
+    background-position: -347px -10px;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+#fsb-social-bar .fsb-linkedin .fsb-count {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 0 0 70px;
+    color: #333;
+}
+
+#fsb-social-bar .fsb-linkedin .socialite-button {
+    margin: 0 !important;
+}
+
+#fsb-social-bar .fsb-pinterest {
+    width: 88px;
+    height: 25px;
+    background-position: -484px -10px;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+#fsb-social-bar .fsb-pinterest .fsb-count {
+    width: 30px;
+    text-align: center;
+    display: inline-block;
+    margin: 0px 0 0 50px;
+    color: #333;
+}
+
+#fsb-social-bar .fsb-pinterest .socialite-button {
+    margin: 0 !important;
+}
+
+.fsb-clear {
+    clear: both;
+}
+
+.fsb-clear:after {
+    clear: both;
+    display: block;
+    height: 0;
+    line-height: 0;
+    overflow: auto;
+    visibility: hidden;
+    zoom: 1;
+}
+
+@media (max-width: 768px) {
+    #fsb-social-bar.fsb-fixed {
+        position: relative !important;
+        top: auto !important;
+    }
+}
