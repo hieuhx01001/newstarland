@@ -59,18 +59,8 @@
                         <a href="{{ route('index') }}">HOME</a>
                     </li>
                     <li id="menu-item-2439" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2439">
-                        <a href="{{ route('listProject') }}">DỰ ÁN PHÂN PHỐI</a>
-                        <ul class="sub-menu">
-                            <li id="menu-item-2481" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2481">
-                                <a href="{{ route('projects', ['1']) }}">Vinhomes Times City</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-3218"
-                                        class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3218">
-                                        <a href="{{ route('projects', ['1/project']) }}">Park 1 – Park Hill</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <a href="#">DỰ ÁN PHÂN PHỐI</a>
+                        {!! SiteHelpers::generateProjectMenu() !!}
                     </li>
                     <li id="menu-item-2462"
                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2462">
@@ -94,8 +84,8 @@
                                 <ul class="sub-menu">
                                     <li id="menu-item-6445"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6445">
-                                        <a href="#">Dự
-                                            án D’.Capitale</a></li>
+                                        <a href="#">Dự án D’.Capitale</a>
+                                    </li>
                                     <li id="menu-item-2458"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2458">
                                         <a href="#">Dự

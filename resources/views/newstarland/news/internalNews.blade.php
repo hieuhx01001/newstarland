@@ -33,7 +33,7 @@
                         <div class="panel">
                             <div class="category-box">
                                 <a href="{{ route('internal.detail', [$internalNews['alias']]) }}" class="page-box__picture">
-                                    <img width="360" height="240" src="{{ asset('uploads/images/'.$internalNews['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt="">
+                                    <img width="360" height="240" style="width: auto; max-height: 180px" src="{{ asset('uploads/images/'.$internalNews['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt="">
                                 </a>
 
                                 <div class="page-box__content">

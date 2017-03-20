@@ -1,4 +1,7 @@
 <?php
+use App\Models\category;
+use App\Models\projectcategory;
+
 class SiteHelpers
 {
 	public static function menus( $position ='top',$active = '1')
@@ -1745,6 +1748,24 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 	static function generateUrlSocial(){
 		$url = Request::url();
 		return view('layouts.newstarland.template.social')->with('url', $url);
+	}
+
+
+	static function generateProjectMenu($parentId = 0)
+	{
+		$menu = '';
+		$projects = projectcategory::where('parent_id', $parentId)->get();
+		$menu .= '<ul class="sub-menu">';
+		if (count($projects) > 0) {
+			foreach ($projects as $project) {
+				$menu .= '<li id="menu-item-2481" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2481">
+								<a href="'. route('projects', [$project->alias]).'">'.$project->name.'</a>';
+				$menu .= self::generateProjectMenu($project->category_id);
+				$menu .= '</li>';
+			}
+		}
+		$menu .= '</ul>';
+		return $menu;
 	}
 		
 

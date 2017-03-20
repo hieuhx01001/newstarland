@@ -15,11 +15,10 @@
 //Default Controller
 Route::get('/', 'HomeController@home')->name('index');
 Route::post('/home/proccess/{any?}', 'HomeController@postProccess');
-Route::get('du-an-pp', 'HomeController@listProject')->name('listProject');
-Route::group(['prefix' => 'projects'], function(){
-	Route::get('/{id}', 'HomeController@projects')->name('projects');
-	Route::get('{id}/{project?}', 'HomeController@project')->name('project');
-	Route::get('{id}/{project}/{detail}', 'HomeController@detailProject')->name('detailProject');
+
+Route::group(['prefix' => 'du-an-phan-phoi'], function () {
+//	Route::get('/', 'HomeController@listProject')->name('listProject');
+	Route::get('/{alias}', 'HomeController@projects')->name('projects');
 });
 
 Route::group(['prefix' => 've-chung-toi'], function () {
@@ -28,9 +27,9 @@ Route::group(['prefix' => 've-chung-toi'], function () {
 	Route::get('hinh-thanh-phat-trien', 'HomeController@develop')->name('develop');
 });
 
-Route::group(['prefix' => 'tin-du-an'], function () {
+Route::group(['prefix' => 'tin-tuc-du-an'], function () {
 	Route::get('/', 'HomeController@projectNews')->name('news.project');
-	Route::get('project/sub', 'HomeController@subProjectNews')->name('news.project.sub');
+	Route::get('project/{alias}', 'HomeController@subProjectNews')->name('news.project.sub');
 	Route::get('project/sub/detail', 'HomeController@projectNewsDetail')->name('news.project.detail');
 });
 

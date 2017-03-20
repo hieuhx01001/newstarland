@@ -2,6 +2,7 @@
 use App\Models\category;
 use App\Models\Core\Pages;
 use App\Models\Core\Users;
+use App\Models\projectcategory;
 use Illuminate\Http\Request;
 use App\Library\Markdown;
 use Mail;
@@ -157,10 +158,12 @@ class HomeController extends Controller {
 		return view('newstarland.project.listProject');
 	}
 
-	public function projects($projects)
+	public function projects($alias)
 	{
-		$projects = Pages::where('category_id', 10)->get();
-		$titleProject = category::find(10);
+		$projects = projectcategory::where('alias', $alias)->first();
+		$listChild = projectcategory::where('parent_id', $projects->category_id)->get();
+		dd($listChild);die;
+
 
 		return view('newstarland.project.projects')
 			->with(
@@ -170,16 +173,6 @@ class HomeController extends Controller {
 					'titleProject' => $titleProject
 				]
 			);
-	}
-
-	public function project()
-	{
-		return view('newstarland.project.project');
-	}
-
-	public function detailProject($id)
-	{
-		return view('newstarland.project.detailProject');
 	}
 
 	public function aboutUs()
@@ -228,7 +221,7 @@ class HomeController extends Controller {
 			->take(4)
 			->get();
 
-		$internal = Pages::where('category_id', 5)
+		$internal = Pages::where('category_id', 3)
 			->orderBy('created', 'desc')
 			->take(4)
 			->get();
@@ -243,7 +236,7 @@ class HomeController extends Controller {
 
 	public function internalNews()
 	{
-		$internalNews = Pages::where('category_id', 5)->get();
+		$internalNews = Pages::where('category_id', 3)->get();
 		return view('newstarland.news.internalNews')
 			->with(
 				[
@@ -257,7 +250,7 @@ class HomeController extends Controller {
 	{
 		$newsDetail = Pages::where('alias', $alias)->first();
 		$byUser = Users::find($newsDetail['userid']);
-		$internalNews = Pages::where('category_id', 5)
+		$internalNews = Pages::where('category_id', 3)
 			->orderBy('created', 'desc')
 			->take(5)
 			->get();
@@ -274,7 +267,7 @@ class HomeController extends Controller {
 
 	public function processProjectNews()
 	{
-		$processProject = Pages::where('category_id', 6)->get();
+		$processProject = Pages::where('category_id', 8)->get();
 		return view('newstarland.news.processProject')
 			->with(
 				[
@@ -288,7 +281,8 @@ class HomeController extends Controller {
 	{
 		$newsDetail = Pages::where('alias', $alias)->first();
 		$byUser = Users::find($newsDetail['userid']);
-		$processNews = Pages::where('category_id', 6)
+		$processNews = Pages::where('category_id', 8)
+			->where('alias', '!=', $alias)
 			->orderBy('created', 'desc')
 			->take(5)
 			->get();
@@ -305,10 +299,14 @@ class HomeController extends Controller {
 
 	public function projectNews()
 	{
+		$newsProject = Pages::where('category_id', 8)->get();
+		
+
 		return view('newstarland.news.projectNews')
 			->with(
 				[
 					'webName' => self::WEB_NAME,
+					'newsProject' => $newsProject,
 				]
 			);
 	}
@@ -500,5 +498,7 @@ class HomeController extends Controller {
 		}	
 	
 	}
+
+	
 
 }
