@@ -230,8 +230,9 @@ class PostsController extends Controller
 				$data['alias'] = \SiteHelpers::seourl($data['title']);
 			}
 
-			$data['allow_guest']  = $request->input('allow_guest');
-			$data['is_hot']       = $request->input('is_hot');
+			$data['allow_guest'] = $request->input('allow_guest');
+			$data['is_hot']      = $request->input('is_hot');
+			
 			//$data['is_show_home'] = $request->input('is_show_home');
 
 			$id = $this->model->insertRow($data, $request->input('pageID'));
