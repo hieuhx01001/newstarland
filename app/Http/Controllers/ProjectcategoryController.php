@@ -56,7 +56,9 @@ class ProjectcategoryController extends Controller {
 			$search = 	$this->buildSearch('maps');
 			$filter = $search['param'];
 			$this->data['search_map'] = $search['maps'];
-		} 
+		}
+
+		// 
 
 		
 		$page = $request->input('page', 1);
@@ -69,8 +71,23 @@ class ProjectcategoryController extends Controller {
 			'global'	=> (isset($this->access['is_global']) ? $this->access['is_global'] : 0 )
 		);
 		// Get Query 
-		$results = $this->model->getRows( $params , session('uid') );		
+		$results = $this->model->getRows( $params , session('uid') );
 
+		foreach ($results['rows'] as $key => $row){
+
+			// get count post of this category
+			$count = Pages::where(
+				[
+					'category_id' => $row->category_id,
+					'pageType'    => 'project'
+				]
+			)->count()
+			;
+
+			$results['rows'][$key]->post_count = $count;
+		}
+
+		
 		// Build pagination setting
 		$page = $page >= 1 && filter_var($page, FILTER_VALIDATE_INT) !== false ? $page : 1;	
 		$pagination = new Paginator($results['rows'], $results['total'], $params['limit']);	
@@ -178,6 +195,12 @@ class ProjectcategoryController extends Controller {
 		$validator = Validator::make($request->all(), $rules);	
 		if ($validator->passes()) {
 			$data = $this->validatePost( $request );
+
+			$data['alias'] = $request->input('alias');
+
+			if ($data['alias'] === '' || $data['alias'] === null ) {
+				$data['alias'] = \SiteHelpers::seourl($data['name']);
+			}
 
 			$data['active'] = $request->input('active') == "1" ? 1 : 0;
 

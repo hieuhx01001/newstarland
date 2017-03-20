@@ -70,7 +70,20 @@ class CategoryController extends Controller {
 		);
 		// Get Query 
 		$results = $this->model->getRows( $params , session('uid') );		
-		
+
+		foreach ($results['rows'] as $key => $row){
+
+			// get count post of this category
+			$count = Pages::where(
+				[
+					'category_id' => $row->category_id,
+					'pageType'    => 'post'
+				]
+			)->count()
+			;
+			$results['rows'][$key]->post_count = $count;
+		}
+
 		// Build pagination setting
 		$page = $page >= 1 && filter_var($page, FILTER_VALIDATE_INT) !== false ? $page : 1;	
 		$pagination = new Paginator($results['rows'], $results['total'], $params['limit']);	
@@ -172,6 +185,12 @@ class CategoryController extends Controller {
 		$validator = Validator::make($request->all(), $rules);	
 		if ($validator->passes()) {
 			$data = $this->validatePost( $request );
+
+			$data['alias'] = $request->input('alias');
+
+			if ($data['alias'] === '' || $data['alias'] === null ) {
+				$data['alias'] = \SiteHelpers::seourl($data['name']);
+			}
 
 			$data['active'] = $request->input('active') == "1" ? 1 : 0;
 
