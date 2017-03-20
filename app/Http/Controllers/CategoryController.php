@@ -328,6 +328,7 @@ class CategoryController extends Controller {
 
 
 			/** @var Category $category */
+			$items[] = [0,'Danh Mục Cha'];
 			foreach($categories as $category)
 			{
 				$items[] = [$category->category_id, $category->name];

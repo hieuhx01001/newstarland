@@ -46,7 +46,7 @@
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo e(asset('adminlte')); ?>/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-
+<script src="<?php echo e(asset('sximo/js/plugins/jquery.ui/jquery-ui.min.js')); ?>"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<?php echo e(asset('adminlte')); ?>/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo e(asset('sximo/js/moment.min.js')); ?>"></script>
