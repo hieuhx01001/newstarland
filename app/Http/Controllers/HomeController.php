@@ -162,15 +162,33 @@ class HomeController extends Controller {
 	{
 		$projects = projectcategory::where('alias', $alias)->first();
 		$listChild = projectcategory::where('parent_id', $projects->category_id)->get();
-		dd($listChild);die;
-
+//		dd($listChild);die;
+		if ($projects->parent_id == 0) {
+			
+			return view('newstarland.project.projects')
+				->with(
+					[
+						'webName' => self::WEB_NAME,
+						'projects' => $projects,
+						'listChild' => $listChild
+					]
+				);
+		} else if(count($listChild) == 0) {
+			return view('newstarland.project.project')
+				->with(
+					[
+						'webName' => self::WEB_NAME,
+						'projects' => $projects,
+					]
+				);
+		}
 
 		return view('newstarland.project.projects')
 			->with(
 				[
 					'webName' => self::WEB_NAME,
 					'projects' => $projects,
-					'titleProject' => $titleProject
+					'listChild' => $listChild
 				]
 			);
 	}

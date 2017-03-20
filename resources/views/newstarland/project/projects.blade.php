@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-title">
         <div class="container">
-            <h1 class="main-title__primary">{{ $projects[0]['title'] }}</h1>
+            <h1 class="main-title__primary">{{ $projects->title }}</h1>
         </div>
     </div>
     <div class="breadcrumbs " id="project-navigation-anchor">
@@ -13,7 +13,7 @@
                 <a href="{{ route('index') }}" class="home">{{ $webName }}</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
-                <span property="v:title">{{ $titleProject['name'] }}</span>
+                <span property="v:title">{{ $projects->name }}</span>
             </span>
         </div>
     </div>
