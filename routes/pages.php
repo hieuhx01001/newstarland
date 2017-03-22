@@ -8,6 +8,5 @@ Route::get('printing-and-typesetting-industry', 'HomeController@index');
 Route::get('-remaining-essentially-unchanged', 'HomeController@index');
 Route::get('test-page', 'HomeController@index');
 Route::get('trang-chu', 'HomeController@index');
-Route::get('du-an-phan-phoi', 'HomeController@index');
 Route::get('vin-home-city', 'HomeController@index');
 ?>

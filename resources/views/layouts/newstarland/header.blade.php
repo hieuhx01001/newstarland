@@ -76,11 +76,10 @@
                     </li>
                     <li id="menu-item-2432"
                         class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2432">
-                        <a href="{{ route('news.project') }}">TIN TỨC</a>
+                        <a href="{{ route('newsProject') }}">TIN TỨC</a>
                         <ul class="sub-menu">
-                            <li id="menu-item-2457"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2457">
-                                <a href="{{ route('news.project') }}">Tin tức dự án</a>
+                            <li id="menu-item-2457" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2457">
+                                <a href="{{ route('newsProject') }}">Tin tức dự án</a>
                                 <ul class="sub-menu">
                                     <li id="menu-item-6445"
                                         class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6445">
@@ -133,8 +132,7 @@
                                             án Vingroup khác</a></li>
                                 </ul>
                             </li>
-                            <li id="menu-item-6172"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6172">
+                            <li id="menu-item-6172" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6172">
                                 <a href="{{ route('news.process') }}">Cập nhật tiến độ dự án</a>
                                 <a href="{{ route('news.internal') }}">Tin nội bộ</a>
                             </li>

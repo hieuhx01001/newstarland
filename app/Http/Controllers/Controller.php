@@ -866,11 +866,6 @@ function detailviewsave( $model ,$request , $detail , $id )
 
 			}	
 		}	
-
-		
-
 	}
-
-
 }
 

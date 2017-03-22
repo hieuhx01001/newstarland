@@ -148,10 +148,16 @@ class HomeController extends Controller {
 
 
 
-    public function home(Request $request)
+    public function home()
     {
-        return view('newstarland.home', []);
-    }
+		$postShowHome = Pages::where('is_show_home', 1)->get();
+		return view('newstarland.home')
+			->with(
+				[
+					'postShowHome' => $postShowHome
+				]
+			);
+	}
 
 	public function listProject()
 	{
@@ -161,36 +167,74 @@ class HomeController extends Controller {
 	public function projects($alias)
 	{
 		$projects = projectcategory::where('alias', $alias)->first();
-		$listChild = projectcategory::where('parent_id', $projects->category_id)->get();
-//		dd($listChild);die;
-		if ($projects->parent_id == 0) {
-			
+		$listProjectFather = projectcategory::where('parent_id', 0) ->get();
+
+		if (isset($projects)) {
+			$listChild = projectcategory::where('parent_id', $projects->category_id)->get();
+			$projectFather = projectcategory::where('category_id', $projects->parent_id)->first();
+
+			if ($this->isFather($projects)) {
+				$contentProject = Pages::where('pagetype', 'project')
+					->where('category_id', $projects->category_id)
+					->first();
+				if (isset($contentProject)) {
+					$byUser = Users::find($contentProject->userid);
+
+					return view('newstarland.project.projectFather')
+						->with(
+							[
+								'webName' => self::WEB_NAME,
+								'projects' => $projects,
+								'contentProject' => $contentProject,
+								'byUser' => $byUser,
+								'listProjectFather' => $listProjectFather
+							]
+						);
+				}
+				return redirect(route('index'));
+			} else if($this->hasNotChild($listChild)) {
+				$childPost = Pages::where('pagetype', 'project')
+					->where('category_id', $projects->category_id)
+					->get();
+				return view('newstarland.project.project')
+					->with(
+						[
+							'webName' => self::WEB_NAME,
+							'childPost' => $childPost,
+							'projects' => $projects,
+							'projectFather' => $projectFather
+						]
+					);
+			}
 			return view('newstarland.project.projects')
 				->with(
 					[
 						'webName' => self::WEB_NAME,
 						'projects' => $projects,
-						'listChild' => $listChild
-					]
-				);
-		} else if(count($listChild) == 0) {
-			return view('newstarland.project.project')
-				->with(
-					[
-						'webName' => self::WEB_NAME,
-						'projects' => $projects,
+						'listChild' => $listChild,
+						'projectFather' => $projectFather
 					]
 				);
 		}
 
-		return view('newstarland.project.projects')
-			->with(
-				[
-					'webName' => self::WEB_NAME,
-					'projects' => $projects,
-					'listChild' => $listChild
-				]
-			);
+		$post = Pages::where('alias', $alias)
+			->where('pagetype', 'project')
+			->first();
+
+		if ($post) {
+			$byUser = Users::find($post->userid);
+
+			return view('newstarland.project.detailProject')
+				->with(
+					[
+						'webName' => self::WEB_NAME,
+						'post'    => $post,
+						'byUser' => $byUser,
+						'listProjectFather' => $listProjectFather
+					]
+				);
+		}
+
 	}
 
 	public function aboutUs()
@@ -517,6 +561,25 @@ class HomeController extends Controller {
 	
 	}
 
-	
+	/**
+	 * @param $projects
+	 *
+	 * @return bool
+	 */
+	private function isFather($projects)
+	{
+		return $projects->parent_id == 0;
+	}
+
+	/**
+	 * @param $listChild
+	 *
+	 * @return bool
+	 */
+	private function hasNotChild($listChild)
+	{
+		return count($listChild) == 0;
+	}
+
 
 }

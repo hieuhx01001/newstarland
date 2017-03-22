@@ -135,91 +135,40 @@
                 </div>
                 <div class="panel-grid" id="pg-7-1">
                     <div class="panel-grid-cell" id="pgc-7-1-0">
-                        <div class="so-panel widget widget_chpcs_widget panel-first-child panel-last-child"
-                             id="panel-7-1-0-0" data-index="0">
+                        <div class="so-panel widget widget_chpcs_widget panel-first-child panel-last-child" id="panel-7-1-0-0" data-index="0">
                             <div class="widget-text wp_widget_plugin_box">
-
                                 <div class="chpcs_image_carousel">
                                     <div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 1120px; height: 392px; margin: 0px; overflow: hidden;">
                                         <div id="wa_chpc_slider" style="height: 392px; overflow: hidden; text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 16px; margin: 0px; width: 4384px;">
-                                            <div class="chpcs_foo_content"
-                                                 style="width:260px; height:380px;">
-                                                    <span class="chpcs_img"><a
-                                                                href="http://newstarland.com/essential_grid/vinhomes-central-park/"><img
-                                                                    src="http://placehold.it/300x216"></a></span><br><span
-                                                        class="chpcs_title"><a
-                                                            style=" text-decoration:none;"
-                                                            href="http://newstarland.com/essential_grid/vinhomes-central-park/">Vinhomes
-                                                        Central Park</a></span><br>
-                                                <p><span class="chpcs_foo_con">Lấy cảm hứng từ khu Central Park New York nổi tiếng thế giới. Vinhomes Central Park gợi mở hình dung về khu đô thị - công viên hiện đại và…</span>
-                                                </p><br><span class="chpcs_more"><a
-                                                            href="http://newstarland.com/essential_grid/vinhomes-central-park/">CHI
-                                                        TIẾT</a></span></div>
-                                            <div class="chpcs_foo_content"
-                                                 style="width:260px; height:380px;">
-                                                    <span class="chpcs_img"><a
-                                                                href="http://newstarland.com/essential_grid/vinpearl-resort-villas/"><img
-                                                                    src="http://placehold.it/300x169"></a></span><br><span
-                                                        class="chpcs_title"><a
-                                                            style=" text-decoration:none;"
-                                                            href="http://newstarland.com/essential_grid/vinpearl-resort-villas/">Vinpearl
-                                                        Resort &amp; Villas</a></span><br>
-                                                <p><span class="chpcs_foo_con">Vinpearl Resort &amp; Villas, thương hiệu “hai trong một” của Vingroup Tổng quy mô của Vinpearl Resort &amp; Villas trên toàn hệ thống là 1.103 phòng khách sạn và 847…</span>
-                                                </p><br><span class="chpcs_more"><a
-                                                            href="http://newstarland.com/essential_grid/vinpearl-resort-villas/">CHI
-                                                        TIẾT</a></span></div>
-                                            <div class="chpcs_foo_content"
-                                                 style="width:260px; height:380px;">
-                                                    <span class="chpcs_img"><a
-                                                                href="http://newstarland.com/essential_grid/vinhomes-riverside/"><img
-                                                                    src="http://placehold.it/300x200"></a></span><br><span
-                                                        class="chpcs_title"><a
-                                                            style=" text-decoration:none;"
-                                                            href="http://newstarland.com/essential_grid/vinhomes-riverside/">Vinhomes
-                                                        Riverside</a></span><br>
-                                                <p><span class="chpcs_foo_con">Tổng quan Vinhomes Riverside Vinhomes Riverside nằm ở cửa ngõ phía Đông Bắc Thủ đô Hà Nội, cách hồ Hoàn Kiếm chưa đầy 7,5km về phía Tây, cách chân cầu…</span>
-                                                </p><br><span class="chpcs_more"><a
-                                                            href="http://newstarland.com/essential_grid/vinhomes-riverside/">CHI
-                                                        TIẾT</a></span></div>
-                                            <div class="chpcs_foo_content"
-                                                 style="width: 260px; height: 380px; margin-right: 22px;">
-                                                    <span class="chpcs_img"><a
-                                                                href="http://newstarland.com/essential_grid/vinhomes-times-city/"><img
-                                                                    src="http://placehold.it/300x200"></a></span><br><span
-                                                        class="chpcs_title"><a
-                                                            style=" text-decoration:none;"
-                                                            href="http://newstarland.com/essential_grid/vinhomes-times-city/">Vinhomes
-                                                        Times City</a></span><br>
-                                                <p><span class="chpcs_foo_con">Tổng quan Times City Dự án Times City hay còn gọi là Dự án “Thành phố sinh thái Eco City”, được xây dựng trên diện tích 37 ha nằm, phố…</span>
-                                                </p><br><span class="chpcs_more"><a
-                                                            href="#">CHI
-                                                        TIẾT</a></span></div>
-                                            <div class="chpcs_foo_content"
-                                                 style="width:260px; height:380px;">
-                                                    <span class="chpcs_img"><a
-                                                                href="http://newstarland.com/essential_grid/vinhomes-royal-city/"><img
-                                                                    src="http://placehold.it/300x169"></a></span><br><span
-                                                        class="chpcs_title"><a
-                                                            style=" text-decoration:none;"
-                                                            href="http://newstarland.com/essential_grid/vinhomes-royal-city/">Vinhomes
-                                                        Royal City</a></span><br>
-                                                <p><span class="chpcs_foo_con">1. Tổng quan Royal City Được thiết kế theo phương cách “Hoàng gia Châu Âu”, Royal City là khu đô thị phức hợp hoàn hảo, nơi bạn và gia đình…</span>
-                                                </p><br><span class="chpcs_more"><a
-                                                            href="http://newstarland.com/essential_grid/vinhomes-royal-city/">CHI
-                                                        TIẾT</a></span></div>
-                                            <div class="chpcs_foo_content"
-                                                 style="width:260px; height:380px;">
-                                                    <span class="chpcs_img"><a
-                                                                href="http://newstarland.com/essential_grid/vincom-shophouse-hai-phong/"><img
-                                                                    src="http://placehold.it/300x200"></a></span><br><span
-                                                        class="chpcs_title"><a
-                                                            style=" text-decoration:none;"
-                                                            href="http://newstarland.com/essential_grid/vincom-shophouse-hai-phong/">Vincom
-                                                        Shophouse Hải Phòng</a></span><br>
-                                                <p><span class="chpcs_foo_con">Mọi chi tiết xin vui lòng liên hệ: CÔNG TY TNHH PHÁT TRIỂN THƯƠNG MẠI BĐS NEWSTARLAND. Địa chỉ: L2-T6, KĐT Times City, số 458 Minh Khai, Phường Vĩnh Tuy,…</span>
-                                                </p><br><span class="chpcs_more"><a
-                                                            href="http://newstarland.com/essential_grid/vincom-shophouse-hai-phong/">CHI
-                                                        TIẾT</a></span></div>
+                                            @foreach($postShowHome as $item)
+                                            <div class="chpcs_foo_content" style="width:260px; height:380px;">
+                                                <span class="chpcs_img">
+                                                    @if ($item->pagetype == 'project')
+                                                    <a href="{{ route('projects', [$item->alias]) }}">
+                                                        <img src="{{ asset('uploads/images/'.$item->image) }}">
+                                                    </a>
+                                                    @else
+                                                    <a href="{{ route('newsOther', [$item->alias]) }}">
+                                                        <img src="{{ asset('uploads/images/'.$item->image) }}">
+                                                    </a>
+                                                    @endif
+                                                </span><br>
+                                                <span class="chpcs_title">
+                                                    <a style=" text-decoration:none;" href="{{ route('projects', [$item->alias]) }}">
+                                                        {{ $item->title }}
+                                                    </a>
+                                                </span><br>
+                                                <p>
+                                                    @php
+                                                    $content = str_limit($item->note, 400);
+                                                    @endphp
+                                                    <span class="chpcs_foo_con">{!! $content !!}</span>
+                                                </p><br>
+                                                <span class="chpcs_more">
+                                                    <a href="{{ route('projects', [$item->alias]) }}">CHI TIẾT</a>
+                                                </span>
+                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="chpcs_clearfix"></div>

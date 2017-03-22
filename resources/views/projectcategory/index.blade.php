@@ -71,6 +71,7 @@
 						@endif 
 					@endif
 				@endforeach
+				<th><span>Số Dự Án</span></th>
 				<th><span>Trạng Thái</span></th>
 			  </tr>
         </thead>
@@ -86,7 +87,8 @@
 						  <span class="caret"></span></button>
 						  <ul class="dropdown-menu">
 						 	@if($access['is_detail'] ==1)
-							<li><a href="{{ URL::to('projectcategory/show/'.$row->category_id.'?return='.$return)}}" class="tips" title="{{ Lang::get('core.btn_view') }}"><i class="fa  fa-search "></i> {{ Lang::get('core.btn_view') }} </a></li>
+
+							<li><a href="{{ URL::to('core/projectposts?search=category_id:equal:'.$row->category_id.'|')}}" class="tips" title="{{ Lang::get('core.btn_view') }}"><i class="fa  fa-search "></i> {{ Lang::get('core.btn_view') }} </a></li>
 							@endif
 							@if($access['is_edit'] ==1)
 							<li><a  href="{{ URL::to('projectcategory/update/'.$row->category_id.'?return='.$return) }}" class="tips" title="{{ Lang::get('core.btn_edit') }}"><i class="fa fa-edit "></i> {{ Lang::get('core.btn_edit') }} </a></li>
@@ -108,6 +110,7 @@
 						@endif	
 					 @endif					 
 				 @endforeach
+					<td><a href="{{ URL::to('core/projectposts?search=category_id:equal:'.$row->category_id.'|')}}">{{ $row->post_count }}</a></td>
 					<td> {!! $row->active == '1' ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-minus-circle"></i>'  !!}</td>
                 </tr>
 				

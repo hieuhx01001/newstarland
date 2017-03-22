@@ -74,6 +74,16 @@
                             </div>
                         </div>
                         <div class="form-group  ">
+                            <label for="Tên Dự Án" class=" control-label col-md-4 text-left"> SEO Url</label>
+                            <div class="col-md-7">
+                                <input type='text' name='alias' id='alias' value='{{ $row['alias'] }}'
+                                       class='form-control '/>
+                            </div>
+                            <div class="col-md-1">
+
+                            </div>
+                        </div>
+                        <div class="form-group  ">
                             <label class=" control-label col-md-4 text-left "></label>
                             <div class="col-md-7">
                             <label class="checkbox ">

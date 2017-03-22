@@ -92,7 +92,6 @@ class ProjectPostsController extends Controller
 
 			$category = ProjectCategory::find($row->category_id);
 			$results['rows'][$key]->category_name = isset($category->name) ? $category->name : 'none';
-
 		}
 		
 		$this->data['rowData'] = $results['rows'];

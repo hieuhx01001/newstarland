@@ -27,12 +27,6 @@ Route::group(['prefix' => 've-chung-toi'], function () {
 	Route::get('hinh-thanh-phat-trien', 'HomeController@develop')->name('develop');
 });
 
-Route::group(['prefix' => 'tin-tuc-du-an'], function () {
-	Route::get('/', 'HomeController@projectNews')->name('news.project');
-	Route::get('project/{alias}', 'HomeController@subProjectNews')->name('news.project.sub');
-	Route::get('project/sub/detail', 'HomeController@projectNewsDetail')->name('news.project.detail');
-});
-
 Route::group(['prefix' => 'tin-tuc'], function () {
 	Route::get('/', 'HomeController@news')->name('news');
 	Route::get('tuyen-dung', 'HomeController@recruitment')->name('recruitment');
@@ -41,6 +35,9 @@ Route::group(['prefix' => 'tin-tuc'], function () {
 	Route::get('tin-noi-bo/{alias}', 'HomeController@internalNewsDetail')->name('internal.detail');
 	Route::get('cap-nhat-tien-do-du-an', 'HomeController@processProjectNews')->name('news.process');
 	Route::get('cap-nhat-tien-do-du-an/{alias}', 'HomeController@processProjectNewsDetail')->name('process.detail');
+	Route::get('/tin-tuc-du-an', 'HomeController@projectNews')->name('newsProject');
+	Route::get('/tin-tuc-du-an/{alias}', 'HomeController@subProjectNews')->name('newsOther');
+	Route::get('/tin-tuc-du-an/project/sub/detail', 'HomeController@projectNewsDetail')->name('news.project.detail');
 });
 
 Route::get('lien-he', 'HomeController@contact')->name('contact');

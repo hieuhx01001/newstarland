@@ -46,7 +46,7 @@
 <!-- jQuery 2.2.3 -->
 <script src="{{ asset('adminlte')}}/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-{{--<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>--}}
+<script src="{{ asset('sximo/js/plugins/jquery.ui/jquery-ui.min.js') }}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset('adminlte')}}/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{{ asset('sximo/js/moment.min.js') }}"></script>
