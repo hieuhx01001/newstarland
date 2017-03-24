@@ -48,7 +48,7 @@
                     @endforeach
                 </ul>
 
-                {!! Form::open(array('url'=>'projectcategory/save?return='.$return, 'class'=>'form-horizontal','files' => true , 'parsley-validate'=>'','novalidate'=>' ')) !!}
+                {!! Form::open(array('id'=> 'form','url'=>'projectcategory/save?return='.$return, 'class'=>'form-horizontal','files' => true , 'parsley-validate'=>'','novalidate'=>' ')) !!}
                 <div class="col-md-12">
                     <fieldset>
                         <legend> Danh Mục Dự Án</legend>
@@ -125,6 +125,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+             $('form').parsley().on('field:validated', function() {
+                var ok = $('.parsley-error').length === 0;
+                $('.bs-callout-info').toggleClass('hidden', !ok);
+                $('.bs-callout-warning').toggleClass('hidden', ok);
+              });
 
             $("#parent_id").jCombo("{!! url('projectcategory/comboselect?id='. $row['category_id']) !!}",
                     {selected_value: '{{ $row["parent_id"] }}'});

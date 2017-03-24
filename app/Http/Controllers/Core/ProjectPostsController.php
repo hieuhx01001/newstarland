@@ -210,7 +210,14 @@ class ProjectPostsController extends Controller
 
 	function postSave(Request $request)
 	{
-		$rules     = $this->validateForm();
+
+		$rules = [
+			'image'       => 'mimes:jpg,jpeg,png,gif,bmp',
+			'title'       => 'required',
+			'note'        => 'required',
+			'category_id' => 'required'
+		];
+
 		$validator = Validator::make($request->all(), $rules);
 		if ($validator->passes()) {
 			$data   = $this->validatePost($request);
@@ -235,7 +242,10 @@ class ProjectPostsController extends Controller
 
 				if ($count > 0 && $request->input('pageID') == ''){
 					return Redirect::to('core/projectposts/update?return=')
-								   ->with('messagetext', 'Danh mục cha đã có bài viết')->with('msgstatus', 'error')
+									->with('data', $data)
+								   ->with('messagetext', 'Danh mục cha đã có bài viết')
+								   ->with('msgstatus', 'error')
+								   ->withErrors($validator)->withInput()
 						;
 				}
 			}

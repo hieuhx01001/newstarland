@@ -77,18 +77,16 @@
                             {!! Form::hidden('pagetype', 'post') !!}
                             {!! Form::hidden('pageID', $row['pageID']) !!}
                             <div class="form-group  ">
-                                <label> Tiêu Đề Bài Viết</label>
-                                {!! Form::text('title', $row['title'],array('class'=>'form-control', 'placeholder'=>'',   )) !!}
+                                <label> Tiêu Đề Bài Viết:</label>
+                                {!! Form::text('title', $row['title'],array('required'=> 'required','class'=>'form-control', 'placeholder'=>'',   )) !!}
                             </div>
                             <div class="form-group  ">
                                 <label for="ipt" class=" btn-primary  btn btn-sm">  {!! url('post/view/')!!}  </label>
                                 {!! Form::text('alias', $row['alias'],array('class'=>'form-control', 'placeholder'=>'', 'style'=>'width:350px; display:inline-block;'   )) !!}
                             </div>
                             <div class="form-group  ">
-                                <label> Nội Dung</label>
-                                <textarea name='note' rows='25' id='note-content' class='form-control note-content'>
-                                    {{ $row['note'] }}
-                                </textarea>
+                                <label> Nội Dung:</label>
+                                {{ Form::textarea('note', $row['note'], array('required'=>'required','name'=>'note','rows'=> '25','id'=> 'note-content', 'class'=>'form-control note-content' )) }}
                             </div>
                         </div>
                         <div class="tab-pane m-t" id="meta">
@@ -121,7 +119,7 @@
                     <div class="form-group  ">
                         <label> Danh Mục :</label>
                         <div class="input-group m-b" style="width:250px !important;">
-                            <select name='category_id' rows='5' id='category_id' class='select2 '></select>
+                            <select required name='category_id' rows='5' id='category_id' class='select2 '></select>
                         </div>
                     </div>
                     {{--<div class="form-group  ">--}}
@@ -148,8 +146,12 @@
                     <div class="form-group  ">
                         <label> Trạng Thái :</label>
                         <label class="radio  ">
-                            <input type='radio' name='status' value="enable" required class="minimal-red"
-                                   @if( $row['status'] =='enable')    checked @endif
+                            <input type='radio' name='status' value="enable"  class="minimal-red"
+                                   @if( $row['status'] =='enable')
+                                        checked
+                                    @elseif($row['pageID'] === "")
+                                        checked
+                                    @endif
                             />
                             Hoạt Động
                         </label>
@@ -160,22 +162,33 @@
                             Ngừng
                         </label>
                     </div>
-
-                    <div class="form-group  ">
-                        <label for="ipt" class=" control-label "> Ngày Tạo</label>
-                        <div class="input-group m-b" style="width:150px !important;">
-                            {!! Form::text('created', $row['created'],array('class'=>'form-control date', 'style'=>'width:200px !important;')) !!}
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    @if($row['pageID'] !== "")
+                        <div class="form-group  ">
+                            <label for="ipt" class=" control-label "> Ngày Tạo</label>
+                            <div class="input-group m-b" style="width:150px !important;">
+                                {!! Form::text('created', $row['created'],array('disabled'=>'disabled','class'=>'form-control', 'style'=>'width:200px !important;')) !!}
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group  ">
+                            <label for="ipt" class=" control-label "> Ngày Cập Nhật</label>
+                            <div class="input-group m-b" style="width:150px !important;">
+                                {!! Form::text('updated', $row['updated'],array('disabled'=>'disabled','class'=>'form-control', 'style'=>'width:200px !important;')) !!}
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    @endif
+
 
                     <div class="form-group  ">
-                        <label for="ipt"> Ai có thể nhìn </label>
+                        <label for="ipt"> Ai Có Thể Nhìn: </label>
                         @foreach($groups as $group)
                             <label class="checkbox">
                                 <input type='checkbox' name='group_id[{{ $group['id'] }}]' value="{{ $group['id'] }}"
                                        @if($group['access'] ==1 or $group['id'] ==1)
                                        checked
+                                       @elseif($row['pageID'] === "")
+                                        checked
                                        @endif
                                        class="minimal-red"
                                 />
@@ -221,6 +234,9 @@
 //            $("#select-label").select2({
 //                tags: JSON.parse($('#article-data').val())
 //            });
+            //$('#created_date').datepicker({format:'yyyy-mm-dd',autoClose:true});
+
+
 
             $("#category_id").jCombo("{!! url('core/posts/comboselect?filter=tb_categories:category_id:name') !!}",
                     {selected_value: '{{ $row["category_id"] }}'});

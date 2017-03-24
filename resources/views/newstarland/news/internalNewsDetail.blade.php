@@ -13,10 +13,10 @@
                 <a  href="{{ route('index') }}" class="home">{{ $webName }}</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
-                <a href="{{ route('news') }}" class="taxonomy category">Tin tức</a>
+                <a href="{{ route('listNews') }}" class="taxonomy category">Tin tức</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
-                <a href="{{ route('news.internal') }}" class="taxonomy category">Tin nội bộ</a>
+                <a href="{{ route('news',['tin-tuc-noi-bo']) }}" class="taxonomy category">Tin nội bộ</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
                 <span property="v:title">{{ $newsDetail['title'] }}</span>
@@ -30,7 +30,7 @@
             <div class="row">
                 <main class="col-xs-12  col-md-9  col-md-push-3" role="main">
                     <article>
-                        <a href="{{ route('internal.detail', [$newsDetail['alias']]) }}">
+                        <a href="{{ route('news', ['tin-tuc-noi-bo', $newsDetail['alias']]) }}">
                             <img width="848" height="480" src="{{ asset('uploads/images/'.$newsDetail['image']) }}" class="img-responsive wp-post-image" alt="">
                         </a>
                         <div class="meta-data">
@@ -42,14 +42,7 @@
                             {!! $newsDetail['note'] !!}
                         </div>
                         <div class="clearfix"></div>
-
-                        <!-- Multi Page in One Post -->
-                        <div id="comments">
-                            Comments for this post are closed.
-                        </div>
                     </article>
-
-
                 </main>
 
                 <div class="col-xs-12  col-md-3  col-md-pull-9">
@@ -59,13 +52,13 @@
                             <div class="menu-about-us-container">
                                 <ul id="menu-about-us" class="menu">
                                     <li id="menu-item-2777" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2777">
-                                        <a href="{{ route('aboutUs') }}">Về chúng tôi</a>
+                                        <a href="{{ route('news', ['ve-chung-toi']) }}">Về chúng tôi</a>
                                         <ul class="sub-menu">
                                             <li id="menu-item-2779" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2779">
-                                                <a href="{{ route('develop') }}">Hình thành và phát triển</a></li>
+                                                <a href="{{ route('news', ['hinh-thanh-va-phat-trien']) }}">Hình thành và phát triển</a></li>
                                             <li id="menu-item-2780"
                                                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2780">
-                                                <a href="{{ route('letter') }}">Thư ngỏ</a>
+                                                <a href="{{ route('news', ['thu-ngo']) }}">Thư ngỏ</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -76,11 +69,11 @@
                             <ul>
                                 @foreach($news as $internalNews)
                                 <li id="post-5298" class="post-5298 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc category-tin-tuyen-dung">
-                                    <a href="{{ route('internal.detail', [$internalNews['alias']]) }}">
+                                    <a href="{{ route('news', ['tin-tuc-noi-bo', $internalNews['alias']]) }}">
                                         <img width="848" height="480" src="{{ asset('uploads/images/'.$internalNews['image']) }}" class="img-responsive wp-post-image" alt="">
                                     </a>
                                     <h3>
-                                        <a href="{{ route('internal.detail', [$internalNews['alias']]) }}">{{ $internalNews['title'] }}</a>
+                                        <a href="{{ route('news', ['tin-tuc-noi-bo', $internalNews['alias']]) }}">{{ $internalNews['title'] }}</a>
                                     </h3>
                                 </li>
                                 @endforeach

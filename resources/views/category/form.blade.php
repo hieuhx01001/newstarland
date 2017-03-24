@@ -66,7 +66,7 @@
                             <label for="Tên Tiêu Đề" class=" control-label col-md-4 text-left"> Tên Tiêu Đề
                                 <span class="asterix"> * </span></label>
                             <div class="col-md-7">
-                                <input type='text' name='name' id='name' value='{{ $row['name'] }}'
+                                <input type='text' name='name' id='name' required value='{{ $row['name'] }}'
                                        required class='form-control '/>
                             </div>
                             <div class="col-md-1">

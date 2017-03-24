@@ -14,7 +14,7 @@
                 <a href="{{ route('index') }}" class="home">{{ $webName }}</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
-                <a href="{{ route('news') }}" class="taxonomy category">Tin tức</a>
+                <a href="{{ route('listNews') }}" class="taxonomy category">Tin tức</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
                 <span property="v:title">Cập nhật tiến độ dự án</span>
@@ -32,18 +32,18 @@
                     <div class="col-md-3 panel-grid-cell">
                         <div class="panel">
                             <div class="category-box">
-                                <a href="{{ route('process.detail', [$processNews['alias']]) }}" class="page-box__picture">
+                                <a href="{{ route('news', ['cap-nhat-tien-do-du-an', $processNews['alias']]) }}" class="page-box__picture">
                                     <img width="360" height="240" style="width: auto; max-height: 180px" src="{{ asset('uploads/images/'.$processNews['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt="">
                                 </a>
 
                                 <div class="page-box__content">
                                     <h5 class="page-box__title  text-uppercase">
-                                        <a href="{{ route('process.detail', [$processNews['alias']]) }}">{{ $processNews['title'] }}</a>
+                                        <a href="{{ route('news', ['cap-nhat-tien-do-du-an', $processNews['alias']]) }}">{{ $processNews['title'] }}</a>
                                     </h5>
                                     <div class="excerp">
                                         <p>{!! $processNews['note'] !!}</p>
                                     </div>
-                                    <p><a class="read-more  read-more--page-box" href="{{ route('process.detail', [$processNews['alias']]) }}">Chi tiết </a></p>
+                                    <p><a class="read-more  read-more--page-box" href="{{ route('news', ['cap-nhat-tien-do-du-an', $processNews['alias']]) }}">Chi tiết </a></p>
                                 </div>
                             </div>
 

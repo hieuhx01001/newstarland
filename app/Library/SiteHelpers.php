@@ -2118,20 +2118,63 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 		return $list;
 	}
 
-	static function generateNewsMenu($parentId = 0)
+	static function generateNewsProjectMenu()
 	{
 		$menu = '';
-		$news = projectcategory::where('parent_id', $parentId)->get();
-		$menu .= '<ul class="sub-menu">';
-		if (count($projects) > 0) {
-			foreach ($projects as $project) {
-				$menu .= '<li id="menu-item-2481" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2481">
-								<a href="'. route('projects', [$project->alias]).'">'.$project->name.'</a>';
-				$menu .= self::generateProjectMenu($project->category_id);
-				$menu .= '</li>';
+		$news = category::where('parent_id', 1)->get();
+
+		if (count($news) > 0) {
+			foreach ($news as $item) {
+				$menu .=  '<li id="menu-item-6445" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6445">
+								<a href="'.route('news', ['tin-tuc-du-an', $item->alias]).'">'.$item->name.'</a>
+							</li>';
 			}
 		}
-		$menu .= '</ul>';
+		return $menu;
+	}
+
+	static function generateNewsProject(){
+		$menu = '';
+		$news = category::where('parent_id', 1)->get();
+		if (count($news) > 0) {
+			foreach ($news as $item) {
+				$posts = Pages::where('category_id', $item->category_id)
+					->where('pagetype', 'post')
+					->orderBy('created', 'desc')
+					->take(4)
+					->get();
+					$menu .= '<div class="row">
+					<div class="row panel-grid">
+						<h3 class="cat-title">
+							<a href="'.route('news', [$item->alias]).'">'.$item->name.'</a>
+						</h3>';
+					foreach ($posts as $post) {
+						$menu .='<div class="col-md-3 panel-grid-cell">
+							<div class="panel">
+								<div class="category-box">
+									<a href="'.route('news', [$item->alias, $post->alias]).'" class="page-box__picture">
+										<img width="360" height="240" src="'.asset('uploads/images/'.$post['image']).'" alt="" />                            
+									</a>
+	
+									<div class="page-box__content">
+										<h5 class="page-box__title  text-uppercase"> 
+											<a href="'.route('news', [$item->alias, $post->alias]).'">'.$post->title.'</a>
+										</h5>
+										<div class="excerp">
+											<p>'.$post->note.'</p>
+										</div>
+										<p><a class="read-more  read-more--page-box" href="'.route('news', [$item->alias, $post->alias]).'">Chi tiết </a></p>
+									</div>
+								</div>
+	
+							</div>
+						</div>';
+					}
+					$menu  .= '</div>
+				</div>';
+				}
+
+			}
 		return $menu;
 	}
 

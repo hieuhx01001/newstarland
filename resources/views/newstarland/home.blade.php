@@ -148,7 +148,7 @@
                                                         <img src="{{ asset('uploads/images/'.$item->image) }}">
                                                     </a>
                                                     @else
-                                                    <a href="{{ route('newsOther', [$item->alias]) }}">
+                                                    <a href="{{ route('news', [$item->alias]) }}">
                                                         <img src="{{ asset('uploads/images/'.$item->image) }}">
                                                     </a>
                                                     @endif
@@ -160,7 +160,7 @@
                                                 </span><br>
                                                 <p>
                                                     @php
-                                                    $content = str_limit($item->note, 400);
+                                                    $content = mb_strtolower(str_limit(strip_tags($item->note), 150), 'UTF-8');
                                                     @endphp
                                                     <span class="chpcs_foo_con">{!! $content !!}</span>
                                                 </p><br>
@@ -172,12 +172,12 @@
                                         </div>
                                     </div>
                                     <div class="chpcs_clearfix"></div>
-                                    <a class="chpcs_prev" id="wa_chpc_slider_prev"
-                                       href="#"
-                                       style="display: block;"><span>‹</span></a><a
-                                            class="chpcs_next" id="wa_chpc_slider_next"
-                                            href="#"
-                                            style="display: block;"><span>›</span></a>
+                                    <a class="chpcs_prev" id="wa_chpc_slider_prev" href="#" style="display: block;">
+                                        <span>‹</span>
+                                    </a>
+                                    <a class="chpcs_next" id="wa_chpc_slider_next" href="#" style="display: block;">
+                                        <span>›</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

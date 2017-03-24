@@ -17,7 +17,7 @@
                 <a href="{{ route('index') }}" class="home">{{ $webName }}</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
-                <a href="{{ route('aboutUs') }}" property="v:title">Về chúng tôi</a>
+                <a href="{{ route('news', ['ve-chung-toi']) }}" property="v:title">Về chúng tôi</a>
             </span>	&gt;
             <span typeof="v:Breadcrumb">
                 <span property="v:title">Hình thành và phát triển</span>
@@ -44,9 +44,9 @@
                             <h4 class="sidebar__headings">Về chúng tôi</h4>
                             <div class="menu-du-an-menu-container">
                                 <ul id="menu-du-an-menu" class="menu">
-                                    <li id="menu-item-2486" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-2486"><a href="{{ route('aboutUs') }}">Về chúng tôi</a></li>
-                                    <li id="menu-item-2487" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-2487"><a href="{{ route('letter') }}">Thư ngỏ</a></li>
-                                    <li id="menu-item-2485" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-2485 current-menu-item"><a href="{{ route('develop') }}">Hình thành và phát triển</a></li>
+                                    <li id="menu-item-2486" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-2486"><a href="{{ route('news', ['ve-chung-toi']) }}">Về chúng tôi</a></li>
+                                    <li id="menu-item-2487" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-2487"><a href="{{ route('news', ['thu-ngo']) }}">Thư ngỏ</a></li>
+                                    <li id="menu-item-2485" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-2485 current-menu-item"><a href="{{ route('news', ['hinh-thanh-va-phat-trien']) }}">Hình thành và phát triển</a></li>
                                 </ul>
                             </div>
                         </div>

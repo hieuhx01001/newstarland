@@ -77,16 +77,16 @@
                             {!! Form::hidden('pagetype', 'post') !!}
                             {!! Form::hidden('pageID', $row['pageID']) !!}
                             <div class="form-group  ">
-                                <label> Tiêu Đề Bài Viết</label>
-                                {!! Form::text('title', $row['title'],array('class'=>'form-control', 'placeholder'=>'',   )) !!}
+                                <label> Tiêu Đề Bài Viết:</label>
+                                {!! Form::text('title', $row['title'],array('class'=>'form-control', 'placeholder'=>'', 'required' =>'required'   )) !!}
                             </div>
                             <div class="form-group  ">
                                 <label for="ipt" class=" btn-primary  btn btn-sm">  {!! url('post/view/')!!}  </label>
                                 {!! Form::text('alias', $row['alias'],array('class'=>'form-control', 'placeholder'=>'', 'style'=>'width:350px; display:inline-block;'   )) !!}
                             </div>
                             <div class="form-group  ">
-                                <label> Nội Dung</label>
-                                <textarea name='note' rows='25' id='note-content' class='form-control note-content'>
+                                <label> Nội Dung:</label>
+                                <textarea required name='note' rows='25' id='note-content' class='form-control note-content'>
                                     {{ $row['note'] }}
                                 </textarea>
                             </div>
@@ -121,7 +121,7 @@
                     <div class="form-group  ">
                         <label> Danh Mục :</label>
                         <div class="input-group m-b" style="width:250px !important;">
-                            <select name='category_id' rows='5' id='category_id' class='select2 '></select>
+                            <select required name='category_id' rows='5' id='category_id' class='select2 '></select>
                         </div>
                     </div>
                     <div class="form-group  ">
@@ -139,7 +139,7 @@
                             {{--Tin Hot ?--}}
                         {{--</label>--}}
                         <label class="checkbox">
-                            <input type='checkbox' name='is_show_home' class="minimal-red" @if($row['is_show_home'] ==1 ) checked @endif value="1"/>
+                            <input type='checkbox' parsley-group="" name='is_show_home' class="minimal-red" @if($row['is_show_home'] ==1 ) checked @endif value="1"/>
                             Hiển Thị Trên Trang Chủ ?
                         </label>
                     </div>
@@ -166,20 +166,29 @@
                         </label>
                     </div>
 
-                    <div class="form-group  ">
-                        <label for="ipt" class=" control-label "> Ngày Tạo</label>
-                        <div class="input-group m-b" style="width:150px !important;">
-                            {!! Form::text('created', $row['created'],array('class'=>'form-control date', 'style'=>'width:200px !important;')) !!}
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    @if($row['pageID'] !== "")
+                        <div class="form-group  ">
+                            <label for="ipt" class=" control-label "> Ngày Tạo</label>
+                            <div class="input-group m-b" style="width:150px !important;">
+                                {!! Form::text('created', $row['created'],array('disabled'=>'disabled','class'=>'form-control', 'style'=>'width:200px !important;')) !!}
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group  ">
+                            <label for="ipt" class=" control-label "> Ngày Cập Nhật</label>
+                            <div class="input-group m-b" style="width:150px !important;">
+                                {!! Form::text('updated', $row['updated'],array('disabled'=>'disabled','class'=>'form-control', 'style'=>'width:200px !important;')) !!}
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    @endif
 
                     <div class="form-group  ">
-                        <label for="ipt"> Ai có thể nhìn </label>
+                        <label for="ipt"> Ai Có Thể Nhìn </label>
 
                         @foreach($groups as $group)
                             <label class="checkbox">
-                                <input type='checkbox' name='group_id[{{ $group['id'] }}]' value="{{ $group['id'] }}"
+                                <input type='checkbox' parsley-group="" name='group_id[{{ $group['id'] }}]' value="{{ $group['id'] }}"
                                        @if($group['access'] ==1 or $group['id'] ==1)
                                        checked
                                        @elseif($row['pageID'] === "")
@@ -195,7 +204,7 @@
                     <div class="form-group  ">
                         <label> Cho Phép Hiển Thị Công Khai: </label>
                         <label class="checkbox">
-                            <input type='checkbox' name='allow_guest' class="minimal-red" @if($row['allow_guest'] ==1 ) checked @endif value="1"/>
+                            <input type='checkbox' parsley-group="" name='allow_guest' class="minimal-red" @if($row['allow_guest'] ==1 ) checked @endif value="1"/>
                             Công Khai ?
                         </label>
                     </div>

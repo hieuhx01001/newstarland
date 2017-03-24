@@ -140,7 +140,8 @@ class CategoryController extends Controller {
 		{
 			$this->data['row'] =  $row;
 		} else {
-			$this->data['row'] = $this->model->getColumnTable('tb_categories'); 
+			$this->data['row'] = $this->model->getColumnTable('tb_categories');
+			$this->data['row']['alias'] = '';
 		}
 		$this->data['fields'] 		=  \SiteHelpers::fieldLang($this->info['config']['forms']);
 		
