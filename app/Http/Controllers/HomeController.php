@@ -176,7 +176,7 @@ class HomeController extends Controller {
 		return view('newstarland.project.listProject');
 	}
 
-	public function projects($alias)
+	public function projects($categoryAlias, $alias = null)
 	{
 		$projects = projectcategory::where('alias', $alias)->first();
 		$listProjectFather = projectcategory::where('parent_id', 0) ->get();
@@ -209,13 +209,15 @@ class HomeController extends Controller {
 				$childPost = Pages::where('pagetype', 'project')
 					->where('category_id', $projects->category_id)
 					->get();
+				$projectCategory = projectcategory::find($projects->category_id);
 				return view('newstarland.project.project')
 					->with(
 						[
 							'webName' => self::WEB_NAME,
 							'childPost' => $childPost,
 							'projects' => $projects,
-							'projectFather' => $projectFather
+							'projectFather' => $projectFather,
+							'projectCategory' => $projectCategory
 						]
 					);
 			}

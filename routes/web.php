@@ -18,7 +18,7 @@ Route::post('/home/proccess/{any?}', 'HomeController@postProccess');
 
 Route::group(['prefix' => 'du-an-phan-phoi'], function () {
 //	Route::get('/', 'HomeController@listProject')->name('listProject');
-	Route::get('/{alias}', 'HomeController@projects')->name('projects');
+	Route::get('{categoryAlias}/{alias?}', 'HomeController@projects')->name('projects');
 });
 
 Route::group(['prefix' => 'tin-tuc'], function () {

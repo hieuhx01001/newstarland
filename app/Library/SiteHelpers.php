@@ -2053,12 +2053,20 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 	static function generateProjectMenu($parentId = 0)
 	{
 		$menu = '';
+		if ($parentId > 0) {
+			$parent = projectcategory::find($parentId);
+		}
+
 		$projects = projectcategory::where('parent_id', $parentId)->get();
 		$menu .= '<ul class="sub-menu">';
 		if (count($projects) > 0) {
 			foreach ($projects as $project) {
+				$route = route('projects', [$project->alias]);
+				if (isset($parent)) {
+					$route = route('projects', [$parent->alias, $project->alias]);
+				}
 				$menu .= '<li id="menu-item-2481" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2481">
-								<a href="'. route('projects', [$project->alias]).'">'.$project->name.'</a>';
+								<a href="'.$route.'">'.$project->name.'</a>';
 				$menu .= self::generateProjectMenu($project->category_id);
 				$menu .= '</li>';
 			}

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="logo">
             <a href="{{ route('index') }}">
-                <img src="{{ asset('frontend/newstarland/images/logo.png') }}" alt="NEWSTARLAND - NGÔI SAO MỚI" class="img-responsive" width="200" height="46">
+                <img src="{{ asset('frontend/newstarland/images/logo.png') }}" class="img-responsive" width="200" height="46">
             </a>
         </div>
 
