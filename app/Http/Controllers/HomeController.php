@@ -178,7 +178,11 @@ class HomeController extends Controller {
 
 	public function projects($categoryAlias, $alias = null)
 	{
-		$projects = projectcategory::where('alias', $alias)->first();
+		$projects = projectcategory::where('alias', $categoryAlias)->first();
+		if (isset($alias)) {
+			$projects = projectcategory::where('alias', $alias)->first();
+		}
+
 		$listProjectFather = projectcategory::where('parent_id', 0) ->get();
 
 		if (isset($projects)) {
