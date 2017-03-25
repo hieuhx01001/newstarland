@@ -151,10 +151,22 @@ class HomeController extends Controller {
     public function home()
     {
 		$postShowHome = Pages::where('is_show_home', 1)->get();
+		$hotNews = Pages::where('is_hot', 1)
+			->where('pagetype', 'post')
+			->orderBy('created', 'desc')
+			->take(5)
+			->get();
+		$newsProject = Pages::where('pagetype' , 'project')
+			->where('labels', 'Toàn Quốc')
+			->take(4)
+			->get();
+
 		return view('newstarland.home')
 			->with(
 				[
-					'postShowHome' => $postShowHome
+					'postShowHome' => $postShowHome,
+					'hotNews' => $hotNews,
+					'newsProject' => $newsProject
 				]
 			);
 	}
@@ -419,65 +431,6 @@ class HomeController extends Controller {
 	}
 
 
-	public function processProjectNews()
-	{
-		$processProject = Pages::where('category_id', 8)
-			->where('pagetype', 'post')
-			->get();
-		return view('newstarland.news.processProject')
-			->with(
-				[
-					'webName'	=>	self::WEB_NAME,
-					'news' => $processProject
-				]
-			);
-	}
-
-	public function processProjectNewsDetail($alias)
-	{
-		$newsDetail = Pages::where('alias', $alias)->first();
-		$byUser = Users::find($newsDetail['userid']);
-		$processNews = Pages::where('category_id', 8)
-			->where('alias', '!=', $alias)
-			->orderBy('created', 'desc')
-			->take(5)
-			->get();
-		return view('newstarland.news.processProjectDetail')
-			->with(
-				[
-					'newsDetail'=> $newsDetail,
-					'webName' => self::WEB_NAME,
-					'byUser'	=> $byUser['username'],
-					'news' => $processNews
-				]
-			);
-	}
-
-	public function projectNews()
-	{
-		$newsProject = Pages::where('category_id', 8)->get();
-
-
-		return view('newstarland.news.projectNews')
-			->with(
-				[
-					'webName' => self::WEB_NAME,
-					'newsProject' => $newsProject,
-				]
-			);
-	}
-
-	public function recruitment()
-	{
-		$news = Pages::where('category_id', 2)->get();
-		return view('newstarland.recruitment.recruitment')
-			->with(
-				[
-					'listNews'	=> $news,
-					'webName'	=>	self::WEB_NAME
-				]
-			);
-	}
 
 	public function contact()
 	{

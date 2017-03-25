@@ -35,7 +35,7 @@
                                                             <a href="{{ route('news', ['thu-ngo']) }}">{{ $letter['title'] }}</a>
                                                         </h5>
                                                         @php
-                                                         $letterEncode = str_limit($letter['note'], 800);
+                                                         $letterEncode = str_limit(strip_tags($letter['note']), 300);
                                                         @endphp
                                                         {!! $letterEncode !!}
                                                         <p>
@@ -56,7 +56,7 @@
                                                             <a href="{{ route('news', ['hinh-thanh-va-phat-trien']) }}">{{ $develop['title'] }}</a>
                                                         </h5>
                                                         @php
-                                                        $developEncode = str_limit($develop['note'], 800);
+                                                        $developEncode = str_limit(strip_tags($develop['note']), 300);
                                                         @endphp
                                                         {!! $developEncode !!}
                                                         <p>

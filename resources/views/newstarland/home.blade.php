@@ -184,50 +184,36 @@
                     </div>
                 </div>
                 <div class="panel-grid" id="pg-7-2">
-                    <div class="siteorigin-panels-stretch panel-row-style"
-                         style="background-color: rgb(69, 69, 69); margin-left: -367.5px; margin-right: -367.5px; padding-left: 367.5px; padding-right: 367.5px; border-left: 0px; border-right: 0px;"
-                         data-stretch-type="full">
+                    <div class="siteorigin-panels-stretch panel-row-style" style="background-color: rgb(69, 69, 69); margin-left: -367.5px; margin-right: -367.5px; padding-left: 367.5px; padding-right: 367.5px; border-left: 0px; border-right: 0px;" data-stretch-type="full">
                         <div class="panel-grid-cell" id="pgc-7-2-0">
-                            <div class="so-panel widget widget_ess-grid-widget widget_ess_grid panel-first-child panel-last-child"
-                                 id="panel-7-2-0-0" data-index="1">
+                            <div class="so-panel widget widget_ess-grid-widget widget_ess_grid panel-first-child panel-last-child" id="panel-7-2-0-0" data-index="1">
 
                                 <!-- THE ESSENTIAL GRID 2.0.5 -->
 
                                 <!-- GRID WRAPPER FOR CONTAINER SIZING - HERE YOU CAN SET THE CONTAINER SIZE AND CONTAINER SKIN -->
-                                <article class="myportfolio-container buildpress"
-                                         id="esg-grid-1-1-wrap"
-                                         style="position: relative; z-index: 0; min-height: 100px; height: auto;">
+                                <article class="myportfolio-container buildpress" id="esg-grid-1-1-wrap" style="position: relative; z-index: 0; min-height: 100px; height: auto;">
 
                                     <!-- THE GRID ITSELF WITH FILTERS, PAGINATION, SORTING ETC... -->
-                                    <div class="esg-container-fullscreen-forcer"
-                                         style="position:relative;left:0px;top:0px;width:100%;height:auto;">
-                                        <div id="esg-grid-1-1"
-                                             class="esg-grid esg-layout-even esg-container"
-                                             style="background-color: transparent; padding: 0px 0px 25px; box-sizing: border-box; display: block; visibility: inherit; opacity: 1;">
-                                            <article
-                                                    class="esg-filters esg-singlefilters"
-                                                    style="margin-bottom: 30px; text-align: left; ">
+                                    <div class="esg-container-fullscreen-forcer" style="position:relative;left:0px;top:0px;width:100%;height:auto;">
+                                        <div id="esg-grid-1-1" class="esg-grid esg-layout-even esg-container" style="background-color: transparent; padding: 0px 0px 25px; box-sizing: border-box; display: block; visibility: inherit; opacity: 1;">
+                                            <article class="esg-filters esg-singlefilters" style="margin-bottom: 30px; text-align: left; ">
                                                 <!-- THE FILTERING, SORTING AND WOOCOMMERCE BUTTONS -->
                                                 <!-- THE FILTER BUTTONS -->
-                                                <div class="esg-filter-wrapper  esg-fgc-1"
-                                                     style="margin-left: 0px; margin-right: 0px;">
-                                                    <div class="esg-filterbutton selected esg-allfilter"
-                                                         data-filter="filterall"
-                                                         data-fid="-1"><span>Toàn quốc</span>
+                                                <div class="esg-filter-wrapper  esg-fgc-1" style="margin-left: 0px; margin-right: 0px;">
+                                                    <div class="esg-filterbutton selected esg-allfilter" data-filter="filterall" data-fid="-1">
+                                                        <span>Toàn quốc</span>
                                                     </div>
-                                                    <div class="esg-filterbutton"
-                                                         data-fid="86"
-                                                         data-filter="filter-ha-noi">
-                                                        <span>Hà Nội</span><span
-                                                                class="esg-filter-checked"><i
-                                                                    class="eg-icon-ok-1"></i></span>
+                                                    <div class="esg-filterbutton" data-fid="86" data-filter="filter-ha-noi">
+                                                        <span>Hà Nội</span>
+                                                        <span class="esg-filter-checked">
+                                                            <i class="eg-icon-ok-1"></i>
+                                                        </span>
                                                     </div>
-                                                    <div class="esg-filterbutton"
-                                                         data-fid="93"
-                                                         data-filter="filter-hai-phong">
-                                                        <span>Hải Phòng</span><span
-                                                                class="esg-filter-checked"><i
-                                                                    class="eg-icon-ok-1"></i></span>
+                                                    <div class="esg-filterbutton" data-fid="93" data-filter="filter-hai-phong">
+                                                        <span>Hải Phòng</span>
+                                                        <span class="esg-filter-checked">
+                                                            <i class="eg-icon-ok-1"></i>
+                                                        </span>
                                                     </div>
                                                     <div class="esg-filterbutton"
                                                          data-fid="85"
@@ -278,7 +264,7 @@
                                                             <div class="esg-entry-media-wrapper"
                                                                  style="width:100%;height:100%; overflow:hidden;position:relative;">
                                                                 <div class="esg-entry-media">
-                                                                    <img src="http://placehold.it/360x240"
+                                                                    <img src="http://newstarland.com/wp-content/uploads/2015/08/shophouse-360x240.jpg"
                                                                          data-lazysrc="http://newstarland.com/wp-content/uploads/2015/08/shophouse-360x240.jpg"
                                                                          alt=""
                                                                          style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
@@ -335,7 +321,7 @@
                                                             <div class="esg-entry-media-wrapper"
                                                                  style="width:100%;height:100%; overflow:hidden;position:relative;">
                                                                 <div class="esg-entry-media">
-                                                                    <img src="http://placehold.it/360x240"
+                                                                    <img src="http://newstarland.com/wp-content/uploads/2014/10/slide-banner-vinhomes-royal-city-360x240.jpg"
                                                                          data-lazysrc="http://newstarland.com/wp-content/uploads/2014/10/slide-banner-vinhomes-royal-city-360x240.jpg"
                                                                          alt=""
                                                                          style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
@@ -391,7 +377,7 @@
                                                             <div class="esg-entry-media-wrapper"
                                                                  style="width:100%;height:100%; overflow:hidden;position:relative;">
                                                                 <div class="esg-entry-media">
-                                                                    <img src="http://placehold.it/360x240"
+                                                                    <img src="http://newstarland.com/wp-content/uploads/2015/08/parkhill-360x240.jpg"
                                                                          data-lazysrc="http://newstarland.com/wp-content/uploads/2015/08/parkhill-360x240.jpg"
                                                                          alt=""
                                                                          style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
@@ -447,7 +433,7 @@
                                                             <div class="esg-entry-media-wrapper"
                                                                  style="width:100%;height:100%; overflow:hidden;position:relative;">
                                                                 <div class="esg-entry-media">
-                                                                    <img src="http://placehold.it/360x240"
+                                                                    <img src="http://newstarland.com/wp-content/uploads/2015/08/vinhomesriverside-360x240.jpg"
                                                                          data-lazysrc="http://newstarland.com/wp-content/uploads/2015/08/vinhomesriverside-360x240.jpg"
                                                                          alt=""
                                                                          style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
@@ -694,399 +680,37 @@
                         </div>
                         <div class="fsb-clear"></div>
                         <div class="so-panel widget widget_sticky-posts widget_ultimate_posts panel-first-child panel-last-child"
-                             id="panel-7-3-0-0" data-index="2"><h3
-                                    class="widget-title">Tin tức nổi bật</h3>
-
+                             id="panel-7-3-0-0" data-index="2">
+                            <h3 class="widget-title">Tin tức nổi bật</h3>
                             <div class="upw-posts hfeed">
-
-
-                                <article
-                                        class="post-4895 post type-post status-publish format-standard has-post-thumbnail hentry category-du-an-vinhomes-times-city">
-
+                                @foreach($hotNews as $item)
+                                <article class="post-4895 post type-post status-publish format-standard has-post-thumbnail hentry">
                                     <header>
-
                                         <div class="entry-image">
-                                            <a href="http://newstarland.com/mo-ban-park-12-toa-can-ho-dich-vu-hoan-thien-do-roi-dau-tien-tai-park-hill-premium/"
-                                               rel="bookmark">
-                                                <img width="100" height="75"
-                                                     src="http://placehold.it/100x75"
-                                                     class="attachment-thumbnail size-thumbnail wp-post-image"
-                                                     alt=""> </a>
+                                            <a href="{{ route('news', [$item->alias]) }}">
+                                                <img width="100" height="75" src="{{ asset('uploads/images/'.$item['image']) }}" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                            </a>
                                         </div>
 
                                         <h4 class="entry-title">
-                                            <a href="http://newstarland.com/mo-ban-park-12-toa-can-ho-dich-vu-hoan-thien-do-roi-dau-tien-tai-park-hill-premium/"
-                                               rel="bookmark">
-                                                Mở bán Park 12 – Tòa căn hộ dịch vụ
-                                                hoàn thiện đồ rời đầu tiên tại Park
-                                                Hill Premium </a>
+                                            <a href="{{ route('news', [$item->alias]) }}">
+                                                {!! $item->title !!}
+                                            </a>
                                         </h4>
-
-
-                                        <div class="entry-meta">
-
-                                            <time class="published"
-                                                  datetime="2016-02-23T11:27:08+00:00">
-                                                23/02/2016 11:27 am
-                                            </time>
-
-                                            <span class="sep">|</span>
-
-                                      <span class="author vcard">
-                        By                    <a
-                                                  href="http://newstarland.com/author/admin/"
-                                                  rel="author" class="fn">
-                                              admin </a>
-                      </span>
-
-                                            <span class="sep">|</span>
-
-                                            <a class="comments"
-                                               href="http://newstarland.com/mo-ban-park-12-toa-can-ho-dich-vu-hoan-thien-do-roi-dau-tien-tai-park-hill-premium/#respond">
-                                                No comments </a>
-
-                                        </div>
-
-
                                     </header>
 
                                     <div class="entry-summary">
+                                        @php
+                                        $content = str_limit(strip_tags($item->note), 150)
+                                        @endphp
                                         <p>
-                                            Ngày 28/2/2016, tại khách sạn Melia,
-                                            Vinhomes sẽ mở bán Park 12 – tòa căn hộ
-                                            dịch vụ hoàn thiện đồ rời đầu tiên thuộc
-                                            dự án Vinhomes Times City... <a
-                                                    href="http://newstarland.com/mo-ban-park-12-toa-can-ho-dich-vu-hoan-thien-do-roi-dau-tien-tai-park-hill-premium/"
-                                                    class="more-link">Chi tiết</a>
+                                            {!! $content !!}
+                                            <a href="{{ route('news', [$item->alias]) }}" class="more-link">Chi tiết</a>
                                         </p>
                                     </div>
-
-                                    <footer>
-
-                                        <div class="entry-categories">
-                                            <strong class="entry-cats-label">Posted
-                                                in:</strong>
-                                                <span class="entry-cats-list"><a
-                                                            href="http://newstarland.com/tin-tuc-du-an/du-an-vinhomes-times-city/"
-                                                            rel="tag">Dự án Vinhomes Times
-                                                        City</a></span>
-                                        </div>
-
-
-                                    </footer>
-
                                 </article>
-
-
-                                <article
-                                        class="post-4889 post type-post status-publish format-standard has-post-thumbnail hentry category-du-an-vingroup-khac">
-
-                                    <header>
-
-                                        <div class="entry-image">
-                                            <a href="http://newstarland.com/khu-tan-cang-ba-son-se-la-trung-tam-da-chuc-nang-bo-tay-song-sai-gon/"
-                                               rel="bookmark">
-                                                <img width="100" height="75"
-                                                     src="http://placehold.it/100x75"
-                                                     class="attachment-thumbnail size-thumbnail wp-post-image"
-                                                     alt=""> </a>
-                                        </div>
-
-                                        <h4 class="entry-title">
-                                            <a href="http://newstarland.com/khu-tan-cang-ba-son-se-la-trung-tam-da-chuc-nang-bo-tay-song-sai-gon/"
-                                               rel="bookmark">
-                                                Khu Tân Cảng-Ba Son sẽ là trung tâm
-                                                đa chức năng bờ Tây sông Sài Gòn </a>
-                                        </h4>
-
-
-                                        <div class="entry-meta">
-
-                                            <time class="published"
-                                                  datetime="2016-02-19T16:47:29+00:00">
-                                                19/02/2016 4:47 pm
-                                            </time>
-
-                                            <span class="sep">|</span>
-
-                                      <span class="author vcard">
-                        By                    <a
-                                                  href="http://newstarland.com/author/admin/"
-                                                  rel="author" class="fn">
-                                              admin </a>
-                      </span>
-
-                                            <span class="sep">|</span>
-
-                                            <a class="comments"
-                                               href="http://newstarland.com/khu-tan-cang-ba-son-se-la-trung-tam-da-chuc-nang-bo-tay-song-sai-gon/#respond">
-                                                No comments </a>
-
-                                        </div>
-
-
-                                    </header>
-
-                                    <div class="entry-summary">
-                                        <p>
-                                            UBND Tp.HCM vừa công bố quy hoạch kiến
-                                            trúc thành phố, trong đó trung tâm thành
-                                            phố sẽ được mở rộng và chia thành 5 phân
-                                            khu. Trong quá khứ,... <a
-                                                    href="http://newstarland.com/khu-tan-cang-ba-son-se-la-trung-tam-da-chuc-nang-bo-tay-song-sai-gon/"
-                                                    class="more-link">Chi tiết</a>
-                                        </p>
-                                    </div>
-
-                                    <footer>
-
-                                        <div class="entry-categories">
-                                            <strong class="entry-cats-label">Posted
-                                                in:</strong>
-                                                <span class="entry-cats-list"><a
-                                                            href="http://newstarland.com/tin-tuc-du-an/du-an-vingroup-khac/"
-                                                            rel="tag">Dự án Vingroup khác</a></span>
-                                        </div>
-
-
-                                    </footer>
-
-                                </article>
-
-
-                                <article
-                                        class="post-4884 post type-post status-publish format-standard has-post-thumbnail hentry category-du-an-vinhomes-times-city">
-
-                                    <header>
-
-                                        <div class="entry-image">
-                                            <a href="http://newstarland.com/kiem-hang-tram-trieu-dong-tu-cho-thue-can-ho-hang-sang/"
-                                               rel="bookmark">
-                                                <img width="100" height="75"
-                                                     src="http://placehold.it/100x75"
-                                                     class="attachment-thumbnail size-thumbnail wp-post-image"
-                                                     alt=""> </a>
-                                        </div>
-
-                                        <h4 class="entry-title">
-                                            <a href="http://newstarland.com/kiem-hang-tram-trieu-dong-tu-cho-thue-can-ho-hang-sang/"
-                                               rel="bookmark">
-                                                Kiếm hàng trăm triệu đồng từ cho thuê
-                                                căn hộ hạng sang </a>
-                                        </h4>
-
-
-                                        <div class="entry-meta">
-
-                                            <time class="published"
-                                                  datetime="2016-02-19T16:39:35+00:00">
-                                                19/02/2016 4:39 pm
-                                            </time>
-
-                                            <span class="sep">|</span>
-
-                                      <span class="author vcard">
-                        By                    <a
-                                                  href="http://newstarland.com/author/admin/"
-                                                  rel="author" class="fn">
-                                              admin </a>
-                      </span>
-
-                                            <span class="sep">|</span>
-
-                                            <a class="comments"
-                                               href="http://newstarland.com/kiem-hang-tram-trieu-dong-tu-cho-thue-can-ho-hang-sang/#respond">
-                                                No comments </a>
-
-                                        </div>
-
-
-                                    </header>
-
-                                    <div class="entry-summary">
-                                        <p>
-                                            Cùng với sự khởi sắc chung của thị
-                                            trường, các căn hộ cho thuê, đặc biệt là
-                                            chung cư cao cấp đang có tỷ lệ lấp đầy
-                                            cao, mang lại... <a
-                                                    href="http://newstarland.com/kiem-hang-tram-trieu-dong-tu-cho-thue-can-ho-hang-sang/"
-                                                    class="more-link">Chi tiết</a>
-                                        </p>
-                                    </div>
-
-                                    <footer>
-
-                                        <div class="entry-categories">
-                                            <strong class="entry-cats-label">Posted
-                                                in:</strong>
-                                                <span class="entry-cats-list"><a
-                                                            href="http://newstarland.com/tin-tuc-du-an/du-an-vinhomes-times-city/"
-                                                            rel="tag">Dự án Vinhomes Times
-                                                        City</a></span>
-                                        </div>
-
-
-                                    </footer>
-
-                                </article>
-
-
-                                <article
-                                        class="post-4882 post type-post status-publish format-standard has-post-thumbnail hentry category-du-an-vinhomes-times-city">
-
-                                    <header>
-
-                                        <div class="entry-image">
-                                            <a href="http://newstarland.com/park-hill-premium-khuay-dong-thi-truong-nhung-thang-dau-nam/"
-                                               rel="bookmark">
-                                                <img width="100" height="75"
-                                                     src="http://placehold.it/100x75"
-                                                     class="attachment-thumbnail size-thumbnail wp-post-image"
-                                                     alt=""> </a>
-                                        </div>
-
-                                        <h4 class="entry-title">
-                                            <a href="http://newstarland.com/park-hill-premium-khuay-dong-thi-truong-nhung-thang-dau-nam/"
-                                               rel="bookmark">
-                                                Park Hill PREMIUM: Khuấy động thị
-                                                trường những tháng đầu năm </a>
-                                        </h4>
-
-
-                                        <div class="entry-meta">
-
-                                            <time class="published"
-                                                  datetime="2016-02-19T16:17:43+00:00">
-                                                19/02/2016 4:17 pm
-                                            </time>
-
-                                            <span class="sep">|</span>
-
-                                      <span class="author vcard">
-                        By                    <a
-                                                  href="http://newstarland.com/author/admin/"
-                                                  rel="author" class="fn">
-                                              admin </a>
-                      </span>
-
-                                            <span class="sep">|</span>
-
-                                            <a class="comments"
-                                               href="http://newstarland.com/park-hill-premium-khuay-dong-thi-truong-nhung-thang-dau-nam/#respond">
-                                                No comments </a>
-
-                                        </div>
-
-
-                                    </header>
-
-                                    <div class="entry-summary">
-                                        <p>
-                                            Sự lan tỏa của Park Hill PREMIUM – khu
-                                            quần thể căn hộ cuối cùng thuộc Vinhomes
-                                            Times City (458 Minh Khai, Hà Nội) – đang
-                                            ngày càng rộng lớn... <a
-                                                    href="http://newstarland.com/park-hill-premium-khuay-dong-thi-truong-nhung-thang-dau-nam/"
-                                                    class="more-link">Chi tiết</a>
-                                        </p>
-                                    </div>
-
-                                    <footer>
-
-                                        <div class="entry-categories">
-                                            <strong class="entry-cats-label">Posted
-                                                in:</strong>
-                                                <span class="entry-cats-list"><a
-                                                            href="http://newstarland.com/tin-tuc-du-an/du-an-vinhomes-times-city/"
-                                                            rel="tag">Dự án Vinhomes Times
-                                                        City</a></span>
-                                        </div>
-
-
-                                    </footer>
-
-                                </article>
-
-
-                                <article
-                                        class="post-4836 post type-post status-publish format-standard has-post-thumbnail hentry category-du-an-vinpearl-resort-villas">
-
-                                    <header>
-
-                                        <div class="entry-image">
-                                            <a href="http://newstarland.com/gia-bat-dong-san-bien-se-nhu-the-nao-10-nam-toi/"
-                                               rel="bookmark">
-                                                <img width="100" height="75"
-                                                     src="http://placehold.it/100x75"
-                                                     class="attachment-thumbnail size-thumbnail wp-post-image"
-                                                     alt=""> </a>
-                                        </div>
-
-                                        <h4 class="entry-title">
-                                            <a href="http://newstarland.com/gia-bat-dong-san-bien-se-nhu-the-nao-10-nam-toi/"
-                                               rel="bookmark">
-                                                Giá bất động sản biển sẽ như thế nào
-                                                10 năm tới </a>
-                                        </h4>
-
-
-                                        <div class="entry-meta">
-
-                                            <time class="published"
-                                                  datetime="2016-01-22T16:39:16+00:00">
-                                                22/01/2016 4:39 pm
-                                            </time>
-
-                                            <span class="sep">|</span>
-
-                                      <span class="author vcard">
-                        By                    <a
-                                                  href="http://newstarland.com/author/admin/"
-                                                  rel="author" class="fn">
-                                              admin </a>
-                      </span>
-
-                                            <span class="sep">|</span>
-
-                                            <a class="comments"
-                                               href="http://newstarland.com/gia-bat-dong-san-bien-se-nhu-the-nao-10-nam-toi/#respond">
-                                                No comments </a>
-
-                                        </div>
-
-
-                                    </header>
-
-                                    <div class="entry-summary">
-                                        <p>
-                                            Bất động sản nghỉ dưỡng cách bờ biển
-                                            khoảng 300-500m và có thời gian di chuyển
-                                            từ các thành phố lớn đến khu resort 2 giờ
-                                            đồng hồ được dự... <a
-                                                    href="http://newstarland.com/gia-bat-dong-san-bien-se-nhu-the-nao-10-nam-toi/"
-                                                    class="more-link">Chi tiết</a>
-                                        </p>
-                                    </div>
-
-                                    <footer>
-
-                                        <div class="entry-categories">
-                                            <strong class="entry-cats-label">Posted
-                                                in:</strong>
-                                                <span class="entry-cats-list"><a
-                                                            href="http://newstarland.com/tin-tuc-du-an/du-an-vinpearl-resort-villas/"
-                                                            rel="tag">Dự án Vinpearl Resort
-                                                        &amp; Villas</a></span>
-                                        </div>
-
-
-                                    </footer>
-
-                                </article>
-
-
+                                @endforeach
                             </div>
-
                         </div>
                     </div>
                     <div class="panel-grid-cell" id="pgc-7-3-1">
@@ -1220,13 +844,11 @@
                              id="panel-7-4-1-0" data-index="6">
                             <div class="textwidget"></div>
                         </div>
-                        <div class="so-panel widget widget_black-studio-tinymce widget_black_studio_tinymce panel-last-child"
-                             id="panel-7-4-1-1" data-index="7"><h3
-                                    class="widget-title">Về chúng tôi</h3>
-                            <div class="textwidget"><p><img
-                                            class="alignleft size-medium wp-image-2704"
-                                            src="http://placehold.it/300x200"
-                                            alt="anh-12" width="300" height="200"></p>
+                        <div class="so-panel widget widget_black-studio-tinymce widget_black_studio_tinymce panel-last-child" id="panel-7-4-1-1" data-index="7">
+                            <h3 class="widget-title">Về chúng tôi</h3>
+                            <div class="textwidget">
+                                <p><img class="alignleft size-medium wp-image-2704" src="http://newstarland.com/wp-content/uploads/2015/08/anh-12-300x200.jpg" alt="anh-12" width="300" height="200">
+                                </p>
                                 <p style="text-align: justify;">Newstarland với tiền
                                     thân là Vietstarland - khởi nghiệp từ 03/2013 với
                                     chức năng: kinh doanh, tư vấn, cho thuê, môi giới
@@ -1236,10 +858,10 @@
                                     duy quản trị đúng đắn và tinh thần đoàn kết, nỗ
                                     lực của toàn công ty, Newstarland liên tục gặt
                                     hái những thành công và không ngừng phát
-                                    triển.</p>
-                                <h5><strong><a
-                                                href="http://newstarland.com/ve-chung-toi/thu-ngo/">Chi
-                                            tiết</a></strong></h5>
+                                    triển.
+                                </p>
+                                <h5>
+                                    <strong><a href="{{ route('news', ['thu-ngo']) }}">Chi tiết</a></strong></h5>
                             </div>
                         </div>
                     </div>
@@ -1254,27 +876,27 @@
                                     <div class="row">
                                         <div class="col-xs-6  col-sm-2">
                                             <img alt="Vingroup"
-                                                 src="http://placehold.it/165x79">
+                                                 src="http://newstarland.com/wp-content/uploads/2015/08/vingroup.png">
                                         </div>
                                         <div class="col-xs-6  col-sm-2">
                                             <img alt="Vinhomes"
-                                                 src="http://placehold.it/165x79">
+                                                 src="http://newstarland.com/wp-content/uploads/2015/08/vinhomes.png">
                                         </div>
                                         <div class="col-xs-6  col-sm-2">
                                             <img alt="Vinhomes Royal city"
-                                                 src="http://placehold.it/165x79">
+                                                 src="http://newstarland.com/wp-content/uploads/2015/08/royal-city.png">
                                         </div>
                                         <div class="col-xs-6  col-sm-2">
                                             <img alt="Vinhomes Times City"
-                                                 src="http://placehold.it/165x79">
+                                                 src="http://newstarland.com/wp-content/uploads/2015/08/times-city.png">
                                         </div>
                                         <div class="col-xs-6  col-sm-2">
                                             <img alt="Vinhomes Riverside"
-                                                 src="http://placehold.it/165x79">
+                                                 src="http://newstarland.com/wp-content/uploads/2015/08/vinhomes-riverside.png">
                                         </div>
                                         <div class="col-xs-6  col-sm-2">
                                             <img alt="Vinhomes Central Park"
-                                                 src="http://placehold.it/165x79">
+                                                 src="http://newstarland.com/wp-content/uploads/2015/08/vinhomescentral-park.png">
                                         </div>
                                     </div>
                                 </div>
