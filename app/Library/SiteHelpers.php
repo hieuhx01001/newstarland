@@ -5,6 +5,8 @@ use App\Models\Core\Pages;
 
 class SiteHelpers
 {
+	const WEB_NAME = "This is awesome";
+
 	public static function menus( $position ='top',$active = '1')
 	{
 		$data = array();  
@@ -2178,7 +2180,84 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 		return $menu;
 	}
 
-	
+	static function generateBreadcrumb($id, $newsType, $title = null){
+		$listBreadCrumb = [];
+		$breadCrumb = '<span typeof="v:Breadcrumb">
+                <a href="'.route('index').'" class="home">'. self::WEB_NAME .'</a>
+            </span>';
+		return self::getBreadCrumb($id, $newsType, $breadCrumb, $title);
+	}
 
-		
+	/**
+	 * @param $id
+	 */
+	private static function getListBreadCrumb($id)
+	{
+		$project = projectcategory::find($id);
+
+		$listBreadCrumb = $project->parent_id;
+
+		if ($project->parent_id != 0) {
+			$listBreadCrumb .= ','.self::getListBreadCrumb($project->parent_id);
+		}
+		return $listBreadCrumb;
+	}
+
+	/**
+	 * @param $id
+	 * @param $newsType
+	 * @param $breadCrumb
+	 *
+	 * @return string
+	 */
+	private static function getBreadCrumb($id, $newsType, $breadCrumb, $title)
+	{
+		$projects = projectcategory::find($id);
+		if ($projects->parent_id == 0) {
+			$breadCrumb .= '<span typeof="v:Breadcrumb">
+			<a href="' . route($newsType, [$projects->alias]) . '" class="home">' . $projects->name . '</a>
+		</span>';
+		} else {
+			$listBreadCrumb = explode(',', self::getListBreadCrumb($id));
+			sort($listBreadCrumb);
+			foreach ($listBreadCrumb as $item) {
+				if ($item != 0) {
+					$project = projectcategory::find($item);
+					$breadCrumb .= '<span typeof="v:Breadcrumb">
+						<a href="' . route($newsType, [$project->alias]) . '" class="home">' . $project->name . '</a>
+					</span>';
+					if ($item != end($listBreadCrumb)) {
+						$breadCrumb .= '&gt';
+					}
+				}
+			}
+			$breadCrumb .= '<span typeof="v:Breadcrumb">
+				<a href="' . route($newsType, [$projects->alias]) . '" class="home">' . $projects->name . '</a>
+			</span>';
+
+			if (isset($title)) {
+				$breadCrumb .= '&gt<span typeof="v:Breadcrumb">
+				<span>' . $title . '</span>
+			</span>';
+			}
+		}
+		return $breadCrumb;
+	}
+
+	static function generateURL($categoryAlias, $pageType, $alias) {
+		switch ($pageType){
+			case 'projects':
+				return route($pageType, [$categoryAlias]);
+			case 'news':
+				if (!isset($alias)){
+					return route($pageType, [$categoryAlias]);
+				} else {
+					return route($pageType, [$categoryAlias, $alias]);
+				}
+			default:
+				break;
+		}
+	}
+
+
 }

@@ -9,17 +9,7 @@
 
     <div class="breadcrumbs " id="project-navigation-anchor">
         <div class="container">
-            <!-- Breadcrumb NavXT 5.6.0 -->
-            <span typeof="v:Breadcrumb">
-                <a href="{{ route('index') }}" class="home">{{ $webName }}
-                </a>
-            </span> &gt;
-            <span typeof="v:Breadcrumb">
-                <a href="{{ route('projects', [$projectFather->alias]) }}" class="taxonomy category">{{ $projectFather->name }}</a>
-            </span> &gt;
-            <span typeof="v:Breadcrumb">
-                <span property="v:title">{{ $projects->name }}</span>
-            </span>
+            {!! SiteHelpers::generateBreadcrumb($projects->category_id, 'projects') !!}
         </div>
     </div>
 
