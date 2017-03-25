@@ -25,7 +25,7 @@
             <div class="row">
                 <h1 class="cat-title">Tuyển Dụng</h1>
                 <div class="row panel-grid">
-                    @foreach($listNews as $news)
+                    @foreach($listNews as $key => $news)
                     <div class="col-md-3 panel-grid-cell">
                         <div class="panel">
                             <div class="category-box">
@@ -41,6 +41,9 @@
 
                         </div>
                     </div>
+                    @if($key % 4 == 3)
+                        <div class="clearfix"></div>
+                    @endif
                     @endforeach
                     <div class="col-xs-12">
                         <nav class="pagination  text-center"></nav>
