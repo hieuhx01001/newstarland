@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-title">
         <div class="container">
-            <h1 class="main-title__primary">TUYỂN DỤNG</h1>
+            <h1 class="main-title__primary">Tuyển Dụng</h1>
         </div>
     </div>
     <div class="breadcrumbs " id="project-navigation-anchor">
@@ -16,14 +16,14 @@
                 <a href="{{ route('listNews') }}" class="taxonomy category">Tin tức</a>
             </span> &gt;
             <span typeof="v:Breadcrumb">
-                <span property="v:title">TUYỂN DỤNG</span>
+                <span property="v:title">Tuyển Dụng</span>
             </span>
         </div>
     </div>
     <div class="master-container">
         <div class="container">
             <div class="row">
-                <h1 class="cat-title">TUYỂN DỤNG</h1>
+                <h1 class="cat-title">Tuyển Dụng</h1>
                 <div class="row panel-grid">
                     @foreach($listNews as $news)
                     <div class="col-md-3 panel-grid-cell">

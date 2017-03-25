@@ -50,7 +50,7 @@
                     @endforeach
                 </div>
                 <div class="row panel-grid">
-                    <h3 class="cat-title"><a href="{{ route('news',['tin-tuyen-dung']) }}">TUYỂN DỤNG</a></h3>
+                    <h3 class="cat-title"><a href="{{ route('news',['tin-tuyen-dung']) }}">Tuyển Dụng</a></h3>
                     @foreach($recruitment as $newsRecruitment)
                     <div class="col-md-3 panel-grid-cell">
                         <div class="panel">
