@@ -41,7 +41,7 @@
                                         <a href="{{ route('news', ['cap-nhat-tien-do-du-an', $processNews['alias']]) }}">{{ $processNews['title'] }}</a>
                                     </h5>
                                     <div class="excerp">
-                                        <p>{!! $processNews['note'] !!}</p>
+                                        <p>{{ strip_tags($processNews['note']) }}</p>
                                     </div>
                                     <p><a class="read-more  read-more--page-box" href="{{ route('news', ['cap-nhat-tien-do-du-an', $processNews['alias']]) }}">Chi tiết </a></p>
                                 </div>

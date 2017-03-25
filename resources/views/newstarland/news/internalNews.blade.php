@@ -41,7 +41,7 @@
                                         <a href="{{ route('news', ['tin-noi-bo', $internalNews['alias']]) }}">{{ $internalNews['title'] }}</a>
                                     </h5>
                                     <div class="excerp">
-                                        <p>{!! $internalNews['note'] !!}</p>
+                                        <p>{{ strip_tags($internalNews['note']) }}</p>
                                     </div>
                                     <p><a class="read-more  read-more--page-box" href="{{ route('news', ['tin-noi-bo', $internalNews['alias']]) }}">Chi tiết </a></p>
                                 </div>

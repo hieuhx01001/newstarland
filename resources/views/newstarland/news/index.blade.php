@@ -38,7 +38,7 @@
                                         <a href="{{ route('news', ['tin-noi-bo', $newsInternal['alias']]) }}">{{ $newsInternal['title'] }}</a>
                                     </h5>
                                     <div class="excerp">
-                                        <p>{!! $newsInternal['note'] !!}}</p>
+                                        <p>{{ strip_tags($newsInternal['note']) }}</p>
                                     </div>
                                     <p>
                                         <a class="read-more  read-more--page-box" href="{{ route('news', ['tin-noi-bo', $newsInternal['alias']]) }}">Chi tiết </a>
@@ -63,7 +63,7 @@
                                     <h5 class="page-box__title  text-uppercase">
                                         <a href="{{ route('news', ['tin-tuyen-dung', $newsRecruitment['alias']]) }}">{{ $newsRecruitment['title'] }}</a>
                                     </h5>
-                                    <div class="excerp"><p>{!! $newsRecruitment['note'] !!}</p>
+                                    <div class="excerp"><p>{{ strip_tags($newsRecruitment['note']) }}</p>
                                     </div>
                                     <p>
                                         <a class="read-more read-more--page-box" href="{{ route('news', ['tin-tuyen-dung', $newsRecruitment['alias']]) }}">Chi tiết </a>
@@ -88,7 +88,7 @@
                                     <h5 class="page-box__title  text-uppercase">
                                         <a href="{{ route('news', ['cap-nhat-tien-do-du-an', $item->alias]) }}">{{ $item['title'] }}</a>
                                     </h5>
-                                    <div class="excerp"><p>{!! $item['note'] !!}</p>
+                                    <div class="excerp"><p>{{ strip_tags($item['note']) }}</p>
                                     </div>
                                     <p>
                                         <a class="read-more  read-more--page-box" href="{{ route('news', ['cap-nhat-tien-do-du-an', $item->alias]) }}">Chi tiết </a>

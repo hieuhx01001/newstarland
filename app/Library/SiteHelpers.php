@@ -5,7 +5,7 @@ use App\Models\Core\Pages;
 
 class SiteHelpers
 {
-	const WEB_NAME = "This is awesome";
+	const WEB_NAME = "NEWSTARLAND - NGÔI SAO MỚI";
 
 	public static function menus( $position ='top',$active = '1')
 	{
@@ -2171,7 +2171,7 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 											<a href="'.route('news', [$item->alias, $post->alias]).'">'.$post->title.'</a>
 										</h5>
 										<div class="excerp">
-											<p>'.$post->note.'</p>
+											<p>'.strip_tags($post->note).'</p>
 										</div>
 										<p><a class="read-more  read-more--page-box" href="'.route('news', [$item->alias, $post->alias]).'">Chi tiết </a></p>
 									</div>

@@ -46,7 +46,7 @@
                                         <a href="{{ route('news', [$categoryByAlias->alias, $item->alias]) }}">{{ $item->title }}</a>
                                         </h5>
                                     <div class="excerp">
-                                        {!! $item->note  !!}
+                                        {{ strip_tags($item->note ) }}
                                     </div>
                                     <p><a class="read-more  read-more--page-box" href="{{ route('news', [$categoryByAlias->alias, $item->alias]) }}">Chi tiết </a></p>
                                 </div>

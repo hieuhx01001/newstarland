@@ -29,7 +29,7 @@
                                 <div class="page-box__content">
                                     <h5 class="page-box__title  text-uppercase"> <a href="{{ route('projects', [$projectCategory->alias, $post->alias]) }}">{{ $post->title }}</a></h5>
                                     <div class="excerp">
-                                        <p>{!! $post->note !!}</p>
+                                        <p>{{ strip_tags($post->note) }}</p>
                                     </div>
                                     <p><a class="read-more  read-more--page-box" href="{{ route('projects', [$projectCategory->alias, $post->alias]) }}">Chi tiết </a></p>
                                 </div>
