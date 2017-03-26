@@ -9,7 +9,7 @@ use Mail;
 use Validator, Input, Redirect ; 
 
 class HomeController extends Controller {
-	const WEB_NAME = "This is awesome";
+	const WEB_NAME = "NEWSTARLAND - NGÔI SAO MỚI";
 	const TOAN_QUOC = 'Toàn Quốc';
 	const HA_NOI = 'Hà Nội';
 	const HAI_PHONG = 'Hải Phòng';
@@ -166,7 +166,7 @@ class HomeController extends Controller {
 		$newsProject = Pages::where('pagetype' , 'project')
 			->whereNotNull('labels')
 			->get();
-		
+
 		$toanQuoc = [];
 		$haNoi = [];
 		$haiPhong = [];
