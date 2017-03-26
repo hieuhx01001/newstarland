@@ -2,6 +2,7 @@
 
 @section('page-css')
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/index.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/sliderHomePage.css') }}" />
 @endsection
 
 @section('content')
@@ -134,500 +135,129 @@
                          id="pgc-7-0-0"></div>
                 </div>
                 <div class="panel-grid" id="pg-7-1">
-                    <div class="panel-grid-cell" id="pgc-7-1-0">
-                        <div class="so-panel widget widget_chpcs_widget panel-first-child panel-last-child" id="panel-7-1-0-0" data-index="0">
-                            <div class="widget-text wp_widget_plugin_box">
-                                <div class="chpcs_image_carousel">
-                                    <div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 1120px; height: 392px; margin: 0px; overflow: hidden;">
-                                        <div id="wa_chpc_slider" style="height: 392px; overflow: hidden; text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 16px; margin: 0px; width: 4384px;">
-                                            @foreach($postShowHome as $item)
-                                            <div class="chpcs_foo_content" style="width:260px; height:380px;">
-                                                <span class="chpcs_img">
-                                                    @if ($item->pagetype == 'project')
-                                                    <a href="{{ route('projects', [$item->alias]) }}">
-                                                        <img src="{{ asset('uploads/images/'.$item->image) }}">
-                                                    </a>
-                                                    @else
-                                                    <a href="{{ route('news', [$item->alias]) }}">
-                                                        <img src="{{ asset('uploads/images/'.$item->image) }}">
-                                                    </a>
-                                                    @endif
-                                                </span><br>
-                                                <span class="chpcs_title">
-                                                    <a style=" text-decoration:none;" href="{{ route('projects', [$item->alias]) }}">
-                                                        {{ $item->title }}
-                                                    </a>
-                                                </span><br>
-                                                <p>
-                                                    @php
-                                                    $content = mb_strtolower(str_limit(strip_tags($item->note), 150), 'UTF-8');
-                                                    @endphp
-                                                    <span class="chpcs_foo_con">{!! $content !!}</span>
-                                                </p><br>
-                                                <span class="chpcs_more">
-                                                    <a href="{{ route('projects', [$item->alias]) }}">CHI TIẾT</a>
-                                                </span>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="chpcs_clearfix"></div>
-                                    <a class="chpcs_prev" id="wa_chpc_slider_prev" href="#" style="display: block;">
-                                        <span>‹</span>
-                                    </a>
-                                    <a class="chpcs_next" id="wa_chpc_slider_next" href="#" style="display: block;">
-                                        <span>›</span>
-                                    </a>
+                    <ul id="slider-0">
+                        @foreach($postShowHome as $item)
+                            <li>
+                                <div class="chpcs_foo_content" style="width:260px; height:380px;">
+                                    <span class="chpcs_img">
+                                        @if ($item->pagetype == 'project')
+                                            <a href="{{ route('projects', [$item->alias]) }}">
+                                                <img src="{{ asset('uploads/images/'.$item->image) }}">
+                                            </a>
+                                        @else
+                                            <a href="{{ route('news', [$item->alias]) }}">
+                                                <img src="{{ asset('uploads/images/'.$item->image) }}">
+                                            </a>
+                                        @endif
+                                    </span><br>
+                                    <span class="chpcs_title">
+                                        <a style=" text-decoration:none;" href="{{ route('projects', [$item->alias]) }}">
+                                            {{ $item->title }}
+                                        </a>
+                                    </span><br>
+                                    <p>
+                                        @php
+                                        $content = mb_strtolower(str_limit(strip_tags($item->note), 150), 'UTF-8');
+                                        @endphp
+                                        <span class="chpcs_foo_con">{!! $content !!}</span>
+                                    </p><br>
+                                    <span class="chpcs_more">
+                                        <a href="{{ route('projects', [$item->alias]) }}">CHI TIẾT</a>
+                                    </span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
                 <div class="panel-grid" id="pg-7-2">
-                    <div class="siteorigin-panels-stretch panel-row-style" style="background-color: rgb(69, 69, 69); margin-left: -367.5px; margin-right: -367.5px; padding-left: 367.5px; padding-right: 367.5px; border-left: 0px; border-right: 0px;" data-stretch-type="full">
-                        <div class="panel-grid-cell" id="pgc-7-2-0">
-                            <div class="so-panel widget widget_ess-grid-widget widget_ess_grid panel-first-child panel-last-child" id="panel-7-2-0-0" data-index="1">
+                    <div id="exTab3" class="container">
+                        <ul  class="nav nav-pills header-slider-1">
+                            <li class="active tab-location" data-num="slider-1">
+                                <a href="#1b" data-toggle="tab"><span>TOÀN QUỐC</span></a>
+                            </li>
+                            <li class="tab-location" data-num="slider-2"><a href="#2b" data-toggle="tab"><span>HÀ NỘI</span></a>
+                            </li>
+                            <li class="tab-location" data-num="slider-3"><a href="#3b" data-toggle="tab"><span>HẢI PHÒNG</span></a>
+                            </li>
+                            <li class="tab-location" data-num="slider-4"><a href="#4b" data-toggle="tab"><span>ĐÀ NẴNG</span></a>
+                            </li>
+                            <li class="tab-location" data-num="slider-5"><a href="#5b" data-toggle="tab"><span>NHA TRANG</span></a>
+                            </li>
+                            <li class="tab-location" data-num="slider-6"><a href="#6b" data-toggle="tab"><span>PHÚ QUỐC</span></a>
+                            </li>
+                            <li class="tab-location" data-num="slider-7"><a href="#7b" data-toggle="tab"><span>TP HỒ CHÍ MINH</span></a>
+                            </li>
+                        </ul>
 
-                                <!-- THE ESSENTIAL GRID 2.0.5 -->
-
-                                <!-- GRID WRAPPER FOR CONTAINER SIZING - HERE YOU CAN SET THE CONTAINER SIZE AND CONTAINER SKIN -->
-                                <article class="myportfolio-container buildpress" id="esg-grid-1-1-wrap" style="position: relative; z-index: 0; min-height: 100px; height: auto;">
-
-                                    <!-- THE GRID ITSELF WITH FILTERS, PAGINATION, SORTING ETC... -->
-                                    <div class="esg-container-fullscreen-forcer" style="position:relative;left:0px;top:0px;width:100%;height:auto;">
-                                        <div id="esg-grid-1-1" class="esg-grid esg-layout-even esg-container" style="background-color: transparent; padding: 0px 0px 25px; box-sizing: border-box; display: block; visibility: inherit; opacity: 1;">
-                                            <article class="esg-filters esg-singlefilters" style="margin-bottom: 30px; text-align: left; ">
-                                                <!-- THE FILTERING, SORTING AND WOOCOMMERCE BUTTONS -->
-                                                <!-- THE FILTER BUTTONS -->
-                                                <div class="esg-filter-wrapper  esg-fgc-1" style="margin-left: 0px; margin-right: 0px;">
-                                                    <div class="esg-filterbutton selected esg-allfilter" data-filter="filterall" data-fid="-1">
-                                                        <span>Toàn quốc</span>
-                                                    </div>
-                                                    <div class="esg-filterbutton" data-fid="86" data-filter="filter-ha-noi">
-                                                        <span>Hà Nội</span>
-                                                        <span class="esg-filter-checked">
-                                                            <i class="eg-icon-ok-1"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="esg-filterbutton" data-fid="93" data-filter="filter-hai-phong">
-                                                        <span>Hải Phòng</span>
-                                                        <span class="esg-filter-checked">
-                                                            <i class="eg-icon-ok-1"></i>
-                                                        </span>
-                                                    </div>
-                                                    <div class="esg-filterbutton"
-                                                         data-fid="85"
-                                                         data-filter="filter-da-nang">
-                                                        <span>Đà Nẵng</span><span
-                                                                class="esg-filter-checked"><i
-                                                                    class="eg-icon-ok-1"></i></span>
-                                                    </div>
-                                                    <div class="esg-filterbutton"
-                                                         data-fid="82"
-                                                         data-filter="filter-nha-trang">
-                                                        <span>Nha Trang</span><span
-                                                                class="esg-filter-checked"><i
-                                                                    class="eg-icon-ok-1"></i></span>
-                                                    </div>
-                                                    <div class="esg-filterbutton"
-                                                         data-fid="81"
-                                                         data-filter="filter-phu-quoc">
-                                                        <span>Phú Quốc</span><span
-                                                                class="esg-filter-checked"><i
-                                                                    class="eg-icon-ok-1"></i></span>
-                                                    </div>
-                                                    <div class="esg-filterbutton"
-                                                         data-fid="122"
-                                                         data-filter="filter-tp-ho-chi-minh">
-                                                        <span>Tp Hồ Chí Minh</span><span
-                                                                class="esg-filter-checked"><i
-                                                                    class="eg-icon-ok-1"></i></span>
-                                                    </div>
-                                                    <div class="eg-clearfix"></div>
-                                                </div>
-                                            </article>
-                                            <div class="esg-clear-no-height"></div>
-                                            <!-- ############################ -->
-                                            <!-- THE GRID ITSELF WITH ENTRIES -->
-                                            <!-- ############################ -->
-                                            <div class="esg-overflowtrick"
-                                                 style="width: 100%; height: 197px;">
-                                                <ul class="mainul"
-                                                    style="height: 197px;">
-                                                    <!-- PORTFOLIO ITEM 45 -->
-                                                    <li class="filterall filter-hai-phong eg-buildpress-item-skin-wrapper eg-post-id-2475 tp-esg-item itemtoshow esg-hovered isvisiblenow"
-                                                        data-excerpt=""
-                                                        style="opacity: 1; visibility: inherit; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00083, 0, 0, 0.1, 0.999917); height: 197px; width: 263px; display: block; top: 0px; left: 0px; transform-origin: center center 0px;">
-                                                        <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                                        <div class="esg-media-cover-wrapper">
-                                                            <!-- THE MEDIA OF THE ENTRY -->
-                                                            <div class="esg-entry-media-wrapper"
-                                                                 style="width:100%;height:100%; overflow:hidden;position:relative;">
-                                                                <div class="esg-entry-media">
-                                                                    <img src="http://newstarland.com/wp-content/uploads/2015/08/shophouse-360x240.jpg"
-                                                                         data-lazysrc="http://newstarland.com/wp-content/uploads/2015/08/shophouse-360x240.jpg"
-                                                                         alt=""
-                                                                         style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
-                                                                         class="coverremoved">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- THE CONTENT OF THE ENTRY -->
-                                                            <div class="esg-entry-cover"
-                                                                 style="transform-style: flat; height: 197px;">
-
-                                                                <!-- THE COLORED OVERLAY -->
-                                                                <div class="esg-overlay esg-fade eg-buildpress-item-skin-container"
-                                                                     data-delay="0"
-                                                                     style="visibility: hidden; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, -0.002, 1);"></div>
-
-                                                                <div class="esg-cc eec"
-                                                                     style="top: 63px;">
-                                                                    <div class="esg-center eg-post-2475 eg-buildpress-item-skin-element-1 esg-flipdown"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 0% 0px; transform: matrix3d(1, 0, 0, 0, 0, 0, -1, 0.001, 0, 1, 0, 0, 0, 0, 0.001, 0.999999);">
-                                                                        Vincom
-                                                                        Shophouse Hải
-                                                                        Phòng
-                                                                    </div>
-                                                                    <div class="esg-center eg-buildpress-item-skin-element-9 esg-none esg-clear"
-                                                                         style="height: 5px; visibility: inherit; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);"></div>
-                                                                    <div class="esg-center eg-post-2475 eg-buildpress-item-skin-element-0-a esg-slideup"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 50% 0px; transform: translate(0%, 50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);">
-                                                                        <a class="eg-buildpress-item-skin-element-0 eg-post-2475"
-                                                                           href="http://newstarland.com/essential_grid/vincom-shophouse-hai-phong/"
-                                                                           target="_self">View
-                                                                            Project</a>
-                                                                    </div>
-                                                                    <div></div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <!-- END OF THE CONTENT IN THE ENTRY -->
-                                                        </div>
-                                                        <!-- END OF THE CONTAINER FOR THE MEDIA AND COVER/HOVER EFFECTS -->
-
-                                                    </li>
-                                                    <!-- END OF PORTFOLIO ITEM -->
-                                                    <!-- PORTFOLIO ITEM 45 -->
-                                                    <li class="filterall filter-ha-noi eg-buildpress-item-skin-wrapper eg-post-id-2164 tp-esg-item itemtoshow esg-hovered isvisiblenow"
-                                                        data-excerpt=""
-                                                        style="opacity: 1; visibility: inherit; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00083, 0, 0, 0.1, 0.999917); height: 197px; width: 263px; display: block; top: 0px; left: 293px; transform-origin: center center 0px;">
-                                                        <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                                        <div class="esg-media-cover-wrapper">
-                                                            <!-- THE MEDIA OF THE ENTRY -->
-                                                            <div class="esg-entry-media-wrapper"
-                                                                 style="width:100%;height:100%; overflow:hidden;position:relative;">
-                                                                <div class="esg-entry-media">
-                                                                    <img src="http://newstarland.com/wp-content/uploads/2014/10/slide-banner-vinhomes-royal-city-360x240.jpg"
-                                                                         data-lazysrc="http://newstarland.com/wp-content/uploads/2014/10/slide-banner-vinhomes-royal-city-360x240.jpg"
-                                                                         alt=""
-                                                                         style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
-                                                                         class="coverremoved">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- THE CONTENT OF THE ENTRY -->
-                                                            <div class="esg-entry-cover"
-                                                                 style="transform-style: flat; height: 197px;">
-
-                                                                <!-- THE COLORED OVERLAY -->
-                                                                <div class="esg-overlay esg-fade eg-buildpress-item-skin-container"
-                                                                     data-delay="0"
-                                                                     style="visibility: hidden; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, -0.002, 1);"></div>
-
-                                                                <div class="esg-cc eec"
-                                                                     style="top: 63px;">
-                                                                    <div class="esg-center eg-post-2164 eg-buildpress-item-skin-element-1 esg-flipdown"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 0% 0px; transform: matrix3d(1, 0, 0, 0, 0, 0, -1, 0.001, 0, 1, 0, 0, 0, 0, 0.001, 0.999999);">
-                                                                        Vinhomes
-                                                                        Royal City
-                                                                    </div>
-                                                                    <div class="esg-center eg-buildpress-item-skin-element-9 esg-none esg-clear"
-                                                                         style="height: 5px; visibility: inherit; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);"></div>
-                                                                    <div class="esg-center eg-post-2164 eg-buildpress-item-skin-element-0-a esg-slideup"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 50% 0px; transform: translate(0%, 50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);">
-                                                                        <a class="eg-buildpress-item-skin-element-0 eg-post-2164"
-                                                                           href="http://newstarland.com/essential_grid/vinhomes-royal-city/"
-                                                                           target="_self">View
-                                                                            Project</a>
-                                                                    </div>
-                                                                    <div></div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <!-- END OF THE CONTENT IN THE ENTRY -->
-                                                        </div>
-                                                        <!-- END OF THE CONTAINER FOR THE MEDIA AND COVER/HOVER EFFECTS -->
-
-                                                    </li>
-                                                    <!-- END OF PORTFOLIO ITEM -->
-                                                    <!-- PORTFOLIO ITEM 45 -->
-                                                    <li class="filterall filter-ha-noi eg-buildpress-item-skin-wrapper eg-post-id-2167 tp-esg-item itemtoshow esg-hovered isvisiblenow"
-                                                        data-excerpt=""
-                                                        style="opacity: 1; visibility: inherit; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00083, 0, 0, 0.1, 0.999917); height: 197px; width: 263px; display: block; top: 0px; left: 586px; transform-origin: center center 0px;">
-                                                        <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                                        <div class="esg-media-cover-wrapper">
-                                                            <!-- THE MEDIA OF THE ENTRY -->
-                                                            <div class="esg-entry-media-wrapper"
-                                                                 style="width:100%;height:100%; overflow:hidden;position:relative;">
-                                                                <div class="esg-entry-media">
-                                                                    <img src="http://newstarland.com/wp-content/uploads/2015/08/parkhill-360x240.jpg"
-                                                                         data-lazysrc="http://newstarland.com/wp-content/uploads/2015/08/parkhill-360x240.jpg"
-                                                                         alt=""
-                                                                         style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
-                                                                         class="coverremoved">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- THE CONTENT OF THE ENTRY -->
-                                                            <div class="esg-entry-cover"
-                                                                 style="transform-style: flat; height: 197px;">
-
-                                                                <!-- THE COLORED OVERLAY -->
-                                                                <div class="esg-overlay esg-fade eg-buildpress-item-skin-container"
-                                                                     data-delay="0"
-                                                                     style="visibility: hidden; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, -0.002, 1);"></div>
-
-                                                                <div class="esg-cc eec"
-                                                                     style="top: 63px;">
-                                                                    <div class="esg-center eg-post-2167 eg-buildpress-item-skin-element-1 esg-flipdown"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 0% 0px; transform: matrix3d(1, 0, 0, 0, 0, 0, -1, 0.001, 0, 1, 0, 0, 0, 0, 0.001, 0.999999);">
-                                                                        Vinhomes
-                                                                        Times City
-                                                                    </div>
-                                                                    <div class="esg-center eg-buildpress-item-skin-element-9 esg-none esg-clear"
-                                                                         style="height: 5px; visibility: inherit; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);"></div>
-                                                                    <div class="esg-center eg-post-2167 eg-buildpress-item-skin-element-0-a esg-slideup"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 50% 0px; transform: translate(0%, 50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);">
-                                                                        <a class="eg-buildpress-item-skin-element-0 eg-post-2167"
-                                                                           href="http://newstarland.com/essential_grid/vinhomes-times-city/"
-                                                                           target="_self">View
-                                                                            Project</a>
-                                                                    </div>
-                                                                    <div></div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <!-- END OF THE CONTENT IN THE ENTRY -->
-                                                        </div>
-                                                        <!-- END OF THE CONTAINER FOR THE MEDIA AND COVER/HOVER EFFECTS -->
-
-                                                    </li>
-                                                    <!-- END OF PORTFOLIO ITEM -->
-                                                    <!-- PORTFOLIO ITEM 45 -->
-                                                    <li class="filterall filter-ha-noi eg-buildpress-item-skin-wrapper eg-post-id-2169 tp-esg-item itemtoshow esg-hovered isvisiblenow"
-                                                        data-excerpt=""
-                                                        style="opacity: 1; visibility: inherit; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00083, 0, 0, 0.1, 0.999917); height: 197px; width: 263px; display: block; top: 0px; left: 879px; transform-origin: center center 0px;">
-                                                        <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                                        <div class="esg-media-cover-wrapper">
-                                                            <!-- THE MEDIA OF THE ENTRY -->
-                                                            <div class="esg-entry-media-wrapper"
-                                                                 style="width:100%;height:100%; overflow:hidden;position:relative;">
-                                                                <div class="esg-entry-media">
-                                                                    <img src="http://newstarland.com/wp-content/uploads/2015/08/vinhomesriverside-360x240.jpg"
-                                                                         data-lazysrc="http://newstarland.com/wp-content/uploads/2015/08/vinhomesriverside-360x240.jpg"
-                                                                         alt=""
-                                                                         style="top: 0%; left: -6.25%; width: auto; height: 101%; visibility: visible; display: block; position: absolute;"
-                                                                         class="coverremoved">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- THE CONTENT OF THE ENTRY -->
-                                                            <div class="esg-entry-cover"
-                                                                 style="transform-style: flat; height: 197px;">
-
-                                                                <!-- THE COLORED OVERLAY -->
-                                                                <div class="esg-overlay esg-fade eg-buildpress-item-skin-container"
-                                                                     data-delay="0"
-                                                                     style="visibility: hidden; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, -0.002, 1);"></div>
-
-                                                                <div class="esg-cc eec"
-                                                                     style="top: 63px;">
-                                                                    <div class="esg-center eg-post-2169 eg-buildpress-item-skin-element-1 esg-flipdown"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 0% 0px; transform: matrix3d(1, 0, 0, 0, 0, 0, -1, 0.001, 0, 1, 0, 0, 0, 0, 0.001, 0.999999);">
-                                                                        Vinhomes
-                                                                        Riverside
-                                                                    </div>
-                                                                    <div class="esg-center eg-buildpress-item-skin-element-9 esg-none esg-clear"
-                                                                         style="height: 5px; visibility: inherit; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);"></div>
-                                                                    <div class="esg-center eg-post-2169 eg-buildpress-item-skin-element-0-a esg-slideup"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 50% 0px; transform: translate(0%, 50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);">
-                                                                        <a class="eg-buildpress-item-skin-element-0 eg-post-2169"
-                                                                           href="http://newstarland.com/essential_grid/vinhomes-riverside/"
-                                                                           target="_self">View
-                                                                            Project</a>
-                                                                    </div>
-                                                                    <div></div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <!-- END OF THE CONTENT IN THE ENTRY -->
-                                                        </div>
-                                                        <!-- END OF THE CONTAINER FOR THE MEDIA AND COVER/HOVER EFFECTS -->
-
-                                                    </li>
-                                                    <!-- END OF PORTFOLIO ITEM -->
-                                                    <!-- PORTFOLIO ITEM 45 -->
-                                                    <li class="filterall filter-da-nang filter-nha-trang filter-phu-quoc eg-buildpress-item-skin-wrapper eg-post-id-2171 tp-esg-item itemonotherpage fitsinfilter esg-hovered"
-                                                        data-excerpt=""
-                                                        style="opacity: 0; visibility: hidden; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00083, 0, 0, 0.01, 0.999992);">
-                                                        <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                                        <div class="esg-media-cover-wrapper">
-                                                            <!-- THE MEDIA OF THE ENTRY -->
-                                                            <div class="esg-entry-media-wrapper"
-                                                                 style="width:100%;height:100%; overflow:hidden;position:relative;">
-                                                                <div class="esg-entry-media">
-                                                                    <img src="http://placehold.it/300x200"
-                                                                         data-lazysrc="http://newstarland.com/wp-content/uploads/2014/10/slide-banner-vinpearl-premium-360x240.jpg"
-                                                                         alt=""
-                                                                         style="top: 0px; left: 0px; width: 100%; height: auto; visibility: visible; display: block;">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- THE CONTENT OF THE ENTRY -->
-                                                            <div class="esg-entry-cover"
-                                                                 style="transform-style: flat;">
-
-                                                                <!-- THE COLORED OVERLAY -->
-                                                                <div class="esg-overlay esg-fade eg-buildpress-item-skin-container"
-                                                                     data-delay="0"
-                                                                     style="visibility: hidden; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, -0.002, 1);"></div>
-
-                                                                <div class="esg-cc eec">
-                                                                    <div class="esg-center eg-post-2171 eg-buildpress-item-skin-element-1 esg-flipdown"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 0% 0px; transform: matrix3d(1, 0, 0, 0, 0, 0, -1, 0.001, 0, 1, 0, 0, 0, 0, 0.001, 0.999999);">
-                                                                        Vinpearl
-                                                                        Resort &amp;
-                                                                        Villas
-                                                                    </div>
-                                                                    <div class="esg-center eg-buildpress-item-skin-element-9 esg-none esg-clear"
-                                                                         style="height: 5px; visibility: inherit; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);"></div>
-                                                                    <div class="esg-center eg-post-2171 eg-buildpress-item-skin-element-0-a esg-slideup"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 50% 0px; transform: translate(0%, 50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);">
-                                                                        <a class="eg-buildpress-item-skin-element-0 eg-post-2171"
-                                                                           href="http://newstarland.com/essential_grid/vinpearl-resort-villas/"
-                                                                           target="_self">View
-                                                                            Project</a>
-                                                                    </div>
-                                                                    <div></div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <!-- END OF THE CONTENT IN THE ENTRY -->
-                                                        </div>
-                                                        <!-- END OF THE CONTAINER FOR THE MEDIA AND COVER/HOVER EFFECTS -->
-
-                                                    </li>
-                                                    <!-- END OF PORTFOLIO ITEM -->
-                                                    <!-- PORTFOLIO ITEM 45 -->
-                                                    <li class="filterall filter-tp-ho-chi-minh eg-buildpress-item-skin-wrapper eg-post-id-3200 tp-esg-item itemonotherpage fitsinfilter esg-hovered"
-                                                        data-excerpt=""
-                                                        style="opacity: 0; visibility: hidden; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00083, 0, 0, 0.01, 0.999992);">
-                                                        <!-- THE CONTAINER FOR THE MEDIA AND THE COVER EFFECTS -->
-                                                        <div class="esg-media-cover-wrapper">
-                                                            <!-- THE MEDIA OF THE ENTRY -->
-                                                            <div class="esg-entry-media-wrapper"
-                                                                 style="width:100%;height:100%; overflow:hidden;position:relative;">
-                                                                <div class="esg-entry-media">
-                                                                    <img src="http://placehold.it/300x200"
-                                                                         data-lazysrc="http://newstarland.com/wp-content/uploads/2015/09/11986513_676351775833469_1926452232560230068_n-360x240.jpg"
-                                                                         alt=""
-                                                                         style="top: 0px; left: 0px; width: 100%; height: auto; visibility: visible; display: block;">
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- THE CONTENT OF THE ENTRY -->
-                                                            <div class="esg-entry-cover"
-                                                                 style="transform-style: flat;">
-
-                                                                <!-- THE COLORED OVERLAY -->
-                                                                <div class="esg-overlay esg-fade eg-buildpress-item-skin-container"
-                                                                     data-delay="0"
-                                                                     style="visibility: hidden; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, -0.002, 1);"></div>
-
-                                                                <div class="esg-cc eec">
-                                                                    <div class="esg-center eg-post-3200 eg-buildpress-item-skin-element-1 esg-flipdown"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 0% 0px; transform: matrix3d(1, 0, 0, 0, 0, 0, -1, 0.001, 0, 1, 0, 0, 0, 0, 0.001, 0.999999);">
-                                                                        Vinhomes
-                                                                        Central Park
-                                                                    </div>
-                                                                    <div class="esg-center eg-buildpress-item-skin-element-9 esg-none esg-clear"
-                                                                         style="height: 5px; visibility: inherit; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);"></div>
-                                                                    <div class="esg-center eg-post-3200 eg-buildpress-item-skin-element-0-a esg-slideup"
-                                                                         data-delay="0"
-                                                                         style="visibility: hidden; opacity: 0; transform-origin: 50% 50% 0px; transform: translate(0%, 50%) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.001, 0, 0, 0, 1);">
-                                                                        <a class="eg-buildpress-item-skin-element-0 eg-post-3200"
-                                                                           href="http://newstarland.com/essential_grid/vinhomes-central-park/"
-                                                                           target="_self">View
-                                                                            Project</a>
-                                                                    </div>
-                                                                    <div></div>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <!-- END OF THE CONTENT IN THE ENTRY -->
-                                                        </div>
-                                                        <!-- END OF THE CONTAINER FOR THE MEDIA AND COVER/HOVER EFFECTS -->
-
-                                                    </li>
-                                                    <!-- END OF PORTFOLIO ITEM -->
-                                                </ul>
-                                            </div>
-                                            <!-- ############################ -->
-                                            <!--      END OF THE GRID         -->
-                                            <!-- ############################ -->
-                                            <article
-                                                    class="esg-filters esg-singlefilters"
-                                                    style="margin-top: 30px; text-align: center; ">
-                                                <div class="esg-navigationbutton esg-left  esg-fgc-1"
-                                                     style="display: inline-block; margin-left: 0px !important; margin-right: 0px !important; visibility: visible;">
-                                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                                </div>
-                                                <div class="esg-navigationbutton esg-right  esg-fgc-1"
-                                                     style="display: inline-block; margin-left: 0px !important; margin-right: 0px !important; visibility: visible;">
-                                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                                </div>
-                                            </article>
-                                            <div class="esg-clear-no-height"></div>
-                                        </div>
-                                    </div><!-- END OF THE GRID -->
-
-                                    <div class="esg-loader spinner3"
-                                         style="visibility: hidden; opacity: 0;">
-                                        <div class="dot1"
-                                             style="background-color: rgb(255, 255, 255);"></div>
-                                        <div class="dot2"
-                                             style="background-color: rgb(255, 255, 255);"></div>
-                                        <div class="bounce1"
-                                             style="background-color: rgb(255, 255, 255);"></div>
-                                        <div class="bounce2"
-                                             style="background-color: rgb(255, 255, 255);"></div>
-                                        <div class="bounce3"
-                                             style="background-color: rgb(255, 255, 255);"></div>
-                                    </div>
-                                    <div class="esg-relative-placeholder"
-                                         style="width:100%;height:auto"></div>
-                                </article>
-                                <!-- END OF THE GRID WRAPPER -->
-
-                                <div class="clear"></div>
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="1b">
+                                <ul id="slider-1">
+                                    @foreach($toanQuoc as $item)
+                                    <li>
+                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="2b">
+                                <ul id="slider-2">
+                                    @foreach($haNoi as $item)
+                                        <li>
+                                            <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="3b">
+                                <ul id="slider-3">
+                                    @foreach($haiPhong as $item)
+                                        <li>
+                                            <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="4b">
+                                <ul id="slider-4">
+                                @foreach($daNang as $item)
+                                    <li>
+                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="5b">
+                                <ul id="slider-5">
+                                @foreach($nhaTrang as $item)
+                                    <li>
+                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="6b">
+                                <ul id="slider-6">
+                                @foreach($phuQuoc as $item)
+                                    <li>
+                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
+                            <div class="tab-pane" id="7b">
+                                <ul id="slider-7">
+                                @foreach($hoChiMinh as $item)
+                                    <li>
+                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="text-center" >
+                            <div class="navigation-slider">
+                                <i id="goToPrevSlide" class="fa fa-chevron-left" aria-hidden="true"></i>
+                                <i id="goToNextSlide" class="fa fa-chevron-right" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
@@ -911,53 +541,140 @@
 @stop
 
 @section('page-script')
-    <script type="text/javascript" src="{{ asset('js/frontend/lightslider.js') }}"></script>
     <script type="text/javascript">
-        $("#esg-grid-1-1").tpessential({
-            gridID: 1,
-            layout: "even",
-            forceFullWidth: "off",
-            lazyLoad: "on",
-            lazyLoadColor: "#FFFFFF",
-            row: 1,
-            loadMoreAjaxToken: "cab2b5e89d",
-            loadMoreAjaxUrl: "http://newstarland.com/wp-admin/admin-ajax.php",
-            loadMoreAjaxAction: "Essential_Grid_Front_request_ajax",
-            ajaxContentTarget: "ess-grid-ajax-container-",
-            ajaxScrollToOffset: "0",
-            ajaxCloseButton: "off",
-            ajaxContentSliding: "on",
-            ajaxScrollToOnLoad: "on",
-            ajaxNavButton: "off",
-            ajaxCloseType: "type1",
-            ajaxCloseInner: "false",
-            ajaxCloseStyle: "light",
-            ajaxClosePosition: "tr",
-            space: 30,
-            pageAnimation: "fade",
-            paginationScrollToTop: "off",
-            spinner: "spinner3",
-            spinnerColor: "#FFFFFF",
-            evenGridMasonrySkinPusher: "off",
-            lightBoxMode: "single",
-            animSpeed: 300,
-            delayBasic: 1,
-            mainhoverdelay: 1,
-            filterType: "single",
-            showDropFilter: "hover",
-            filterGroupClass: "esg-fgc-1",
-            aspectratio: "4:3",
-            responsiveEntries: [
-                {width: 1400, amount: 4},
-                {width: 1170, amount: 4},
-                {width: 1024, amount: 4},
-                {width: 960, amount: 3},
-                {width: 778, amount: 3},
-                {width: 640, amount: 3},
-                {width: 480, amount: 1}
-            ]
-        });
+        $(document).ready(function () {
+            initSlider('slider-1');
 
+            $('.tab-location').click(function () {
+                var id = $(this).data('num');
+                initSlider(id);
+            });
+
+            function initSlider(sliderId) {
+                var slider = $("#"+sliderId).lightSlider({
+                    item: 4,
+                    autoWidth: false,
+                    slideMove: 4, // slidemove will be 1 if loop is true
+                    slideMargin: 10,
+
+                    addClass: '',
+                    mode: "slide",
+                    useCSS: true,
+                    cssEasing: 'ease', //'cubic-bezier(0.25, 0, 0.25, 1)',//
+                    easing: 'linear', //'for jquery animation',////
+
+                    speed: 400, //ms'
+                    auto: false,
+                    loop: false,
+                    slideEndAnimation: true,
+                    pause: 2000,
+
+                    keyPress: false,
+                    controls: false,
+                    prevHtml: '',
+                    nextHtml: '',
+
+                    rtl: false,
+                    adaptiveHeight: false,
+
+                    vertical: false,
+                    verticalHeight: 500,
+                    vThumbWidth: 100,
+
+                    thumbItem: 10,
+                    pager: false,
+                    gallery: false,
+                    galleryMargin: 5,
+                    thumbMargin: 5,
+                    currentPagerPosition: 'middle',
+
+                    enableTouch: true,
+                    enableDrag: true,
+                    freeMove: true,
+                    swipeThreshold: 40,
+
+                    responsive: [],
+
+                    onBeforeStart: function (el) {
+                    },
+                    onSliderLoad: function (el) {
+                    },
+                    onBeforeSlide: function (el) {
+                    },
+                    onAfterSlide: function (el) {
+                    },
+                    onBeforeNextSlide: function (el) {
+                    },
+                    onBeforePrevSlide: function (el) {
+                    }
+                });
+                $('#goToPrevSlide').on('click', function () {
+                    slider.goToPrevSlide();
+                });
+                $('#goToNextSlide').on('click', function () {
+                    slider.goToNextSlide();
+                });
+            };
+
+            $("#slider-0").lightSlider({
+                item: 4,
+                autoWidth: false,
+                slideMove: 4, // slidemove will be 1 if loop is true
+                slideMargin: 10,
+
+                addClass: '',
+                mode: "slide",
+                useCSS: true,
+                cssEasing: 'ease', //'cubic-bezier(0.25, 0, 0.25, 1)',//
+                easing: 'linear', //'for jquery animation',////
+
+                speed: 400, //ms'
+                auto: false,
+                loop: false,
+                slideEndAnimation: true,
+                pause: 2000,
+
+                keyPress: false,
+                controls: true,
+                prevHtml: '<i class="fa fa-chevron-left fa-2x" aria-hidden="true"></i>',
+                nextHtml: '<i class="fa fa-chevron-right fa-2x" aria-hidden="true"></i>',
+
+                rtl: false,
+                adaptiveHeight: false,
+
+                vertical: false,
+                verticalHeight: 500,
+                vThumbWidth: 100,
+
+                thumbItem: 10,
+                pager: false,
+                gallery: false,
+                galleryMargin: 5,
+                thumbMargin: 5,
+                currentPagerPosition: 'middle',
+
+                enableTouch: true,
+                enableDrag: true,
+                freeMove: true,
+                swipeThreshold: 40,
+
+                responsive: [],
+
+                onBeforeStart: function (el) {
+                },
+                onSliderLoad: function (el) {
+                },
+                onBeforeSlide: function (el) {
+                },
+                onAfterSlide: function (el) {
+                },
+                onBeforeNextSlide: function (el) {
+                },
+                onBeforePrevSlide: function (el) {
+                }
+            });
+        })
 
     </script>
+
 @stop

@@ -1,6 +1,16 @@
 @extends('layouts.newstarland.index')
 
 @section('content')
+    <style>
+        #map {
+            height: 100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
     <div class="main-title">
         <div class="container">
             <h1 class="main-title__primary">Liên hệ</h1>
@@ -22,12 +32,8 @@
     <div class="master-container">
         <div class="container post-29 page type-page status-publish hentry" role="main">
             <div id="pl-29">
-                <div class="panel-grid" id="pg-29-0" style="margin-bottom: 50px">
-                    <iframe
-                            width= 100% height=600
-                            frameborder="0" style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCiBA2Od3WYi1vEMBmDNzcB1RxuPWxIqTM&q=Space+Needle,Seattle+WA" allowfullscreen>
-                    </iframe>
+                <div class="panel-grid" id="pg-29-0" style="margin-bottom: 50px; height: 500px">
+                    <div id="map"></div>
                 </div>
                 <div class="panel-grid" id="pg-29-1">
                     <div class="panel-grid-cell" id="pgc-29-1-0">
@@ -136,14 +142,15 @@
 @section('page-script')
     <script>
         function initMap() {
-            var uluru = {lat: -25.363, lng: 131.044};
+            var myLatLng = {lat: 20.966766, lng: 105.759975};
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: uluru
+                center: myLatLng,
+                zoom: 15
             });
             var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
             });
         }
     </script>

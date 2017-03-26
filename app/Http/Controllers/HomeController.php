@@ -10,6 +10,13 @@ use Validator, Input, Redirect ;
 
 class HomeController extends Controller {
 	const WEB_NAME = "This is awesome";
+	const TOAN_QUOC = 'Toàn Quốc';
+	const HA_NOI = 'Hà Nội';
+	const HAI_PHONG = 'Hải Phòng';
+	const NHA_TRANG = 'Nha Trang';
+	const PHU_QUOC = 'Phú Quốc';
+	const HO_CHI_MINH = 'Hồ Chí Minh';
+	const DA_NANG = 'Đà Nẵng';
 
 	public function __construct()
 	{
@@ -157,16 +164,61 @@ class HomeController extends Controller {
 			->take(5)
 			->get();
 		$newsProject = Pages::where('pagetype' , 'project')
-			->where('labels', 'Toàn Quốc')
-			->take(4)
+			->whereNotNull('labels')
 			->get();
+		
+		$toanQuoc = [];
+		$haNoi = [];
+		$haiPhong = [];
+		$daNang = [];
+		$nhaTrang = [];
+		$phuQuoc = [];
+		$hoChiMinh = [];
+		foreach ($newsProject as $item) {
+			$location = explode(',', $item->labels);
+			if (in_array(self::TOAN_QUOC, $location)) {
+				$toanQuoc[] = $item;
+			}
+
+			if (in_array(self::HA_NOI, $location)){
+				$haNoi[] = $item;
+			}
+
+			if (in_array(self::HAI_PHONG, $location)){
+				$haiPhong[] = $item;
+			}
+
+			if (in_array(self::DA_NANG, $location)){
+				$daNang[] = $item;
+			}
+
+			if (in_array(self::NHA_TRANG, $location)){
+				$nhaTrang[] = $item;
+			}
+
+			if (in_array(self::PHU_QUOC, $location)){
+				$phuQuoc[] = $item;
+			}
+
+			if (in_array(self::HO_CHI_MINH, $location)){
+				$hoChiMinh[] = $item;
+			}
+		}
+
 
 		return view('newstarland.home')
 			->with(
 				[
 					'postShowHome' => $postShowHome,
 					'hotNews' => $hotNews,
-					'newsProject' => $newsProject
+					'newsProject' => $newsProject,
+					'toanQuoc' => $toanQuoc,
+					'haNoi' => $haNoi,
+					'haiPhong' => $haiPhong,
+					'daNang' => $daNang,
+					'nhaTrang' => $nhaTrang,
+					'phuQuoc' => $phuQuoc,
+					'hoChiMinh' => $hoChiMinh
 				]
 			);
 	}
