@@ -33,7 +33,7 @@
                                     <img width="360" height="240" src="{{ asset('uploads/images/'.$news['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt=""></a>
                                 <div class="page-box__content">
                                     <h5 class="page-box__title  text-uppercase"> <a href="{{ route('news', ['tin-tuyen-dung', $news['alias']]) }}">{{ $news['title'] }}</a></h5>
-                                    <div class="excerp"><p>{!! $news['note'] !!}</p>
+                                    <div class="excerp"><p>{{ strip_tags($news['note']) }}</p>
                                     </div>
                                     <p><a class="read-more  read-more--page-box" href="{{ route('news', ['tin-tuyen-dung', $news['alias']]) }}">Chi tiết </a></p>
                                 </div>
