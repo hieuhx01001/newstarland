@@ -1,4 +1,5 @@
 <?php  namespace App\Http\Controllers;
+use App\Models\Article;
 use App\Models\category;
 use App\Models\Core\Pages;
 use App\Models\Core\Users;
@@ -157,6 +158,8 @@ class HomeController extends Controller {
 
     public function home()
     {
+		$menuLocation = Article::all();
+
 		$postShowHome = Pages::where('is_show_home', 1)
 			->where('status', 'enable')
 			->get();
@@ -262,7 +265,8 @@ class HomeController extends Controller {
 					'nhaTrang' => $nhaTrang,
 					'phuQuoc' => $phuQuoc,
 					'hoChiMinh' => $hoChiMinh,
-					'listPostHome' => $listPostHome
+					'listPostHome' => $listPostHome,
+					'menuLocation' => $menuLocation
 				]
 			);
 	}
@@ -284,10 +288,11 @@ class HomeController extends Controller {
 		}
 
 		$listProjectFather = projectcategory::where('parent_id', 0)
+			->orderBy('name')
 			->where('active', 1)
 			->get();
 
-		if (isset($projects)) {
+		if (isset($projects) && $categoryAlias != $alias) {
 			$listChild = projectcategory::where('parent_id', $projects->category_id)
 				->where('active', 1)
 				->get();
