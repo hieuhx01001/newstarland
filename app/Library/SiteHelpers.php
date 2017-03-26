@@ -2057,7 +2057,10 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 			$parent = projectcategory::find($parentId);
 		}
 
-		$projects = projectcategory::where('parent_id', $parentId)->get();
+		$projects = projectcategory::where('parent_id', $parentId)
+			->where('active', 1)
+			->orderBy('name')
+			->get();
 		$menu .= '<ul class="sub-menu">';
 		if (count($projects) > 0) {
 			foreach ($projects as $project) {
@@ -2076,13 +2079,16 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 	}
 
 	static function listProjectInvolve(){
-		$listProjectFather = projectcategory::where('parent_id', 0) ->get();
+		$listProjectFather = projectcategory::where('parent_id', 0)
+			->where('active', 1)
+			->get();
 		$list = '';
 		foreach ($listProjectFather as $key => $item) {
 			if ($key >= 5) {
 				break;
 			}
 			$post = Pages::where('pagetype', 'project')
+				->where('status', 'enable')
 				->where('category_id', $item->category_id)
 				->first();
 			if (isset($post)) {
@@ -2100,6 +2106,7 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 
 	static function getPageOfProjectChild($childId) {
 		$pages = Pages::where('pagetype', 'project')
+			->where('status', 'enable')
 			->where('category_id', $childId)
 			->get();
 		$list = '';
@@ -2131,7 +2138,9 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 	static function generateNewsProjectMenu()
 	{
 		$menu = '';
-		$news = category::where('parent_id', 1)->get();
+		$news = category::where('parent_id', 1)
+			->where('active', 1)
+			->get();
 
 		if (count($news) > 0) {
 			foreach ($news as $item) {
@@ -2145,10 +2154,13 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 
 	static function generateNewsProject(){
 		$menu = '';
-		$news = category::where('parent_id', 1)->get();
+		$news = category::where('parent_id', 1)
+			->where('active', 1)
+			->get();
 		if (count($news) > 0) {
 			foreach ($news as $item) {
 				$posts = Pages::where('category_id', $item->category_id)
+					->where('status', 'enable')
 					->where('pagetype', 'post')
 					->orderBy('created', 'desc')
 					->take(4)

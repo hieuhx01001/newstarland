@@ -136,33 +136,43 @@
                 </div>
                 <div class="panel-grid" id="pg-7-1">
                     <ul id="slider-0">
-                        @foreach($postShowHome as $item)
+                        @foreach($listPostHome as $item)
                             <li>
                                 <div class="chpcs_foo_content" style="width:260px; height:380px;">
                                     <span class="chpcs_img">
-                                        @if ($item->pagetype == 'project')
-                                            <a href="{{ route('projects', [$item->alias]) }}">
-                                                <img src="{{ asset('uploads/images/'.$item->image) }}">
+                                        @if ($item[0]->pagetype == 'project')
+                                            <a href="{{ route('projects', [$item[1]->alias, $item[0]->alias]) }}">
+                                                <img src="{{ asset('uploads/images/'.$item[0]->image) }}">
                                             </a>
                                         @else
-                                            <a href="{{ route('news', [$item->alias]) }}">
-                                                <img src="{{ asset('uploads/images/'.$item->image) }}">
+                                            <a href="{{ route('news', [$item[0]->alias]) }}">
+                                                <img src="{{ asset('uploads/images/'.$item[0]->image) }}">
                                             </a>
                                         @endif
                                     </span><br>
                                     <span class="chpcs_title">
-                                        <a style=" text-decoration:none;" href="{{ route('projects', [$item->alias]) }}">
-                                            {{ $item->title }}
+                                        @if ($item[0]->pagetype == 'project')
+                                        <a style=" text-decoration:none;" href="{{ route('projects', [$item[1]->alias, $item[0]->alias]) }}">
+                                            {{ $item[0]->title }}
                                         </a>
+                                        @else
+                                            <a style=" text-decoration:none;" href="{{ route('news', [$item[1]->alias, $item[0]->alias]) }}">
+                                                {{ $item[0]->title }}
+                                            </a>
+                                        @endif
                                     </span><br>
                                     <p>
                                         @php
-                                        $content = mb_strtolower(str_limit(strip_tags($item->note), 150), 'UTF-8');
+                                        $content = mb_strtolower(str_limit(strip_tags($item[0]->note), 150), 'UTF-8');
                                         @endphp
                                         <span class="chpcs_foo_con">{!! $content !!}</span>
                                     </p><br>
                                     <span class="chpcs_more">
-                                        <a href="{{ route('projects', [$item->alias]) }}">CHI TIẾT</a>
+                                        @if ($item[0]->pagetype == 'project')
+                                        <a href="{{ route('projects', [$item[1]->alias, $item[0]->alias]) }}">CHI TIẾT</a>
+                                        @else
+                                        <a href="{{ route('news', [$item[1]->alias, $item[0]->alias]) }}">CHI TIẾT</a>
+                                        @endif
                                     </span>
                                 </div>
                             </li>
@@ -194,7 +204,9 @@
                                 <ul id="slider-1">
                                     @foreach($toanQuoc as $item)
                                     <li>
-                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                        <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
+                                            <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                        </a>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -203,7 +215,9 @@
                                 <ul id="slider-2">
                                     @foreach($haNoi as $item)
                                         <li>
-                                            <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                            <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
+                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -212,7 +226,9 @@
                                 <ul id="slider-3">
                                     @foreach($haiPhong as $item)
                                         <li>
-                                            <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
+                                            <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
+                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -220,36 +236,44 @@
                             <div class="tab-pane" id="4b">
                                 <ul id="slider-4">
                                 @foreach($daNang as $item)
-                                    <li>
-                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
-                                    </li>
+                                        <li>
+                                            <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
+                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                            </a>
+                                        </li>
                                 @endforeach
                                 </ul>
                             </div>
                             <div class="tab-pane" id="5b">
                                 <ul id="slider-5">
                                 @foreach($nhaTrang as $item)
-                                    <li>
-                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
-                                    </li>
+                                        <li>
+                                            <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
+                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                            </a>
+                                        </li>
                                 @endforeach
                                 </ul>
                             </div>
                             <div class="tab-pane" id="6b">
                                 <ul id="slider-6">
                                 @foreach($phuQuoc as $item)
-                                    <li>
-                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
-                                    </li>
+                                        <li>
+                                            <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
+                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                            </a>
+                                        </li>
                                 @endforeach
                                 </ul>
                             </div>
                             <div class="tab-pane" id="7b">
                                 <ul id="slider-7">
                                 @foreach($hoChiMinh as $item)
-                                    <li>
-                                        <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item->image) }}">
-                                    </li>
+                                        <li>
+                                            <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
+                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                            </a>
+                                        </li>
                                 @endforeach
                                 </ul>
                             </div>

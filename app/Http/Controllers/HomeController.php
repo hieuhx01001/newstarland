@@ -157,8 +157,23 @@ class HomeController extends Controller {
 
     public function home()
     {
-		$postShowHome = Pages::where('is_show_home', 1)->get();
+		$postShowHome = Pages::where('is_show_home', 1)
+			->where('status', 'enable')
+			->get();
+		$listPostHome = [];
+		foreach ($postShowHome as $item) {
+			if ($item->pagetype == 'project'){
+				$categoryPostShowHome = projectcategory::find($item->category_id);
+				$listPostHome[] = [$item, $categoryPostShowHome];
+			} else {
+				$categoryPostShowHome = category::find($item->category_id);
+				$listPostHome[] = [$item, $categoryPostShowHome];
+			}
+		}
+
+
 		$hotNews = Pages::where('is_hot', 1)
+			->where('status', 'enable')
 			->where('pagetype', 'post')
 			->orderBy('created', 'desc')
 			->take(5)
@@ -177,31 +192,59 @@ class HomeController extends Controller {
 		foreach ($newsProject as $item) {
 			$location = explode(',', $item->labels);
 			if (in_array(self::TOAN_QUOC, $location)) {
-				$toanQuoc[] = $item;
+				$category =  projectcategory::find($item->category_id);
+				$toanQuoc[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
 			}
 
 			if (in_array(self::HA_NOI, $location)){
-				$haNoi[] = $item;
+				$category =  projectcategory::find($item->category_id);
+				$haNoi[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
 			}
 
 			if (in_array(self::HAI_PHONG, $location)){
-				$haiPhong[] = $item;
+				$category =  projectcategory::find($item->category_id);
+				$haiPhong[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
 			}
 
 			if (in_array(self::DA_NANG, $location)){
-				$daNang[] = $item;
+				$category =  projectcategory::find($item->category_id);
+				$daNang[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
 			}
 
 			if (in_array(self::NHA_TRANG, $location)){
-				$nhaTrang[] = $item;
+				$category =  projectcategory::find($item->category_id);
+				$nhaTrang[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
 			}
 
 			if (in_array(self::PHU_QUOC, $location)){
-				$phuQuoc[] = $item;
+				$category =  projectcategory::find($item->category_id);
+				$phuQuoc[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
 			}
 
 			if (in_array(self::HO_CHI_MINH, $location)){
-				$hoChiMinh[] = $item;
+				$category =  projectcategory::find($item->category_id);
+				$hoChiMinh[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
 			}
 		}
 
@@ -218,7 +261,8 @@ class HomeController extends Controller {
 					'daNang' => $daNang,
 					'nhaTrang' => $nhaTrang,
 					'phuQuoc' => $phuQuoc,
-					'hoChiMinh' => $hoChiMinh
+					'hoChiMinh' => $hoChiMinh,
+					'listPostHome' => $listPostHome
 				]
 			);
 	}
@@ -230,19 +274,30 @@ class HomeController extends Controller {
 
 	public function projects($categoryAlias, $alias = null)
 	{
-		$projects = projectcategory::where('alias', $categoryAlias)->first();
+		$projects = projectcategory::where('alias', $categoryAlias)
+			->where('active', 1)
+			->first();
 		if (isset($alias)) {
-			$projects = projectcategory::where('alias', $alias)->first();
+			$projects = projectcategory::where('alias', $alias)
+				->where('active', 1)
+				->first();
 		}
 
-		$listProjectFather = projectcategory::where('parent_id', 0) ->get();
+		$listProjectFather = projectcategory::where('parent_id', 0)
+			->where('active', 1)
+			->get();
 
 		if (isset($projects)) {
-			$listChild = projectcategory::where('parent_id', $projects->category_id)->get();
-			$projectFather = projectcategory::where('category_id', $projects->parent_id)->first();
+			$listChild = projectcategory::where('parent_id', $projects->category_id)
+				->where('active', 1)
+				->get();
+			$projectFather = projectcategory::where('category_id', $projects->parent_id)
+				->where('active', 1)
+				->first();
 
 			if ($this->isFather($projects)) {
 				$contentProject = Pages::where('pagetype', 'project')
+					->where('status', 'enable')
 					->where('category_id', $projects->category_id)
 					->first();
 
@@ -263,6 +318,7 @@ class HomeController extends Controller {
 				return redirect(route('index'));
 			} else if($this->hasNotChild($listChild)) {
 				$childPost = Pages::where('pagetype', 'project')
+					->where('status', 'enable')
 					->where('category_id', $projects->category_id)
 					->get();
 				$projectCategory = projectcategory::find($projects->category_id);
@@ -289,8 +345,10 @@ class HomeController extends Controller {
 		}
 
 		$post = Pages::where('alias', $alias)
+			->where('status', 'enable')
 			->where('pagetype', 'project')
 			->first();
+
 		$postLike = Pages::where('pagetype', 'project')
 			->where('category_id', $post->category_id)
 			->where('alias', '!=', $post->alias)
@@ -316,15 +374,18 @@ class HomeController extends Controller {
 	public function listNews()
 	{
 		$recruitment = Pages::where('category_id', 2)
+			->where('status', 'enable')
 			->orderBy('created', 'desc')
 			->take(4)
 			->get();
 
 		$internal = Pages::where('category_id', 3)
+			->where('status', 'enable')
 			->orderBy('created', 'desc')
 			->take(4)
 			->get();
 		$process = Pages::where('category_id', 5)
+			->where('status', 'enable')
 			->orderBy('created', 'desc')
 			->take(4)
 			->get();
@@ -340,20 +401,28 @@ class HomeController extends Controller {
 
 	public function news($categoryAlias, $alias = null)
 	{
-		$news = category::where('alias', $categoryAlias)->first();
+		$news = category::where('alias', $categoryAlias)
+			->where('active', 1)
+			->first();
 		if (isset($alias)) {
-			$categoryByAlias = category::where('alias', $alias)->first();
+			$categoryByAlias = category::where('alias', $alias)
+				->where('active', 1)
+				->first();
 			if (isset($categoryByAlias)) {
 				$listChild = Pages::where('category_id', $categoryByAlias->category_id)->get();
 			}
 		}
 		$letter = Pages::where('pagetype', 'post')
+			->where('status', 'enable')
 			->where('category_id', 6)
 			->first();
 		$develop = Pages::where('pagetype', 'post')
+			->where('status', 'enable')
 			->where('category_id', 7)
 			->first();
-		$listProjectFather = projectcategory::where('parent_id', 0) ->get();
+		$listProjectFather = projectcategory::where('parent_id', 0)
+			->where('active', 1)
+			->get();
 
 
 		if (!isset($alias)) {
@@ -367,6 +436,7 @@ class HomeController extends Controller {
 						);
 				case 2:
 					$news = Pages::where('pagetype', 'post')
+						->where('status', 'enable')
 						->where('category_id', 2)
 						->get();
 					return view('newstarland.recruitment.recruitment')
@@ -378,6 +448,7 @@ class HomeController extends Controller {
 						);
 				case 3:
 					$internalNews = Pages::where('pagetype', 'post')
+						->where('status', 'enable')
 						->where('category_id', 3)
 						->get();
 					return view('newstarland.news.internalNews')
@@ -398,6 +469,7 @@ class HomeController extends Controller {
 						);
 				case 5:
 					$processProject = Pages::where('category_id', 5)
+						->where('status', 'enable')
 						->where('pagetype', 'post')
 						->get();
 					return view('newstarland.news.processProject')
@@ -429,18 +501,23 @@ class HomeController extends Controller {
 		} else {
 			if (!isset($listChild) || $this->hasNotChild($listChild)) {
 				$newsDetail = Pages::where('pagetype', 'post')
+					->where('status', 'enable')
 					->where('alias', $alias)
 					->first();
 				if (isset($newsDetail)) {
-					$category = category::where('category_id', $newsDetail->category_id)->first();
+					$category = category::where('category_id', $newsDetail->category_id)
+						->where('active', 1)
+						->first();
 					$byUser = Users::find($newsDetail->userid);
 					$postLike = Pages::where('pagetype', 'post')
+						->where('status', 'enable')
 						->where('category_id', $newsDetail->category_id)
 						->where('alias', '!=', $newsDetail->alias)
 						->get();
 					switch ($category->parent_id){
 						case 0:
 							$internalNews = Pages::where('category_id', $newsDetail->category_id)
+								->where('status', 'enable')
 								->orderBy('created', 'desc')
 								->take(5)
 								->get();
@@ -471,6 +548,7 @@ class HomeController extends Controller {
 
 			} else {
 				$listNews = Pages::where('pagetype', 'post')
+					->where('status', 'enable')
 					->where('category_id', $categoryByAlias->category_id)
 					->get();
 
@@ -511,9 +589,12 @@ class HomeController extends Controller {
 
 	public function recruitmentDetail($alias)
 	{
-		$newsDetail = Pages::where('alias', $alias)->first();
+		$newsDetail = Pages::where('alias', $alias)
+			->where('status', 'enable')
+			->first();
 		$byUser = Users::find($newsDetail['userid']);
 		$recruitment = Pages::where('category_id', 2)
+			->where('status', 'enable')
 			->orderBy('created', 'desc')
 			->take(4)
 			->get();
