@@ -20,7 +20,7 @@
             <div class="row">
                 <main class="col-xs-12  col-md-9  col-md-push-3" role="main">
                     <article class="post-inner post-5134 post type-post status-publish format-standard has-post-thumbnail hentry">
-                        <a href="{{ route('projects', [$post->alias]) }}">
+                        <a href="{{ route('projects', [$postCategory->alias, $post->alias]) }}">
                             <img width="848" height="480" src="{{ asset('uploads/images/'.$post->image) }}" class="img-responsive wp-post-image" alt="">
                         </a>
                         <div class="meta-data">
@@ -55,11 +55,11 @@
                         <ul>
                             @foreach($postLike as $item)
                             <li id="post-7980" class="post-7980 post type-post status-publish format-standard has-post-thumbnail hentry">
-                                <a href="{{ route('projects', [$item->alias]) }}">
+                                <a href="{{ route('projects', [$postCategory->alias, $item->alias]) }}">
                                     <img width="848" height="456" src="{{ asset('uploads/images/'.$item->image) }}" class="img-responsive wp-post-image" alt="">
                                 </a>
                                 <h3>
-                                    <a href="{{ route('projects', [$item->alias]) }}" >{{ $item->title }}</a>
+                                    <a href="{{ route('projects', [$postCategory->alias, $item->alias]) }}" >{{ $item->title }}</a>
                                 </h3>
                             </li>
                             @endforeach

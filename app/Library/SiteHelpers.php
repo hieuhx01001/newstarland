@@ -2091,12 +2091,13 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 				->where('status', 'enable')
 				->where('category_id', $item->category_id)
 				->first();
+
 			if (isset($post)) {
 				$list .= '<li class="post-2164 essential_grid type-essential_grid status-publish has-post-thumbnail hentry essential_grid_category-ha-noi">
-						<a href="'.$post->alias.'">
+						<a href="'.route('projects', [$item->alias, $post->alias]).'">
 							<img width="848" height="480" src="'.asset('uploads/images/'.$post->image).'" class="img-responsive wp-post-image" alt="" </a>
 						<h3>
-							<a href="'.$post->alias.'" rel="bookmark" title="Vinhomes Royal City">'.$post->title.'</a>
+							<a href="'.route('projects', [$item->alias, $post->alias]).'" rel="bookmark" title="Vinhomes Royal City">'.$post->title.'</a>
 						</h3>
 					</li>';
 			}

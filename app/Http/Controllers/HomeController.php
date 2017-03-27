@@ -181,6 +181,12 @@ class HomeController extends Controller {
 			->orderBy('created', 'desc')
 			->take(5)
 			->get();
+		$listHotNews = [];
+		foreach ($hotNews as $item) {
+			$hotNewsCategory = category::find($item->category_id);
+			$listHotNews[] = [$hotNewsCategory, $item];
+		}
+
 		$newsProject = Pages::where('pagetype' , 'project')
 			->whereNotNull('labels')
 			->get();
@@ -256,7 +262,7 @@ class HomeController extends Controller {
 			->with(
 				[
 					'postShowHome' => $postShowHome,
-					'hotNews' => $hotNews,
+					'listHotNews' => $listHotNews,
 					'newsProject' => $newsProject,
 					'toanQuoc' => $toanQuoc,
 					'haNoi' => $haNoi,
@@ -306,6 +312,7 @@ class HomeController extends Controller {
 					->where('status', 'enable')
 					->where('category_id', $projects->category_id)
 					->first();
+				$projectFatherCategory = projectcategory::find($contentProject);
 
 				if (isset($contentProject)) {
 					$byUser = Users::find($contentProject->userid);
@@ -317,7 +324,8 @@ class HomeController extends Controller {
 								'projects' => $projects,
 								'contentProject' => $contentProject,
 								'byUser' => $byUser,
-								'listProjectFather' => $listProjectFather
+								'listProjectFather' => $listProjectFather,
+								'projectFatherCategory' => $projectFatherCategory
 							]
 						);
 				}
@@ -359,6 +367,7 @@ class HomeController extends Controller {
 			->where('category_id', $post->category_id)
 			->where('alias', '!=', $post->alias)
 			->get();
+		$postCategory = projectcategory::find($post->category_id);
 
 		if ($post) {
 			$byUser = Users::find($post->userid);
@@ -370,7 +379,8 @@ class HomeController extends Controller {
 						'post'    => $post,
 						'byUser' => $byUser,
 						'listProjectFather' => $listProjectFather,
-						'postLike' => $postLike
+						'postLike' => $postLike,
+						'postCategory' => $postCategory
 					]
 				);
 		}

@@ -341,29 +341,29 @@
                              id="panel-7-3-0-0" data-index="2">
                             <h3 class="widget-title">Tin tức nổi bật</h3>
                             <div class="upw-posts hfeed">
-                                @foreach($hotNews as $item)
+                                @foreach($listHotNews as $item)
                                 <article class="post-4895 post type-post status-publish format-standard has-post-thumbnail hentry">
                                     <header>
                                         <div class="entry-image">
-                                            <a href="{{ route('news', [$item->alias]) }}">
-                                                <img width="100" height="75" src="{{ asset('uploads/images/'.$item['image']) }}" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
+                                            <a href="{{ route('news', [$item[0]['alias'], $item[1]['alias']]) }}">
+                                                <img width="100" height="75" src="{{ asset('uploads/images/'.$item[1]['image']) }}" class="attachment-thumbnail size-thumbnail wp-post-image" alt="">
                                             </a>
                                         </div>
 
                                         <h4 class="entry-title">
-                                            <a href="{{ route('news', [$item->alias]) }}">
-                                                {!! $item->title !!}
+                                            <a href="{{ route('news', [$item[0]['alias'], $item[1]['alias']]) }}">
+                                                {!! $item[1]['title'] !!}
                                             </a>
                                         </h4>
                                     </header>
 
                                     <div class="entry-summary">
                                         @php
-                                        $content = str_limit(strip_tags($item->note), 150)
+                                        $content = str_limit(strip_tags($item[1]['note']), 150)
                                         @endphp
                                         <p>
                                             {!! $content !!}
-                                            <a href="{{ route('news', [$item->alias]) }}" class="more-link">Chi tiết</a>
+                                            <a href="{{ route('news', [$item[0]['alias'], $item[1]['alias']]) }}" class="more-link">Chi tiết</a>
                                         </p>
                                     </div>
                                 </article>

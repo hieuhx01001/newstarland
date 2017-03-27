@@ -1,7 +1,7 @@
 @extends('layouts.newstarland.index')
 
 @section('title')
-    {{ $post->title }}
+    {{ $projects->name }}
 @stop
 
 
