@@ -266,7 +266,8 @@ class HomeController extends Controller {
 					'phuQuoc' => $phuQuoc,
 					'hoChiMinh' => $hoChiMinh,
 					'listPostHome' => $listPostHome,
-					'menuLocation' => $menuLocation
+					'menuLocation' => $menuLocation,
+					'webName' => self::WEB_NAME,
 				]
 			);
 	}

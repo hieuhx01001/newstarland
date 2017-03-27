@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    {{ $webName }}
+@stop
+
 @section('content')
     <style>
         #map {

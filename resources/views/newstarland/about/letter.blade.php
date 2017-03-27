@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    Hình thành và phát triển
+@stop
+
 @section('content')
     <div class="main-title">
         <div class="container">

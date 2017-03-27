@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    {{ $post->title }}
+@stop
+
 @section('page-css')
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/index.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/project.css') }}" />

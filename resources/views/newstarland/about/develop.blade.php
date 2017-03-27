@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    Hình thành và phát triển
+@stop
+
 @section('page-css')
 <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/style-social.css') }}" />
 @endsection

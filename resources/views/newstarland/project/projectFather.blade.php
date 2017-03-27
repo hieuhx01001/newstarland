@@ -1,5 +1,10 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    {{ $post->title }}
+@stop
+
+
 @section('content')
     <div class="main-title">
         <div class="container">

@@ -7,7 +7,7 @@
 <html class=" js flexbox no-touch"> <!--<![endif]-->
     <head>
         <meta charset="utf-8"/>
-        <title></title>
+        <title>@yield('title')</title>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/>
         <meta name="Author" content="hieuhx"/>

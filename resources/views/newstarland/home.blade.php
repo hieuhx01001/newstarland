@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    {{ $webName }}
+@stop
+
 @section('page-css')
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/index.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/newstarland/css/sliderHomePage.css') }}" />
@@ -205,7 +209,7 @@
                                     @foreach($toanQuoc as $item)
                                     <li>
                                         <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
-                                            <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                            <img class="image-location" src="{{ asset('uploads/images/'.$item['post']->image) }}">
                                         </a>
                                     </li>
                                     @endforeach
@@ -216,7 +220,7 @@
                                     @foreach($haNoi as $item)
                                         <li>
                                             <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
-                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                                <img class="image-location" src="{{ asset('uploads/images/'.$item['post']->image) }}">
                                             </a>
                                         </li>
                                     @endforeach
@@ -227,7 +231,7 @@
                                     @foreach($haiPhong as $item)
                                         <li>
                                             <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
-                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                                <img class="image-location" src="{{ asset('uploads/images/'.$item['post']->image) }}">
                                             </a>
                                         </li>
                                     @endforeach
@@ -238,7 +242,7 @@
                                 @foreach($daNang as $item)
                                         <li>
                                             <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
-                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                                <img class="image-location" src="{{ asset('uploads/images/'.$item['post']->image) }}">
                                             </a>
                                         </li>
                                 @endforeach
@@ -249,7 +253,7 @@
                                 @foreach($nhaTrang as $item)
                                         <li>
                                             <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
-                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                                <img class="image-location" src="{{ asset('uploads/images/'.$item['post']->image) }}">
                                             </a>
                                         </li>
                                 @endforeach
@@ -260,7 +264,7 @@
                                 @foreach($phuQuoc as $item)
                                         <li>
                                             <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
-                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                                <img class="image-location" src="{{ asset('uploads/images/'.$item['post']->image) }}">
                                             </a>
                                         </li>
                                 @endforeach
@@ -271,7 +275,7 @@
                                 @foreach($hoChiMinh as $item)
                                         <li>
                                             <a href="{{ route('projects', [$item['category'], $item['post']->alias]) }}">
-                                                <img style="max-width: 263px; max-height: 197px" src="{{ asset('uploads/images/'.$item['post']->image) }}">
+                                                <img class="image-location" src="{{ asset('uploads/images/'.$item['post']->image) }}">
                                             </a>
                                         </li>
                                 @endforeach
@@ -617,7 +621,38 @@
                     freeMove: true,
                     swipeThreshold: 40,
 
-                    responsive: [],
+                    responsive: [
+                        {
+                            breakpoint:1200,
+                            settings: {
+                                item:3,
+                                slideMove:1,
+                            }
+                        },
+                        {
+                            breakpoint:992,
+                            settings: {
+                                item:3,
+                                slideMove:1,
+
+                            }
+                        },
+                        {
+                            breakpoint:720,
+                            settings: {
+                                item:2,
+                                slideMove:1,
+
+                            }
+                        },
+                        {
+                            breakpoint:480,
+                            settings: {
+                                item:1,
+                                slideMove:1
+                            }
+                        }
+                    ],
 
                     onBeforeStart: function (el) {
                     },
@@ -682,7 +717,29 @@
                 freeMove: true,
                 swipeThreshold: 40,
 
-                responsive: [],
+                responsive: [
+                    {
+                        breakpoint:1200,
+                        settings: {
+                            item:3,
+                            slideMove:1,
+                        }
+                    },
+                    {
+                        breakpoint:992,
+                        settings: {
+                            item:2,
+                            slideMove:1
+                        }
+                    },
+                    {
+                        breakpoint:594,
+                        settings: {
+                            item:1,
+                            slideMove:1
+                        }
+                    }
+                ],
 
                 onBeforeStart: function (el) {
                 },

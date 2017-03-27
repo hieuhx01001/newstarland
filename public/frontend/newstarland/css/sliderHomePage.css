@@ -10,7 +10,6 @@
 
 .header-slider-1{
     background: #212f6d;
-    height: 58px;
     padding-left: 10%;
 }
 
@@ -99,3 +98,50 @@
     right: 15px !important;
 }
 
+.image-location{
+    max-width: 263px;
+    max-height: 197px
+}
+
+@media (max-width: 1200px) {
+    .header-slider-1 {
+        padding-left: 2.5%;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-slider-1{
+        padding-left: 0;
+    }
+
+    .tab-location{
+        width: 100%;
+        -webkit-transform: skewX(0deg);
+    }
+
+    .tab-location a{
+        -webkit-transform: skewX(0deg);
+    }
+
+    #exTab3{
+        margin-right: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    #slider-1{
+        height: auto!important;
+    }
+
+    .image-location{
+        width: 100%;
+        max-width: none;
+        max-height: none;
+
+    }
+}

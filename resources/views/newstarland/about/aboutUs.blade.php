@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    Về chúng tôi
+@stop
+
 @section('content')
     <div class="main-title" style="background-color: #f2f2f2; ">
         <div class="container">
