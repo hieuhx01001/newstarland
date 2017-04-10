@@ -37,6 +37,9 @@
                     <h3 class="cat-title">
                         <a href="{{ route('news', ['tin-tuc-du-an', $categoryByAlias->alias] ) }}">{{ $categoryByAlias->name }}</a>
                     </h3>
+                    @php
+                    $i = 0;
+                    @endphp
                     @foreach($listNews as $item)
                     <div class="col-md-3 panel-grid-cell">
                         <div class="panel">
@@ -58,13 +61,16 @@
 
                         </div>
                     </div>
+                    @php
+                    $i++;
+                    @endphp
                     @endforeach
-                    <div class="col-xs-12">
-                        <nav class="pagination  text-center">
-                        </nav>            </div>
                 </div>
 
             </div>
         </div><!-- /container -->
+        @if($i > 12)
+            @include('layouts.newstarland.pagination', ['paging' => $listNews])
+        @endif
     </div>
 @endsection

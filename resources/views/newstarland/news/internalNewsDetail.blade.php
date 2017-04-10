@@ -19,9 +19,15 @@
             <span typeof="v:Breadcrumb">
                 <a href="{{ route('listNews') }}" class="taxonomy category">Tin tức</a>
             </span> &gt;
+            @if($newsDetail['category_id'] != 5)
             <span typeof="v:Breadcrumb">
                 <a href="{{ route('news',['tin-tuc-noi-bo']) }}" class="taxonomy category">Tin nội bộ</a>
             </span> &gt;
+            @else
+            <span typeof="v:Breadcrumb">
+                <a href="{{ route('news',['cap-nhat-tien-do-du-an']) }}" class="taxonomy category">Cập nhật tiến độ dự án</a>
+            </span> &gt;
+            @endif
             <span typeof="v:Breadcrumb">
                 <span property="v:title">{{ $newsDetail['title'] }}</span>
             </span>

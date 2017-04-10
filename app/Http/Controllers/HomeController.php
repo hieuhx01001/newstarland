@@ -7,7 +7,7 @@ use App\Models\projectcategory;
 use Illuminate\Http\Request;
 use App\Library\Markdown;
 use Mail;
-use Validator, Input, Redirect ; 
+use Validator, Input, Redirect ;
 
 class HomeController extends Controller {
 	const WEB_NAME = "NEWSTARLAND - NGÔI SAO MỚI";
@@ -280,7 +280,88 @@ class HomeController extends Controller {
 
 	public function listProject()
 	{
-		return view('newstarland.project.listProject');
+		$newsProject = Pages::where('pagetype' , 'project')
+			->whereNotNull('labels')
+			->get();
+
+		$toanQuoc = [];
+		$haNoi = [];
+		$haiPhong = [];
+		$daNang = [];
+		$nhaTrang = [];
+		$phuQuoc = [];
+		$hoChiMinh = [];
+		foreach ($newsProject as $item) {
+			$location = explode(',', $item->labels);
+			if (in_array(self::TOAN_QUOC, $location)) {
+				$category =  projectcategory::find($item->category_id);
+				$toanQuoc[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
+			}
+
+			if (in_array(self::HA_NOI, $location)){
+				$category =  projectcategory::find($item->category_id);
+				$haNoi[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
+			}
+
+			if (in_array(self::HAI_PHONG, $location)){
+				$category =  projectcategory::find($item->category_id);
+				$haiPhong[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
+			}
+
+			if (in_array(self::DA_NANG, $location)){
+				$category =  projectcategory::find($item->category_id);
+				$daNang[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
+			}
+
+			if (in_array(self::NHA_TRANG, $location)){
+				$category =  projectcategory::find($item->category_id);
+				$nhaTrang[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
+			}
+
+			if (in_array(self::PHU_QUOC, $location)){
+				$category =  projectcategory::find($item->category_id);
+				$phuQuoc[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
+			}
+
+			if (in_array(self::HO_CHI_MINH, $location)){
+				$category =  projectcategory::find($item->category_id);
+				$hoChiMinh[] = [
+					'category' => $category->alias,
+					'post'	=> $item,
+				];
+			}
+		}
+		return view('newstarland.project.listProject')
+			->with(
+				[
+					'toanQuoc' => $toanQuoc,
+					'haNoi' => $haNoi,
+					'haiPhong' => $haiPhong,
+					'daNang' => $daNang,
+					'nhaTrang' => $nhaTrang,
+					'phuQuoc' => $phuQuoc,
+					'hoChiMinh' => $hoChiMinh,
+					'webName' => self::WEB_NAME,
+				]
+			);
 	}
 
 	public function projects($categoryAlias, $alias = null)
@@ -389,28 +470,23 @@ class HomeController extends Controller {
 
 	public function listNews()
 	{
-		$recruitment = Pages::where('category_id', 2)
-			->where('status', 'enable')
-			->orderBy('created', 'desc')
-			->take(4)
+		$listCategoryId = category::where('parent_id', 0)
+			->where('active', 1)
+			->whereNotIn('category_id', [2, 4])
 			->get();
+		$postByCategory = [];
+		foreach ($listCategoryId as $categoryId) {
+			$postByCategory[$categoryId->alias] = Pages::where('category_id', $categoryId->category_id)
+				->where('status', 'enable')
+				->orderBy('created', 'desc')
+				->take(4)
+				->get();
+		}
 
-		$internal = Pages::where('category_id', 3)
-			->where('status', 'enable')
-			->orderBy('created', 'desc')
-			->take(4)
-			->get();
-		$process = Pages::where('category_id', 5)
-			->where('status', 'enable')
-			->orderBy('created', 'desc')
-			->take(4)
-			->get();
 		return view('newstarland.news.index')->with(
 			[
 				'webName' => self::WEB_NAME,
-				'recruitment' => $recruitment,
-				'internal' => $internal,
-				'process' => $process
+				'listPost' => $postByCategory
 			]
 		);
 	}
@@ -454,7 +530,7 @@ class HomeController extends Controller {
 					$news = Pages::where('pagetype', 'post')
 						->where('status', 'enable')
 						->where('category_id', 2)
-						->get();
+						->paginate(12);
 					return view('newstarland.recruitment.recruitment')
 						->with(
 							[
@@ -466,7 +542,7 @@ class HomeController extends Controller {
 					$internalNews = Pages::where('pagetype', 'post')
 						->where('status', 'enable')
 						->where('category_id', 3)
-						->get();
+						->paginate(12);
 					return view('newstarland.news.internalNews')
 						->with(
 							[
@@ -487,7 +563,7 @@ class HomeController extends Controller {
 					$processProject = Pages::where('category_id', 5)
 						->where('status', 'enable')
 						->where('pagetype', 'post')
-						->get();
+						->paginate(12);
 					return view('newstarland.news.processProject')
 						->with(
 							[
@@ -512,7 +588,18 @@ class HomeController extends Controller {
 							]
 						);
 				default:
-					break;
+					$newsData = Pages::where('pagetype', 'post')
+						->where('status', 'enable')
+						->where('category_id', $news->category_id)
+						->paginate(12);
+					return view('newstarland.news.newsTemplate')
+						->with(
+							[
+								'webName'	=>	self::WEB_NAME,
+								'news' => $news,
+								'newsData' => $newsData
+							]
+						);
 			}
 		} else {
 			if (!isset($listChild) || $this->hasNotChild($listChild)) {
@@ -530,35 +617,51 @@ class HomeController extends Controller {
 						->where('category_id', $newsDetail->category_id)
 						->where('alias', '!=', $newsDetail->alias)
 						->get();
-					switch ($category->parent_id){
-						case 0:
-							$internalNews = Pages::where('category_id', $newsDetail->category_id)
-								->where('status', 'enable')
-								->orderBy('created', 'desc')
-								->take(5)
-								->get();
-							return view('newstarland.news.internalNewsDetail')
-								->with(
-									[
-										'newsDetail'=> $newsDetail,
-										'webName' => self::WEB_NAME,
-										'byUser'	=> $byUser['username'],
-										'news' => $internalNews
-									]
-								);
-						case 1:
-							return view('newstarland.news.projectNewsDetail')
-								->with(
-									[
-										'webName' => self::WEB_NAME,
-										'newsDetail' => $newsDetail,
-										'category' => $category,
-										'byUser' => $byUser,
-										'listProjectFather' => $listProjectFather,
-										'postLike' => $postLike
-									]
-								);
+					$listNewsFix = [1,2,3,4,5];
+					if (in_array($category->category_id, $listNewsFix)) {
+						switch ($category->parent_id){
+							case 0:
+								$internalNews = Pages::where('category_id', $newsDetail->category_id)
+									->where('status', 'enable')
+									->orderBy('created', 'desc')
+									->take(5)
+									->get();
+								return view('newstarland.news.internalNewsDetail')
+									->with(
+										[
+											'newsDetail'=> $newsDetail,
+											'webName' => self::WEB_NAME,
+											'byUser'	=> $byUser['username'],
+											'news' => $internalNews
+										]
+									);
+							case 1:
+								return view('newstarland.news.projectNewsDetail')
+									->with(
+										[
+											'webName' => self::WEB_NAME,
+											'newsDetail' => $newsDetail,
+											'category' => $category,
+											'byUser' => $byUser,
+											'listProjectFather' => $listProjectFather,
+											'postLike' => $postLike
+										]
+									);
+						}
+					} else {
+						return view('newstarland.news.newsTemplateDetail')
+							->with(
+								[
+									'webName' => self::WEB_NAME,
+									'newsDetail' => $newsDetail,
+									'category' => $category,
+									'byUser' => $byUser,
+									'listProjectFather' => $listProjectFather,
+									'postLike' => $postLike
+								]
+							);
 					}
+
 				}
 				return redirect()->route('index');
 
@@ -566,7 +669,7 @@ class HomeController extends Controller {
 				$listNews = Pages::where('pagetype', 'post')
 					->where('status', 'enable')
 					->where('category_id', $categoryByAlias->category_id)
-					->get();
+					->paginate(12);;
 
 				return view('newstarland.news.subProjectNews')
 					->with([

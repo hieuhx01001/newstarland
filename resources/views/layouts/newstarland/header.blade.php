@@ -59,7 +59,7 @@
                         <a href="{{ route('index') }}">HOME</a>
                     </li>
                     <li id="menu-item-2439" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2439">
-                        <a href="#">DỰ ÁN PHÂN PHỐI</a>
+                        <a href="{{ route('listProject') }}">DỰ ÁN PHÂN PHỐI</a>
                         {!! SiteHelpers::generateProjectMenu() !!}
                     </li>
                     <li id="menu-item-2462"
@@ -77,18 +77,7 @@
                     <li id="menu-item-2432"
                         class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2432">
                         <a href="{{ route('listNews') }}">TIN TỨC</a>
-                        <ul class="sub-menu">
-                            <li id="menu-item-2457" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-2457">
-                                <a href="{{ route('news', ['tin-tuc-du-an']) }}">Tin tức dự án</a>
-                                <ul class="sub-menu">
-                                    {!! SiteHelpers::generateNewsProjectMenu() !!}}
-                                </ul>
-                            </li>
-                            <li id="menu-item-6172" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-6172">
-                                <a href="{{ route('news', ['cap-nhat-tien-do-du-an']) }}">Cập nhật tiến độ dự án</a>
-                                <a href="{{ route('news', ['tin-noi-bo']) }}">Tin nội bộ</a>
-                            </li>
-                        </ul>
+                        {!! SiteHelpers::generateNewsMenu() !!}
                     </li>
                     <li id="menu-item-2461"
                         class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2461">

@@ -2206,6 +2206,11 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 		$breadCrumb = '<span typeof="v:Breadcrumb">
                 <a href="'.route('index').'" class="home">'. self::WEB_NAME .'</a>
             </span>';
+		if($newsType != 'project') {
+			$breadCrumb .= '<span typeof="v:Breadcrumb">
+                <a href="'.'{{ route(\'listNews\') }}'.'" class="taxonomy category">Tin tức</a>
+            </span>';
+		}
 		return self::getBreadCrumb($id, $newsType, $breadCrumb, $title);
 	}
 
@@ -2233,7 +2238,11 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 	 */
 	private static function getBreadCrumb($id, $newsType, $breadCrumb, $title)
 	{
-		$projects = projectcategory::find($id);
+		if ($newsType == 'projects') {
+			$projects = projectcategory::find($id);
+		} else {
+			$projects = category::find($id);
+		}
 		if ($projects->parent_id == 0) {
 			$breadCrumb .= '<span typeof="v:Breadcrumb">
 			<a href="' . route($newsType, [$projects->alias]) . '" class="home">' . $projects->name . '</a>
@@ -2280,5 +2289,33 @@ public static function alphaID($in, $to_num = false, $pad_up = false, $passKey =
 		}
 	}
 
+	static function generateNewsMenu($parentId = 0)
+	{
+		$menu = '';
+		if ($parentId > 0) {
+			$parent = category::find($parentId);
+		}
 
+		$listNews = category::where('parent_id', $parentId)
+			->where('active', 1)
+			->where('category_id', '!=', 4)
+			->where('category_id', '!=', 2)
+			->orderBy('name')
+			->get();
+		$menu .= '<ul class="sub-menu">';
+		if (count($listNews) > 0) {
+			foreach ($listNews as $news) {
+				$route = route('news', [$news->alias]);
+				if (isset($parent)) {
+					$route = route('news', [$parent->alias, $news->alias]);
+				}
+				$menu .= '<li id="menu-item-2481" class="menu-item menu-item-type-post_type menu-item-object-essential_grid menu-item-has-children menu-item-2481">
+							<a href="'.$route.'">'.$news->name.'</a>';
+				$menu .= self::generateNewsMenu($news->category_id);
+				$menu .= '</li>';
+			}
+		}
+		$menu .= '</ul>';
+		return $menu;
+	}
 }

@@ -33,6 +33,9 @@
             <div class="row">
                 <h1 class="cat-title">Cập nhật tiến độ dự án</h1>
                 <div class="row panel-grid">
+                    @php
+                        $i = 0;
+                    @endphp
                     @foreach($news as $key => $processNews)
                     <div class="col-md-3 panel-grid-cell">
                         <div class="panel">
@@ -57,10 +60,16 @@
                         @if($key % 4 == 3)
                           <div class="clearfix"></div>
                         @endif
+                        @php
+                            $i++;
+                        @endphp
                     @endforeach
                 </div>
 
             </div>
         </div><!-- /container -->
+        @if($i > 12)
+        @include('layouts.newstarland.pagination', ['paging' => $news])
+        @endif
     </div>
 @endsection

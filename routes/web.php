@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@home')->name('index');
 Route::post('/home/proccess/{any?}', 'HomeController@postProccess');
 
 Route::group(['prefix' => 'du-an-phan-phoi'], function () {
-//	Route::get('/', 'HomeController@listProject')->name('listProject');
+	Route::get('/', 'HomeController@listProject')->name('listProject');
 	Route::get('{categoryAlias}/{alias?}', 'HomeController@projects')->name('projects');
 });
 

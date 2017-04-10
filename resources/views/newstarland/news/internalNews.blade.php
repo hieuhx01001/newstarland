@@ -33,6 +33,9 @@
             <div class="row">
                 <h1 class="cat-title">Tin nội bộ</h1>
                 <div class="row panel-grid">
+                    @php
+                    $i = 0;
+                    @endphp
                     @foreach($news as $internalNews)
                     <div class="col-md-3 panel-grid-cell">
                         <div class="panel">
@@ -54,10 +57,16 @@
 
                         </div>
                     </div>
+                    @php
+                    $i++;
+                    @endphp
                     @endforeach
                 </div>
 
             </div>
         </div><!-- /container -->
+        @if($i > 12)
+        @include('layouts.newstarland.pagination', ['paging' => $news])
+        @endif
     </div>
 @endsection

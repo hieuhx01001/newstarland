@@ -87,7 +87,9 @@
 }
 
 #pg-7-1{
-    padding-left: 15px;
+    padding-left: 20px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .lSNext, .lSPrev{
@@ -143,5 +145,9 @@
         max-width: none;
         max-height: none;
 
+    }
+
+    #slider-0 li{
+        padding-left: 30px;
     }
 }

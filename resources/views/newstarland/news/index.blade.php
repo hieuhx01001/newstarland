@@ -1,5 +1,9 @@
 @extends('layouts.newstarland.index')
 
+@section('title')
+    Tin tức
+@stop
+
 @section('content')
     <div class="main-title">
         <div class="container">
@@ -23,80 +27,33 @@
         <div class="container">
             <div class="row">
                 <div class="row panel-grid">
-                    <h3 class="cat-title">
-                        <a href="{{ route('news', ['tin-noi-bo']) }}">Tin nội bộ</a>
-                    </h3>
-                    @foreach($internal as $newsInternal)
-                    <div class="col-md-3 panel-grid-cell">
-                        <div class="panel">
-                            <div class="category-box">
-                                <a href="{{ route('news', ['tin-noi-bo', $newsInternal['alias']]) }}" class="page-box__picture">
-                                    <img width="360" height="240" src="{{ asset('uploads/images/'.$newsInternal['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt="">
-                                </a>
-                                <div class="page-box__content">
-                                    <h5 class="page-box__title  text-uppercase">
-                                        <a href="{{ route('news', ['tin-noi-bo', $newsInternal['alias']]) }}">{{ $newsInternal['title'] }}</a>
-                                    </h5>
-                                    <div class="excerp">
-                                        <p>{{ strip_tags($newsInternal['note']) }}</p>
+                    @foreach($listPost as $key => $post)
+                        <h3 class="cat-title">
+                            <a href="{{ route('news', $key) }}">{!! ucwords(str_replace('-', ' ', $key)) !!}</a>
+                        </h3>
+                        @foreach($post as $item)
+                        <div class="col-md-3 panel-grid-cell">
+                            <div class="panel">
+                                <div class="category-box">
+                                    <a href="{{ route('news', [$key, $item->alias]) }}" class="page-box__picture">
+                                        <img width="360" height="240" src="{{ asset('uploads/images/'.$item['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt="">
+                                    </a>
+                                    <div class="page-box__content">
+                                        <h5 class="page-box__title  text-uppercase">
+                                            <a href="{{ route('news', [$key, $item->alias]) }}">{{ $item['title'] }}</a>
+                                        </h5>
+                                        <div class="excerp">
+                                            <p>{{ strip_tags($item['note']) }}</p>
+                                        </div>
+                                        <p>
+                                            <a class="read-more  read-more--page-box" href="{{ route('news', [$key, $item->alias]) }}">Chi tiết </a>
+                                        </p>
                                     </div>
-                                    <p>
-                                        <a class="read-more  read-more--page-box" href="{{ route('news', ['tin-noi-bo', $newsInternal['alias']]) }}">Chi tiết </a>
-                                    </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="row panel-grid">
-                    <h3 class="cat-title"><a href="{{ route('news',['tin-tuyen-dung']) }}">Tuyển Dụng</a></h3>
-                    @foreach($recruitment as $newsRecruitment)
-                    <div class="col-md-3 panel-grid-cell">
-                        <div class="panel">
-                            <div class="category-box">
-                                <a href="{{ route('news', ['tin-tuyen-dung', $newsRecruitment['alias']]) }}" class="page-box__picture">
-                                    <img width="360" height="240" src="{{ asset('uploads/images/'.$newsRecruitment['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt="">
-                                </a>
-
-                                <div class="page-box__content">
-                                    <h5 class="page-box__title  text-uppercase">
-                                        <a href="{{ route('news', ['tin-tuyen-dung', $newsRecruitment['alias']]) }}">{{ $newsRecruitment['title'] }}</a>
-                                    </h5>
-                                    <div class="excerp"><p>{{ strip_tags($newsRecruitment['note']) }}</p>
-                                    </div>
-                                    <p>
-                                        <a class="read-more read-more--page-box" href="{{ route('news', ['tin-tuyen-dung', $newsRecruitment['alias']]) }}">Chi tiết </a>
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="row panel-grid">
-                    <h3 class="cat-title"><a href="{{ route('news', ['cap-nhat-tien-do-du-an']) }}">Cập nhật tiến độ dự án</a></h3>
-                    @foreach($process as $item)
-                    <div class="col-md-3 panel-grid-cell">
-                        <div class="panel">
-                            <div class="category-box">
-                                <a href="{{ route('news', ['cap-nhat-tien-do-du-an', $item->alias]) }}" class="page-box__picture">
-                                    <img width="360" height="240" src="{{ asset('uploads/images/'.$item['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt=""> </a>
-
-                                <div class="page-box__content">
-                                    <h5 class="page-box__title  text-uppercase">
-                                        <a href="{{ route('news', ['cap-nhat-tien-do-du-an', $item->alias]) }}">{{ $item['title'] }}</a>
-                                    </h5>
-                                    <div class="excerp"><p>{{ strip_tags($item['note']) }}</p>
-                                    </div>
-                                    <p>
-                                        <a class="read-more  read-more--page-box" href="{{ route('news', ['cap-nhat-tien-do-du-an', $item->alias]) }}">Chi tiết </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                        <div class="clearfix"></div>
                     @endforeach
                 </div>
             </div>

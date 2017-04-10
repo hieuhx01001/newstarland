@@ -131,8 +131,7 @@
 
     <!--block content-->
     <div class="master-container">
-        <div class="container post-7 page type-page status-publish hentry"
-             role="main">
+        <div class="container post-7 page type-page status-publish hentry" role="main" style="width: 100%">
             <div id="pl-7">
                 <div class="panel-grid" id="pg-7-0">
                     <div class="panel-grid-cell panel-grid-cell-empty"
