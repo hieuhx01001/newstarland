@@ -476,7 +476,8 @@ class HomeController extends Controller {
 			->get();
 		$postByCategory = [];
 		foreach ($listCategoryId as $categoryId) {
-			$postByCategory[$categoryId->alias] = Pages::where('category_id', $categoryId->category_id)
+			$postByCategory[] = Pages::where('category_id', $categoryId->category_id)
+				->where('pagetype', 'post')
 				->where('status', 'enable')
 				->orderBy('created', 'desc')
 				->take(4)
@@ -486,7 +487,8 @@ class HomeController extends Controller {
 		return view('newstarland.news.index')->with(
 			[
 				'webName' => self::WEB_NAME,
-				'listPost' => $postByCategory
+				'listPost' => $postByCategory,
+				'listCategory' => $listCategoryId
 			]
 		);
 	}

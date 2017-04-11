@@ -29,24 +29,24 @@
                 <div class="row panel-grid">
                     @foreach($listPost as $key => $post)
                         <h3 class="cat-title">
-                            <a href="{{ route('news', $key) }}">{!! ucwords(str_replace('-', ' ', $key)) !!}</a>
+                            <a href="{{ route('news', $listCategory[$key]['alias']) }}">{!! $listCategory[$key]['name'] !!}</a>
                         </h3>
                         @foreach($post as $item)
-                        <div class="col-md-3 panel-grid-cell">
+                            <div class="col-md-3 panel-grid-cell">
                             <div class="panel">
                                 <div class="category-box">
-                                    <a href="{{ route('news', [$key, $item->alias]) }}" class="page-box__picture">
+                                    <a href="{{ route('news', [$listCategory[$key]['alias'], $item->alias]) }}" class="page-box__picture">
                                         <img width="360" height="240" src="{{ asset('uploads/images/'.$item['image']) }}" class="attachment-360x240 size-360x240 wp-post-image" alt="">
                                     </a>
                                     <div class="page-box__content">
                                         <h5 class="page-box__title  text-uppercase">
-                                            <a href="{{ route('news', [$key, $item->alias]) }}">{{ $item['title'] }}</a>
+                                            <a href="{{ route('news', [$listCategory[$key]['alias'], $item->alias]) }}">{{ $item['title'] }}</a>
                                         </h5>
                                         <div class="excerp">
                                             <p>{{ strip_tags($item['note']) }}</p>
                                         </div>
                                         <p>
-                                            <a class="read-more  read-more--page-box" href="{{ route('news', [$key, $item->alias]) }}">Chi tiết </a>
+                                            <a class="read-more  read-more--page-box" href="{{ route('news', [$listCategory[$key]['alias'], $item->alias]) }}">Chi tiết </a>
                                         </p>
                                     </div>
                                 </div>
